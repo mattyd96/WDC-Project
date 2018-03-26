@@ -2,7 +2,10 @@ body {
     margin: 0;
 }
 
+
+/*###########################################################################*/
 /*NAVBAR*/
+
 nav {
     display: flex;
 }
@@ -144,6 +147,9 @@ a:hover {
     transform: rotate(45deg) translate(-8px, -8px) ;
 }
 
+
+/*###########################################################################*/
+
 /*SEARCHBAR*/
 
 .searchBG {
@@ -213,6 +219,7 @@ a:hover {
     grid-area: searchButton;
 }
 
+/*searchbar for mobile platforms*/
 @media (max-width: 70.375em) {
     .search {
         grid-template-columns: 0 0 0 0 0 10em 10em 0 0 0 0 0;
@@ -253,4 +260,19 @@ a:hover {
         border: none;
         grid-area: mSearch;
     }
+}
+
+
+/*homepage contents*/
+
+.homeResults {
+    max-width: 80em;
+    margin: auto;
+    padding: 2em;
+}
+
+.recommended {
+    display: grid;
+    grid-gap: 2em;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
