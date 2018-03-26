@@ -1,0 +1,254 @@
+body {
+    margin: 0;
+}
+
+/*NAVBAR*/
+nav {
+    display: flex;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+ul li {
+    padding: 0 2em;
+    list-style-type: none;
+}
+
+ul li ul li {  /* over riding 1.2em set on UL*/
+    font-size: .8em;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    color: black;
+}
+
+.right {
+    justify-content: flex-end;
+}
+
+.left {
+    justify-content: flex-start;
+}
+
+.middle {
+    flex: 1;
+}
+
+.loggedInWelcome {
+    display: flex;
+    position: relative;
+}
+
+.loggedInWelcome ul {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    position: absolute;
+    top: 1em;
+    right: 0;
+    padding-top: .5em;
+}
+
+.loggedInWelcome:hover ul,  .loggedInWelcome:hover ul:hover {
+    display: block;
+}
+
+.loggedInWelcome ul li {
+    padding-bottom: 0.5em;
+}
+
+.signInUp {
+    display: none;
+}
+
+#hamburgerMenu {
+    margin: 1em 0;
+}
+
+#hamburgerMenu li{
+    padding-right: 0;
+    padding-left: 0;
+    white-space: nowrap;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    cursor: pointer;
+    display: none;
+}
+
+
+/*for mobile screens = switch to hamburger menu*/
+@media (max-width: 70.375em) {
+    .hamburger {
+        display: inline-block;
+        margin: 1em;
+        text-align: right;
+    }
+
+    .hamburger ul{
+        display: none;
+        flex-direction: column;
+        clear: both;
+    }
+
+    .hamburger ul ul {
+        display: none;
+    }
+
+    .right {
+        display: none;
+        flex-direction: column;
+    }
+
+}
+
+.bars {
+    float: right;
+    clear: left;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color:white;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+    transform: rotate(-45deg) translate(-9px, 6px) ;
+}
+
+/* Fade out the second bar */
+.change .bar2 {
+    opacity: 0;
+}
+
+/* Rotate last bar */
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+    transform: rotate(45deg) translate(-8px, -8px) ;
+}
+
+/*SEARCHBAR*/
+
+.searchBG {
+    background: linear-gradient(to bottom right, #7f00ff, #e100ff);
+    width: 100%;
+}
+
+.search {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(7, 3em);
+    grid-template-areas:
+        ". . . . . . . . . . . ."
+        ". . . . . mLoc mLoc . . . . ."
+        ". . . . . mFrom mTo . . . . ."
+        "loc loc loc from from mAdult mChild adult adult child child searchButton"
+        ". . . . . mSearch mSearch . . . . ."
+        ". . . . . ref ref . . . . ."
+        ". . . . . . . . . . . .";
+      /* readable version of grid placement
+        ".   .   .   .    .    .       .       .     .     .     .     .           "
+        ".   .   .   .    .    mLoc    mLoc    .     .     .     .     .           "
+        ".   .   .   .    .    mFrom   mTo     .     .     .     .     .           "
+        "loc loc loc from from mAdult  mChild  adult adult child child searchButton"
+        ".   .   .   .    .    mSearch mSearch .     .     .     .     .           "
+        ".   .   .   .    .    mLoc    mLoc    .     .     .     .     .           "
+        ".   .   .   .    .    .       .       .     .     .     .     .           " */
+       
+    width: 70em;
+    margin: auto;
+   
+}
+
+.search input {
+    padding: .5rem 1rem;
+    border: none;
+    height: 2rem;
+}
+
+#location {
+    border-radius: .5em 0 0 .5em;
+    padding: 1rem 1rem;
+    height: 3rem;
+    grid-area: loc;
+}
+
+#dateStart {
+    grid-area: from;
+}
+
+#dateEnd {
+    grid-column: 6/ span 2;
+    grid-row: 4 / 5;
+}
+
+#adult {
+    grid-area: adult;
+}
+
+#child {
+    grid-area: child;
+}
+
+#searchButton {
+    border-radius: 0 .5em .5em 0;
+    border: none;
+    grid-area: searchButton;
+}
+
+@media (max-width: 70.375em) {
+    .search {
+        grid-template-columns: repeat(12, auto);
+    }
+    .search input {
+        padding: .5rem 1rem;
+        border: none;
+        height: 2rem;
+    }
+    
+    #location {
+        border-radius: .5em 0 0 .5em;
+        padding: 1rem 1rem;
+        height: 3rem;
+        grid-area: mLoc;
+    }
+    
+    #dateStart {
+        grid-area: mFrom;
+    }
+    
+    #dateEnd {
+        grid-area: mTo;
+    }
+    
+    #adult {
+        grid-area: mAdult;
+    }
+    
+    #child {
+        grid-area: mChild;
+    }
+    
+    #searchButton {
+        border-radius: 0 .5em .5em 0;
+        border: none;
+        grid-area: mSearch;
+    }
+}
