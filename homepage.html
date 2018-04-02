@@ -12,6 +12,7 @@
 			  crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/xlg8fuk.css">
     <link rel="stylesheet" href="homepage.css">
     <title>Document</title>
 </head>
@@ -80,6 +81,36 @@
             <button type="submit" id="searchButton"><i class="fas fa-search"></i></button>
         </div>
     </div> <!--searchBG-->
+    <aside class="modal">
+        <form id="signInForm" class="modal-content">
+            <header>
+                <span class="closeBtn">&times;</span>
+                <h2>Sign in</h2>
+            </header>
+            <section>
+                <label for="input">Email or username</label>
+                <br>
+                <input type="text">
+                <br>
+                <label for="password">Password</label>
+                <br>
+                <input type="password">
+                <br>
+                <div id="signBtnDiv">
+                    <button id="signBtn">Sign In</button>
+                </div>
+                
+                
+            </section>
+            <section class="mediaSignIn rightSignIn">
+                <button>Sign In With Google</button>
+                <button>Sign In With Twitter</button>
+                <button>Sign In With Google</button>
+            </section>
+            <p>Don't have an account? Sign up <a href="#">here!</a></p>
+        </form>
+    </aside>
+    
     <div class="homeResults">
         <div class="resultHeader">
             <h3>Recommended!</h3>
