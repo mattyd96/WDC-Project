@@ -160,7 +160,7 @@ nav .middle {
 /*SEARCHBAR*/
 
 .searchBG {
-    background-image: url("images/mountainsBG2.jpg");
+    background-image: url("images/map.jpg");
     background-size: 100%;
     /*background: linear-gradient(to bottom right, #7f00ff, #e100ff);*/
     width: 100%;
@@ -334,6 +334,9 @@ nav .middle {
 .modal-content a,  .modal-content p {
     color: white;
     padding: .5em;
+}
+.modal-content h2 {
+    color: white;
 }
 
 .fa-times {

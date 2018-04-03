@@ -1,11 +1,4 @@
-$(document).ready(function () {
-
-    /*Toggle Hamburger Menu style when clicked*/
-    function createHamburger(x) {
-        x.classList.toggle("change");
-    }
-
-    //#################################################
+  //#################################################
     //for simulation of a loggd in user with menu styles
 
     function logOut() {
@@ -26,6 +19,14 @@ $(document).ready(function () {
     }
 
     //#####################################################
+
+
+$(document).ready(function () {
+
+    /*Toggle Hamburger Menu style when clicked*/
+    function createHamburger(x) {
+        x.classList.toggle("change");
+    }
 
     //toggle Hamburger Menu
     var visible = false; //Is the menu currently visible?
