@@ -4,6 +4,10 @@ body {
     background-color: #141414;
 }
 
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    HOMEPAGE    
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+
 
 /*###########################################################################*/
 /*NAVBAR*/
@@ -297,13 +301,16 @@ nav .middle {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-image: url("images/nihonMichi.jpg");
+    background: linear-gradient(rgba(40, 44, 52, 0.4), rgb(40, 44, 52)), url("images/nihonMichi.jpg");
     background-size: 100%;
 }
 
+
 .modal-content input {
     padding: 1em;
-    border: 2px solid darkgrey;
+    color: white;
+    background-color: rgba(160,160,160,0.5);
+    border: none;
     border-radius: .5em;
 }
 
@@ -315,6 +322,7 @@ nav .middle {
 
 .modal-content input[type="submit"] {
     margin-top: 1em;
+    border: 2px solid darkgrey;
 }
 .modal-content button {
     border: none;
@@ -333,9 +341,9 @@ nav .middle {
 }
 
 .modal-content label {
-    padding-left: 1em;
+    padding-left: .5em;
     color: white;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 #signInForm input {
@@ -406,3 +414,15 @@ nav .middle {
     grid-gap: 2em;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
+
+
+
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    HOTEL AND ROOMS PAGE HOTEL.HTML CSS    
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+
+
+
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    ACCOUNT MANAGEMENT ACCOUNT.HTML CSS   
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
