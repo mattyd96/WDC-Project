@@ -10,48 +10,49 @@ body {
 
 nav {
     display: flex;
+    white-space: nowrap;
 }
 
-ul {
+nav ul {
     display: flex;
     flex-direction: row;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 500;
+    font-family: 'proxima-nova', sans-serif;
+    font-weight: bold;
     font-size: 1.2em;
 }
 
-ul li {
+nav ul li {
     padding: 0 2em;
     list-style-type: none;
 }
 
-ul li ul li {  /* over riding 1.2em set on UL*/
+nav ul li ul li {  /* over riding 1.2em set on UL*/
     font-size: .8em;
 }
 
-a {
+nav a {
     text-decoration: none;
     color: white;
 }
 
-a:hover {
+nav a:hover {
     color: black;
 }
 
-.right {
+nav .right {
     justify-content: flex-end;
 }
 
-.left {
+nav .left {
     justify-content: flex-start;
 }
 
-.middle {
+nav .middle {
     flex: 1;
 }
 
 .loggedInWelcome {
-    display: flex;
+    display: none;
     position: relative;
 }
 
@@ -74,7 +75,7 @@ a:hover {
 }
 
 .signInUp {
-    display: none;
+    display: block;
 }
 
 #hamburgerMenu {
@@ -159,6 +160,7 @@ a:hover {
     background-size: 100%;
     /*background: linear-gradient(to bottom right, #7f00ff, #e100ff);*/
     width: 100%;
+    height: 100vh;
 }
 
 .search {
@@ -184,7 +186,6 @@ a:hover {
        
     width: 70em;
     margin: auto;
-   
 }
 
 .search input {
@@ -284,35 +285,63 @@ a:hover {
 
 .modal-content {
     background-color: #f4f4f4;
-    margin: 20% auto;
+    margin: 15% auto;
     padding: 20px;
     width: 90%;
     max-width: 30em;
+    height: 90vh;
+    max-height: 690px;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
     animation-name:modalopen;
-    animation-duration:0.5s;
+    animation-duration:0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url("images/nihonMichi.jpg");
+    background-size: 100%;
 }
 
-#signBtn {
+.modal-content input {
+    padding: 1em;
+    border: 2px solid darkgrey;
+    border-radius: .5em;
+}
+
+.modal-content section {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-rows: auto;
+}
+
+.modal-content input[type="submit"] {
+    margin-top: 1em;
+}
+.modal-content button {
     border: none;
-    border-radius: 3em;
-    width: 98.2%;
-    height: 3em;
-    margin: 1em 0;
+    border-radius: .5em;
+    width: 100%;
+    height: 4em;
     background-color: #16b1b5;
 }
+.modal-content a,  .modal-content p {
+    color: white;
+    padding: .5em;
+}
 
-#signBtnDiv {
-    text-align: center;
+.fa-times {
+    color: white;
+}
+
+.modal-content label {
+    padding-left: 1em;
+    color: white;
+    font-weight: 500;
 }
 
 #signInForm input {
     border: 1px solid darkgrey;
-    border-radius: 3em;
-    width: 90%;
+    border-radius: .5em;
     outline: none;
-    margin: .5em 0;
-    padding: .5em 1.5em;
 }
 
 .closeBtn {
@@ -325,6 +354,32 @@ a:hover {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+#createOrBecomeHost {
+    /*display: none;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url("images/nihonMichi.jpg");
+    background-size: 100%;
+}
+
+#createAccountForm button {
+    height: 3em;
+}
+
+#createAccount {
+    display: none;
+}
+
+#createBtn {
+    width: 100%;
+}
+
+
+#becomeHost {
+    display: none;
 }
 
 @keyframes modalopen {

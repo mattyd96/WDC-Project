@@ -11,7 +11,6 @@
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 			  crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.typekit.net/xlg8fuk.css">
     <link rel="stylesheet" href="homepage.css">
     <title>Document</title>
@@ -35,7 +34,7 @@
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
                     <li class="signInUp"><a href="#">Sign In</a></li>
-                    <li class="signInUp"><a href="#">Create Account</a></li>
+                    <li class="createAccountClass"><a href="#">Create Account</a></li>
                     <li class="loggedInWelcome">
                         <a href="#">Welcome, Username</a>
                         <ul>
@@ -76,39 +75,107 @@
             <input type="search" name="location" id="location" placeholder="Where to?">
             <input type="date" name="dateStart" id="dateStart" placeholder="From">
             <input type="date" name="dateEnd" id="dateEnd" placeholder="To">
-            <input type="number" name="adult" id="adult" placeholder="Adults">
-            <input type="number" name="child" id="child" placeholder="Children">
+            <input type="text" name="adult" id="adult" placeholder="Adults">
+            <input type="text" name="child" id="child" placeholder="Children">
             <button type="submit" id="searchButton"><i class="fas fa-search"></i></button>
         </div>
     </div> <!--searchBG-->
+
     <aside class="modal">
-        <form id="signInForm" class="modal-content">
-            <header>
-                <span class="closeBtn">&times;</span>
-                <h2>Sign in</h2>
-            </header>
-            <section>
-                <label for="input">Email or username</label>
-                <br>
-                <input type="text">
-                <br>
-                <label for="password">Password</label>
-                <br>
-                <input type="password">
-                <br>
-                <div id="signBtnDiv">
+
+            <form action="#" id="signInForm" class="modal-content">
+
+                <header>
+                    <span class="closeBtn"><i class="fas fa-times"></i></span>
+                    <h2>Sign in</h2>
+                </header>
+    
+                <section>
+                    <label for="signInEmail" >Email or username</label>
+                    <input type="text" id="signInEmail" required>
+                    
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+
+                    <a id="forgotPassword">Forgot Password?</a>
+            
                     <button id="signBtn">Sign In</button>
-                </div>
+
+                    <p>Don't have an account? Sign up <a id="noAccountYet">here!</a></p>
+                </section>
+    
+            </form>
+
+
+            <form action="#" id="createOrBecomeHost" class="modal-content">
+                <header>
+                    <span class="closeBtn"><i class="fas fa-times"></i></span>
+                    <h2>Create Account</h2>
+                </header>
+                <section>
+                    <button id="createBtn">Create Account</button>
+                    <button id="hostBtn">Become a Host!</button>
+                </section> 
+            </form>
+
+            <form action="#" id="createAccount" class="modal-content">
+                <header>
+                    <span class="closeBtn"><i class="fas fa-times"></i></span>
+                    <h2>Create Account</h2>
+                </header>
+
+                <section>
+                    
+                    <label for="firstName lastName">Name</label>
+
+        
+                    <input type="text" id="firstName" placeholder="First" required>
+                    <input type="text" id="lastName" placeholder="Last" required>
                 
-                
-            </section>
-            <section class="mediaSignIn rightSignIn">
-                <button>Sign In With Google</button>
-                <button>Sign In With Twitter</button>
-                <button>Sign In With Google</button>
-            </section>
-            <p>Don't have an account? Sign up <a href="#">here!</a></p>
-        </form>
+                    <label for="username">username</label>
+                    <input type="text" id="username" placeholder="ex. traveler2020" required>
+    
+                    <label for="createPassword">Password</label>
+                    <input type="password" required>
+    
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required>
+    
+                    <label for="email">Email (optional)</label>
+                    <input type="email">
+    
+                    <input type="submit" value="Create Account">
+                </section> 
+            </form>
+
+            <form action="#" id="becomeHost" class="modal-content">
+
+                <header>
+                    <span class="closeBtn"><i class="fas fa-times"></i></span>
+                    <h2>Create Host Account</h2>
+                </header>
+
+                <section>
+                    <label for="businessName">Name</label>
+                    <input type="text" id="businessName" placeholder="First" required>
+    
+                    <label for="username">username</label>
+                    <input type="text" id="username" placeholder="ex. traveler2020" required>
+    
+                    <label for="createPassword">Password</label>
+                    <input type="password" required>
+    
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required>
+    
+                    <label for="email">Email (optional)</label>
+                    <input type="email">
+    
+                    <input type="submit" value="Create Account">
+                </section>
+
+            </form>
+
     </aside>
     
     <div class="homeResults">
@@ -130,6 +197,6 @@
 
         </div>
     </div>
-    <script src="homepage.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
