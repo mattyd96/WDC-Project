@@ -22,7 +22,7 @@ nav ul {
     flex-direction: row;
     font-family: 'proxima-nova', sans-serif;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 nav ul li {
@@ -31,7 +31,7 @@ nav ul li {
 }
 
 nav ul li ul li {  /* over riding 1.2em set on UL*/
-    font-size: .8em;
+    font-size: .6em;
 }
 
 nav a {
@@ -65,7 +65,7 @@ nav .middle {
     width: 100%;
     flex-direction: column;
     position: absolute;
-    top: 1em;
+    top: .5em;
     right: 0;
     padding-top: .5em;
 }
@@ -161,31 +161,33 @@ nav .middle {
 
 .searchBG {
     background-image: url("images/pond.jpg");
-    background-size: 100%;
+    background-size: cover;
     /*background: linear-gradient(to bottom right, #7f00ff, #e100ff);*/
     width: 100%;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .search {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(7, 3em);
+    grid-template-rows: repeat(7, auto);
     grid-template-areas:
         ". . . . . . . . . . . ."
-        ". . . . . mLoc mLoc . . . . ."
+        "p p p . . mLoc mLoc . . . . ."
         ". . . . . mFrom mTo . . . . ."
         "loc loc loc from from mAdult mChild adult adult child child searchButton"
         ". . . . . mSearch mSearch . . . . ."
-        ". . . . . ref ref . . . . ."
+        ". . . . . ref ref . . p2 p2 p2"
         ". . . . . . . . . . . .";
       /* readable version of grid placement
         ".   .   .   .    .    .       .       .     .     .     .     .           "
-        ".   .   .   .    .    mLoc    mLoc    .     .     .     .     .           "
+        "p   p   p   .    .    mLoc    mLoc    .     .     .     .     .           "
         ".   .   .   .    .    mFrom   mTo     .     .     .     .     .           "
         "loc loc loc from from mAdult  mChild  adult adult child child searchButton"
         ".   .   .   .    .    mSearch mSearch .     .     .     .     .           "
-        ".   .   .   .    .    mLoc    mLoc    .     .     .     .     .           "
+        ".   .   .   .    .    mLoc    mLoc    .     .     p2    p2    p2          "
         ".   .   .   .    .    .       .       .     .     .     .     .           " */
        
     width: 70em;
@@ -196,7 +198,9 @@ nav .middle {
     padding: .5rem 1rem;
     border: none;
     height: 2rem;
+    font-size: 1.2em;
 }
+
 
 #location {
     border-radius: .5em 0 0 .5em;
@@ -214,6 +218,7 @@ nav .middle {
     grid-row: 4 / 5;
 }
 
+
 #adult {
     grid-area: adult;
 }
@@ -226,6 +231,21 @@ nav .middle {
     border-radius: 0 .5em .5em 0;
     border: none;
     grid-area: searchButton;
+}
+
+.search p {
+    font-family: 'pacifico', cursive;
+    font-size: 3em;
+    color: white;
+}
+
+#search-script-1 {
+    grid-area: p;
+}
+
+#search-script-2 {
+    grid-area: p2;
+    justify-self: end;
 }
 
 /*searchbar for mobile platforms*/
@@ -268,6 +288,11 @@ nav .middle {
         border-radius: 0 0 .5em .5em;
         border: none;
         grid-area: mSearch;
+        height: 3em;
+    }
+
+    .search p {
+        display: none;
     }
 }
 
@@ -349,7 +374,7 @@ nav .middle {
     font-weight: bold;
 }
 
-#signInForm input {
+.signInForm input {
     border: 1px solid darkgrey;
     border-radius: .5em;
     outline: none;
@@ -367,7 +392,7 @@ nav .middle {
     cursor: pointer;
 }
 
-#createOrBecomeHost {
+.createOrBecomeHost {
     /*display: none;*/
     display: flex;
     flex-direction: column;
@@ -376,20 +401,20 @@ nav .middle {
     background-size: 100%;
 }
 
-#createAccountForm button {
+.createAccountForm button {
     height: 3em;
 }
 
-#createAccount {
+.createAccount {
     display: none;
 }
 
-#createBtn {
+.createBtn {
     width: 100%;
 }
 
 
-#becomeHost {
+.becomeHost {
     display: none;
 }
 
@@ -412,13 +437,67 @@ nav .middle {
     color: #f4f4f4;
 }
 
-.recommended {
+.homeResultGrid {
     display: grid;
     grid-gap: 2em;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+.hotelRoomThumbnail {
+    display: grid;
+    grid-template-rows: auto;
+    min-width: 10rem;
+    max-width: 30rem;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+}
+
+.hotelRoomThumbnail a {
+    display: block;
 }
 
 
+
+.thumbImg {
+    min-width: 10rem;
+    max-width: 100%;
+    height: 13rem;
+    background-image: url("images/kabukicho.jpg");
+    background-size: cover;
+}
+
+
+.thumb-flex {
+    display: flex;
+    justify-content: space-between;
+    padding: .5em 1em;
+    background-color: #f4f4f4;
+}
+.thumb-flex a {
+    text-decoration: none;
+}
+
+.fa-heart {
+    font-size: 1.5em;
+    padding-top: .5em;
+    padding-left: .5em;
+    color: grey;
+}
+
+.fa-heart:hover {
+    color: darkslategrey;
+}
+
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    SEARCH PAGE SEARCH.HTML CSS    
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+.searchBG2 {
+    background-image: url("images/pond.jpg");
+    background-size: cover;
+    /*background: linear-gradient(to bottom right, #7f00ff, #e100ff);*/
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     HOTEL AND ROOMS PAGE HOTEL.HTML CSS    

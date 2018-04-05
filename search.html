@@ -11,11 +11,243 @@
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 			  crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"> 
     <link rel="stylesheet" href="https://use.typekit.net/xlg8fuk.css">
     <link rel="stylesheet" href="main.css">
     <title>Search</title>
 </head>
 <body>
+     <!--Navbar and landing page background-->
+    <div class = "searchBG2">
+        <nav>
+            <div class="left">
+                <ul>
+                    <li><a href="#">LOGO</a></li>
+                </ul>
+            </div>
+            <div class="middle">
+                <button onclick="logIn()">Log In!</button>
+                <button onclick="logOut()">Log out!</button>
+            </div>
+            <div class="right">
+                <ul>
+                    <li><a href="homepage.html">Home</a></li>
+                    <li><a href="search.html">Search</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li class="signInUp"><a href="#">Sign In</a></li>
+                    <li class="createAccountClass"><a href="#">Create Account</a></li>
+                    <li class="loggedInWelcome">
+                        <a href="#">Welcome, Username</a>
+                        <ul>
+                            <li><a href="#">Manage Account</a></li>
+                            <li><a href="#">Favorites</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                            <li><a href="#">Bookings</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="hamburger">
+                <div class="bars">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+                <ul id="hamburgerMenu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li class="signInUp"><a href="#">Sign In</a></li>
+                    <li class="signInUp"><a href="#">Create Account</a></li>
+                    <li class="loggedInWelcome">
+                        <a href="#">Welcome, Username</a>
+                        <ul>
+                            <li><a href="#">Manage Account</a></li>
+                            <li><a href="#">Favorites</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                            <li><a href="#">Bookings</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="search">
+
+            <p id="search-script-1">Where will</p>
+            <p id="search-script-2">you go?</p>
+
+            <input type="search" name="location" id="location" placeholder="Where to?">       
+            <input type="date" name="dateStart" id="dateStart" placeholder="From">
+            <input type="date" name="dateEnd" id="dateEnd" placeholder="To">
+            <input type="text" name="adult" id="adult" placeholder="Adults">
+            <input type="text" name="child" id="child" placeholder="Children">
+            <button type="submit" id="searchButton"><i class="fas fa-search fa-lg"></i></button>
+        </div>
+    </div> <!--searchBG-->
+
+    <!--Modals for sign in and account creation-->
+
+    <aside class="modal">
+
+            <form action="#" class="modal-content signInForm">
+
+                <header>
+                    <span class="closeBtn"><i class="fas fa-times"></i></span>
+                    <h2>Sign in</h2>
+                </header>
     
+                <section>
+                    <label for="signInEmail" >Email or username</label>
+                    <input type="text" id="signInEmail" required>
+                    
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+
+                    <a id="forgotPassword">Forgot Password?</a>
+            
+                    <button id="signBtn">Sign In</button>
+
+                    <p>Don't have an account? Sign up <a id="noAccountYet">here!</a></p>
+                </section>
+    
+            </form>
+
+
+            <form action="#" class="modal-content createOrBecomeHost">
+                <header>
+                    <span class="closeBtn"><i class="fas fa-times"></i></span>
+                    <h2>Create Account</h2>
+                </header>
+                <section>
+                    <button class="createBtn">Create Account</button>
+                    <button class="hostBtn">Become a Host!</button>
+                </section> 
+            </form>
+
+            <form action="#"  class="modal-content createAccount">
+                <header>
+                    <span class="closeBtn"><i class="fas fa-times"></i></span>
+                    <h2>Create Account</h2>
+                </header>
+
+                <section>
+                    
+                    <label for="firstName lastName">Name</label>
+
+        
+                    <input type="text" id="firstName" placeholder="First" required>
+                    <input type="text" id="lastName" placeholder="Last" required>
+                
+                    <label for="username">username</label>
+                    <input type="text" id="username" placeholder="ex. traveler2020" required>
+    
+                    <label for="createPassword">Password</label>
+                    <input type="password" required>
+    
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required>
+    
+                    <label for="email">Email (optional)</label>
+                    <input type="email">
+    
+                    <input type="submit" value="Create Account">
+                </section> 
+            </form>
+
+            <form action="#" class="modal-content becomeHost">
+
+                <header>
+                    <span class="closeBtn"><i class="fas fa-times"></i></span>
+                    <h2>Create Host Account</h2>
+                </header>
+
+                <section>
+                    <label for="businessName">Name</label>
+                    <input type="text" id="businessName" placeholder="First" required>
+    
+                    <label for="username">username</label>
+                    <input type="text" id="username" placeholder="ex. traveler2020" required>
+    
+                    <label for="createPassword">Password</label>
+                    <input type="password" required>
+    
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required>
+    
+                    <label for="email">Email (optional)</label>
+                    <input type="email">
+    
+                    <input type="submit" value="Create Account">
+                </section>
+
+            </form>
+
+    </aside>
+    
+    <!-- homepage contents -->
+
+    <article class="homeResults">
+
+        <section id="results">
+
+            <header class="resultHeader">
+                <h3>Results</h3>
+            </header>
+
+            <div class="homeResultGrid">
+
+                <div class="hotelRoomThumbnail">
+                    <div class="thumbImg">
+                    </div>
+                    <div class="thumb-flex">
+                        <p>Cybernet Kissaten</p>
+                        <span class="favThis"><i class="fas fa-heart"></i></span>
+                    </div>
+                    <div class="thumb-flex">
+                        <a href="#"><i class="fas fa-compass"></i> Tokyo</a>
+                        <a href="#">$ 100</a>
+                    </div>
+                </div>
+                <div class="hotelRoomThumbnail">
+                    <div class="thumbImg">
+                    </div>
+                    <div class="thumb-flex">
+                        <p>Cybernet Kissaten</p>
+                        <span class="favThis"><i class="fas fa-heart"></i></span>
+                    </div>
+                    <div class="thumb-flex">
+                        <a href="#">Tokyo</a>
+                        <a href="#">$ 100</a>
+                    </div>
+                </div>
+                <div class="hotelRoomThumbnail">
+                    <div class="thumbImg">
+                    </div>
+                    <div class="thumb-flex">
+                        <p>Cybernet Kissaten</p>
+                        <span class="favThis"><i class="fas fa-heart"></i></span>
+                    </div>
+                    <div class="thumb-flex">
+                        <a href="#">Tokyo</a>
+                        <a href="#">$ 100</a>
+                    </div>
+                </div>
+
+                <!--<div style="width: 200px; height: 200px; background: black;"></div>
+                <div style="width: 200px; height: 200px; background: black;"></div>
+                <div style="width: 200px; height: 200px; background: black;"></div>
+                <div style="width: 200px; height: 200px; background: black;"></div>
+                <div style="width: 200px; height: 200px; background: black;"></div>
+                <div style="width: 200px; height: 200px; background: black;"></div>-->
+            </div>
+        </section>
+        
+    </article>
+
+    <!-- scripts for page -->
+
+    <script src="main.js"></script>
 </body>
 </html>

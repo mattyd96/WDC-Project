@@ -1,5 +1,5 @@
   //#################################################
-    //for simulation of a loggd in user with menu styles
+    //for simulation of a logged in user with menu styles
 
     function logOut() {
         console.log("pressed log out");
@@ -23,14 +23,17 @@
 
 $(document).ready(function () {
 
+    //---------------------------- Hamburger menu functions --------------------------------------//
+
     /*Toggle Hamburger Menu style when clicked*/
-    function createHamburger(x) {
-        x.classList.toggle("change");
-    }
+    $(".bars").click(function createHamburger() {
+        this.classList.toggle("change");
+        console.log("hamburger clicked");
+    });
 
     //toggle Hamburger Menu
     var visible = false; //Is the menu currently visible?
-    function menuChange() {
+    $(".bars").click(function menuChange() {
         if (visible) {
             $("#hamburgerMenu").css("display", "none");
             visible = false;
@@ -38,15 +41,17 @@ $(document).ready(function () {
             $("#hamburgerMenu").css("display", "flex");
             visible = true;
         }
-    }
+    });
 
+    //----------------------------- sign in modal functions ---------------------------------------//
 
     //display sign in form on click and hide others
     $(".signInUp").click(function () {
         $(".modal").show();
-        $("#signInForm").show();
-        $("#becomeHost").hide();
-        $("#createAccount").hide();
+        $(".signInForm").show();
+        $(".becomeHost").hide();
+        $(".createAccount").hide();
+        $(".createOrBecomeHost").hide();
     });
 
     //hide each form on click
@@ -66,22 +71,33 @@ $(document).ready(function () {
     $(".createAccountClass").click(function () {
         console.log("create button clicked");
         $(".modal").show();
-        $("#signInForm").hide();
-        $("#createOrBecomeHost").css("display", "flex");
+        $(".signInForm").hide();
+        $(".createOrBecomeHost").css("display", "flex");
     });
 
     // display user sign in if they click on create account button
-    $("#createBtn").click(function () {
-        $("#createOrBecomeHost").hide();
-        $("#becomeHost").hide();
-        $("#createAccount").show();
+    $(".createBtn").click(function () {
+        $(".createOrBecomeHost").hide();
+        $(".becomeHost").hide();
+        $(".createAccount").show();
     });
 
     //display host sign in if they click on "become a host!"
-    $("#hostBtn").click(function () {
-        $("#createOrBecomeHost").hide();
-        $("#createAccount").hide();
-        $("#becomeHost").show();
+    $(".hostBtn").click(function () {
+        $(".createOrBecomeHost").hide();
+        $(".createAccount").hide();
+        $(".becomeHost").show();
+    });
+
+    //----------------------------- favorite functions ---------------------------------------//
+
+    
+    var isButtonRed = false; //boolean for favorite button color
+    $(".favThis").click(function() {
+
+        //change favorite button color
+        $(this).children(".fa-heart").css('color', isButtonRed ? 'grey' : 'tomato');
+        isButtonRed = !isButtonRed;
     });
 
 

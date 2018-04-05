@@ -11,11 +11,13 @@
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 			  crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"> 
     <link rel="stylesheet" href="https://use.typekit.net/xlg8fuk.css">
     <link rel="stylesheet" href="main.css">
     <title>Homepage</title>
 </head>
 <body>
+    <!--Navbar and landing page background-->
     <div class = "searchBG">
         <nav>
             <div class="left">
@@ -29,8 +31,8 @@
             </div>
             <div class="right">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Search</a></li>
+                    <li><a href="homepage.html">Home</a></li>
+                    <li><a href="search.html">Search</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
                     <li class="signInUp"><a href="#">Sign In</a></li>
@@ -47,7 +49,7 @@
                 </ul>
             </div>
             <div class="hamburger">
-                <div class="bars" onclick="createHamburger(this); menuChange()">
+                <div class="bars">
                     <div class="bar1"></div>
                     <div class="bar2"></div>
                     <div class="bar3"></div>
@@ -72,18 +74,24 @@
             </div>
         </nav>
         <div class="search">
-            <input type="search" name="location" id="location" placeholder="Where to?">
+
+            <p id="search-script-1">Where will</p>
+            <p id="search-script-2">you go?</p>
+
+            <input type="search" name="location" id="location" placeholder="Where to?">       
             <input type="date" name="dateStart" id="dateStart" placeholder="From">
             <input type="date" name="dateEnd" id="dateEnd" placeholder="To">
             <input type="text" name="adult" id="adult" placeholder="Adults">
             <input type="text" name="child" id="child" placeholder="Children">
-            <button type="submit" id="searchButton"><i class="fas fa-search"></i></button>
+            <button type="submit" id="searchButton"><i class="fas fa-search fa-lg"></i></button>
         </div>
     </div> <!--searchBG-->
 
+    <!--Modals for sign in and account creation-->
+
     <aside class="modal">
 
-            <form action="#" id="signInForm" class="modal-content">
+            <form action="#" class="modal-content signInForm">
 
                 <header>
                     <span class="closeBtn"><i class="fas fa-times"></i></span>
@@ -107,18 +115,18 @@
             </form>
 
 
-            <form action="#" id="createOrBecomeHost" class="modal-content">
+            <form action="#" class="modal-content createOrBecomeHost">
                 <header>
                     <span class="closeBtn"><i class="fas fa-times"></i></span>
                     <h2>Create Account</h2>
                 </header>
                 <section>
-                    <button id="createBtn">Create Account</button>
-                    <button id="hostBtn">Become a Host!</button>
+                    <button class="createBtn">Create Account</button>
+                    <button class="hostBtn">Become a Host!</button>
                 </section> 
             </form>
 
-            <form action="#" id="createAccount" class="modal-content">
+            <form action="#"  class="modal-content createAccount">
                 <header>
                     <span class="closeBtn"><i class="fas fa-times"></i></span>
                     <h2>Create Account</h2>
@@ -148,7 +156,7 @@
                 </section> 
             </form>
 
-            <form action="#" id="becomeHost" class="modal-content">
+            <form action="#" class="modal-content becomeHost">
 
                 <header>
                     <span class="closeBtn"><i class="fas fa-times"></i></span>
@@ -178,25 +186,102 @@
 
     </aside>
     
-    <div class="homeResults">
-        <div class="resultHeader">
-            <h3>Recommended!</h3>
-        </div>
-        <div class="recommended">
-            <div style="width: 200px; height: 200px; background: black;"></div>
-            <div style="width: 200px; height: 200px; background: black;"></div>
-            <div style="width: 200px; height: 200px; background: black;"></div>
-            <div style="width: 200px; height: 200px; background: black;"></div>
-            <div style="width: 200px; height: 200px; background: black;"></div>
-            <div style="width: 200px; height: 200px; background: black;"></div>
-        </div>
-        <div class="popular">
+    <!-- homepage contents -->
 
-        </div>
-        <div class="bestRating">
+    <article class="homeResults">
 
-        </div>
-    </div>
+        <section id="recommended">
+
+            <header class="resultHeader">
+                <h3>Recommended!</h3>
+            </header>
+
+            <div class="homeResultGrid">
+
+                <div class="hotelRoomThumbnail">
+                    <div class="thumbImg">
+                    </div>
+                    <div class="thumb-flex">
+                        <p>Cybernet Kissaten</p>
+                        <span class="favThis"><i class="fas fa-heart"></i></span>
+                    </div>
+                    <div class="thumb-flex">
+                        <a href="#"><i class="fas fa-compass"></i> Tokyo</a>
+                        <a href="#">$ 100</a>
+                    </div>
+                </div>
+                <div class="hotelRoomThumbnail">
+                    <div class="thumbImg">
+                    </div>
+                    <div class="thumb-flex">
+                        <p>Cybernet Kissaten</p>
+                        <span class="favThis"><i class="fas fa-heart"></i></span>
+                    </div>
+                    <div class="thumb-flex">
+                        <a href="#">Tokyo</a>
+                        <a href="#">$ 100</a>
+                    </div>
+                </div>
+                <div class="hotelRoomThumbnail">
+                    <div class="thumbImg">
+                    </div>
+                    <div class="thumb-flex">
+                        <p>Cybernet Kissaten</p>
+                        <span class="favThis"><i class="fas fa-heart"></i></span>
+                    </div>
+                    <div class="thumb-flex">
+                        <a href="#">Tokyo</a>
+                        <a href="#">$ 100</a>
+                    </div>
+                </div>
+
+                <!--<div style="width: 200px; height: 200px; background: black;"></div>
+                <div style="width: 200px; height: 200px; background: black;"></div>
+                <div style="width: 200px; height: 200px; background: black;"></div>
+                <div style="width: 200px; height: 200px; background: black;"></div>
+                <div style="width: 200px; height: 200px; background: black;"></div>
+                <div style="width: 200px; height: 200px; background: black;"></div>-->
+            </div>
+        </section>
+        
+        <section id="Popular">
+            <header class="resultHeader">
+                <h3>Popular</h3>
+            </header>
+            <div class="homeResultGrid">
+                <div class="hotelRoomThumbnail">
+                    <a href="#">
+                        <div class="thumbImg">
+                
+                        </div>
+                    </a>
+                    
+                    <div class="thumb-flex">
+                        <p>The Pound</p>
+                        <span class="favThis"><i class="fas fa-heart"></i></span>
+                    </div>
+                    <div class="thumb-flex">
+                        <a href="#">Dog Town</a>
+                        <a href="#">$ 1000</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="highestRated">
+            <header class="resultHeader">
+                <h3>HIghest Rated</h3>
+            </header>
+            <div class="homeResultGrid">
+
+            </div>
+        </section>
+        
+    </article>
+
+
+    <!-- scripts for page -->
+
     <script src="main.js"></script>
 </body>
 </html>
