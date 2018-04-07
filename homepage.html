@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
     <script
 			  src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -55,12 +55,12 @@
                     <div class="bar3"></div>
                 </div>
                 <ul id="hamburgerMenu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Search</a></li>
+                    <li><a href="homepage.html">Home</a></li>
+                    <li><a href="search.html">Search</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
                     <li class="signInUp"><a href="#">Sign In</a></li>
-                    <li class="signInUp"><a href="#">Create Account</a></li>
+                    <li class="createAccountClass"><a href="#">Create Account</a></li>
                     <li class="loggedInWelcome">
                         <a href="#">Welcome, Username</a>
                         <ul>
@@ -78,11 +78,26 @@
             <p id="search-script-1">Where will</p>
             <p id="search-script-2">you go?</p>
 
-            <input type="search" name="location" id="location" placeholder="Where to?">       
-            <input type="date" name="dateStart" id="dateStart" placeholder="From">
-            <input type="date" name="dateEnd" id="dateEnd" placeholder="To">
-            <input type="text" name="adult" id="adult" placeholder="Adults">
-            <input type="text" name="child" id="child" placeholder="Children">
+            <input type="search" name="location" id="location" placeholder="Where to?">
+
+            <div  class="search-icons dateStart">
+                <i class="fas fa-calendar-alt fa-lg"></i>
+                <input type="date" name="dateStart">
+            </div>
+
+            <div class="search-icons dateEnd">
+                <i class="fas fa-calendar-alt fa-lg"></i>
+                <input type="date" name="dateEnd"  placeholder="To">
+            </div>       
+            
+            <div class="search-icons people">
+                <input type="number" name="people" placeholder="People" class="search-number-input">
+            </div>
+            <div class="search-icons rooms">
+                <input type="number" name="rooms"  placeholder="Rooms" class="search-number-input">
+            </div>
+            
+            
             <button type="submit" id="searchButton"><i class="fas fa-search fa-lg"></i></button>
         </div>
     </div> <!--searchBG-->
@@ -109,7 +124,7 @@
             
                     <button id="signBtn">Sign In</button>
 
-                    <p>Don't have an account? Sign up <a id="noAccountYet">here!</a></p>
+                    <p>Don't have an account? Sign up <a href="#" class="createAccountClass">here!</a></p>
                 </section>
     
             </form>
@@ -206,8 +221,8 @@
                         <span class="favThis"><i class="fas fa-heart"></i></span>
                     </div>
                     <div class="thumb-flex">
-                        <a href="#"><i class="fas fa-compass"></i> Tokyo</a>
-                        <a href="#">$ 100</a>
+                        <a href="#"><i class="fas fa-compass fa-lg"></i> Tokyo</a>
+                        <a href="#" class="thumb-price">$ 100</a>
                     </div>
                 </div>
                 <div class="hotelRoomThumbnail">
@@ -218,8 +233,8 @@
                         <span class="favThis"><i class="fas fa-heart"></i></span>
                     </div>
                     <div class="thumb-flex">
-                        <a href="#">Tokyo</a>
-                        <a href="#">$ 100</a>
+                        <a href="#"><i class="fas fa-compass fa-lg"></i> Tokyo</a>
+                        <a href="#" class="thumb-price">$ 100</a>
                     </div>
                 </div>
                 <div class="hotelRoomThumbnail">
@@ -230,10 +245,23 @@
                         <span class="favThis"><i class="fas fa-heart"></i></span>
                     </div>
                     <div class="thumb-flex">
-                        <a href="#">Tokyo</a>
-                        <a href="#">$ 100</a>
+                        <a href="#"><i class="fas fa-compass fa-lg"></i> Tokyo</a>
+                        <a href="#" class="thumb-price">$ 100</a>
                     </div>
                 </div>
+                <div class="hotelRoomThumbnail">
+                    <div class="thumbImg">
+                    </div>
+                    <div class="thumb-flex">
+                        <p>Cybernet Kissaten</p>
+                        <span class="favThis"><i class="fas fa-heart"></i></span>
+                    </div>
+                    <div class="thumb-flex">
+                        <a href="#"><i class="fas fa-compass fa-lg"></i> Tokyo</a>
+                        <a href="#" class="thumb-price">$ 100</a>
+                    </div>
+                </div>
+                
 
                 <!--<div style="width: 200px; height: 200px; background: black;"></div>
                 <div style="width: 200px; height: 200px; background: black;"></div>
@@ -270,7 +298,7 @@
 
         <section id="highestRated">
             <header class="resultHeader">
-                <h3>HIghest Rated</h3>
+                <h3>Highest Rated</h3>
             </header>
             <div class="homeResultGrid">
 
@@ -278,6 +306,31 @@
         </section>
         
     </article>
+
+    <footer>
+            <article>
+                <header>Site Links</header>
+                <ul>
+                    <li><a href="homepage.html">Home</a></li>
+                    <li><a href="search.html">Search</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li class="signInUp"><a href="#">Sign In</a></li>
+                    <li class="createAccountClass"><a href="#">Create Account</a></li>
+                </ul>
+            </article>
+            <article class="footer-social">
+                <header>Find Us On Social Media!</header>
+                <ul>
+                    <li><a href=""><i class="fab fa-facebook-square fa-2x"></i></a></li>
+                    <li><a href=""><i class="fab fa-instagram fa-2x"></i></a></li>
+                    <li><a href=""><i class="fab fa-github fa-2x"></i></a></li>
+                    <li><a href=""><i class="fab fa-twitter fa-2x"></i></a></li>
+                    <li><a href=""><i class="fab fa-twitch fa-2x"></i></a></li>
+                </ul>
+            </article>
+    
+    </footer>
 
 
     <!-- scripts for page -->

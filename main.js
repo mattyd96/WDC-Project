@@ -101,6 +101,12 @@ $(document).ready(function () {
     });
 
 
+    //----------------------------- Account Creation functions ---------------------------------------//
+
+    
+    
+
+
 });// DOM Function
 
 
