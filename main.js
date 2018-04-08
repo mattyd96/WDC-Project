@@ -89,6 +89,30 @@ $(document).ready(function () {
         $(".becomeHost").show();
     });
 
+    //----------------------------- map toggle functions ---------------------------------------//
+
+    $("#map-view").click(function() {
+
+        //hide list view and show map view
+        $(".homeResultGrid").hide();
+        $(".map").show();
+
+        //hide map button and show list button
+        $("#map-view").hide();
+        $("#list-view").show();
+    });
+
+    $("#list-view").click(function() {
+
+        //hide map view and show list view
+        $(".homeResultGrid").css("display", "grid");
+        $(".map").hide();
+
+        //show map button and hide list button
+        $("#map-view").show();
+        $("#list-view").hide();
+    });
+
     //----------------------------- favorite functions ---------------------------------------//
 
     
@@ -103,8 +127,103 @@ $(document).ready(function () {
 
     //----------------------------- Account Creation functions ---------------------------------------//
 
-    
-    
+    //check that confirm password and password are matching
+
+        //check whether host or user create account is visible and assigns appropriate id's to variables
+        if($(".becomeHost").length) {
+            var $submitBtn = $("#create-account-form-host input[type='submit']");
+            var $passwordBox = $("#create-password-host");
+            var $confirmBox = $("#confirm-password-host");
+        } else {
+            var $submitBtn = $("#create-account-form input[type='submit']");
+            var $passwordBox = $("#create-password");
+            var $confirmBox = $("#confirm-password");
+        }
+        
+        var $errorMsg =  $('<span id="error-msg"><i class="fas fa-exclamation"></i></span>');
+        var $successMsg =  $('<span id="success-msg"><i class="fas fa-check"></i></span>');
+
+
+        // This is incase the user hits refresh - some browsers will maintain the disabled state of the button.
+        $submitBtn.removeAttr("disabled");
+
+        function checkMatchingPasswords(){
+            console.log("checking passwords");
+            if($confirmBox.val() != "" && $passwordBox.val != ""){
+                if($confirmBox.val() != $passwordBox.val() ){
+                    console.log("passwords not equal");
+                    $submitBtn.attr("disabled", "disabled");
+                    $errorMsg.insertAfter($confirmBox);
+                } else {
+                    $successMsg.insertAfter($confirmBox);
+                }
+            }
+        }
+
+        function resetPasswordError(){
+            $submitBtn.removeAttr("disabled");
+            var $errorCont = $("#error-msg");
+            var $successCont = $("#success-msg");
+            if($errorCont.length > 0){
+                $errorCont.remove();
+            }  
+            if($successCont.length > 0){
+                $successCont.remove();
+            }  
+        }
+
+        $("#confirm-password, #password, #confirm-password-host, #create-password-host")
+             .on("keydown", function(e){
+                /* only check when the tab or enter keys are pressed
+                 * to prevent the method from being called needlessly  */
+                if(e.keyCode == 13 || e.keyCode == 9) {
+                    checkMatchingPasswords();
+                }
+             })
+             .on("blur", function(){                    
+                // also check when the element looses focus (clicks somewhere else)
+                checkMatchingPasswords();
+            })
+            .on("focus", function(){
+                // reset the error message when they go to make a change
+                resetPasswordError();
+            })
+
+    //create an object based on inputs to create an account for a person or business
+
+        //user object
+
+        function user(firstName, lastName, userName, password, email) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.userName = userName;
+            this.password = password;
+            this.email = email;
+            this.favorites = [];
+            this.wishlist = [];
+            this.recentlyVisited = [];
+            this.bookings = [];
+            this.canEdit = false;
+        }
+
+        function host(name, userName, password, email) {
+            this.name = name;
+            this.userName = userName;
+            this.password = password;
+            this.email = email;
+            this.favorites = [];
+            this.listings = [];
+            this.canEdit = true;
+        }
+
+        $(".create-user-submit").click(function () {
+            var $firstName = $("#firstName");
+            var $lastName = $("#lastName");
+            var $userName = $("#username");
+            var $password = $("#create-password");
+            var $email = $("#create-account-form input[type='email']");
+
+        });
 
 
 });// DOM Function

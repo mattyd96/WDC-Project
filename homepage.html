@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"> 
     <link rel="stylesheet" href="https://use.typekit.net/xlg8fuk.css">
     <link rel="stylesheet" href="main.css">
-    <title>Homepage</title>
+    <title>Home</title>
 </head>
 <body>
     <!--Navbar and landing page background-->
@@ -22,7 +22,7 @@
         <nav>
             <div class="left">
                 <ul>
-                    <li><a href="#">LOGO</a></li>
+                    <li><a href="homepage.html">LOGO</a></li>
                 </ul>
             </div>
             <div class="middle">
@@ -33,10 +33,10 @@
                 <ul>
                     <li><a href="homepage.html">Home</a></li>
                     <li><a href="search.html">Search</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="about.html">About</a></li>
                     <li><a href="#">Contact</a></li>
                     <li class="signInUp"><a href="#">Sign In</a></li>
-                    <li class="createAccountClass"><a href="#">Create Account</a></li>
+                    <li class="createAccountClass create-account-nav"><a href="#">Create Account</a></li>
                     <li class="loggedInWelcome">
                         <a href="#">Welcome, Username</a>
                         <ul>
@@ -57,7 +57,7 @@
                 <ul id="hamburgerMenu">
                     <li><a href="homepage.html">Home</a></li>
                     <li><a href="search.html">Search</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="about.html">About</a></li>
                     <li><a href="#">Contact</a></li>
                     <li class="signInUp"><a href="#">Sign In</a></li>
                     <li class="createAccountClass"><a href="#">Create Account</a></li>
@@ -141,7 +141,7 @@
                 </section> 
             </form>
 
-            <form action="#"  class="modal-content createAccount">
+            <form action="#"  class="modal-content createAccount" id="create-account-form">
                 <header>
                     <span class="closeBtn"><i class="fas fa-times"></i></span>
                     <h2>Create Account</h2>
@@ -150,7 +150,6 @@
                 <section>
                     
                     <label for="firstName lastName">Name</label>
-
         
                     <input type="text" id="firstName" placeholder="First" required>
                     <input type="text" id="lastName" placeholder="Last" required>
@@ -159,19 +158,22 @@
                     <input type="text" id="username" placeholder="ex. traveler2020" required>
     
                     <label for="createPassword">Password</label>
-                    <input type="password" required>
+                    <input type="password" id="create-password" required>
     
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" required>
-    
+                    <label for="confirm-password">Confirm Password</label>
+
+                    <div class='password-confirm-div'>
+                        <input type="password" id="confirm-password" required>
+                    </div>
+                    
                     <label for="email">Email (optional)</label>
                     <input type="email">
     
-                    <input type="submit" value="Create Account">
+                    <input type="submit" value="Create Account" id="create-user-submit">
                 </section> 
             </form>
 
-            <form action="#" class="modal-content becomeHost">
+            <form action="#" class="modal-content becomeHost" id="create-account-form-host">
 
                 <header>
                     <span class="closeBtn"><i class="fas fa-times"></i></span>
@@ -183,18 +185,21 @@
                     <input type="text" id="businessName" placeholder="First" required>
     
                     <label for="username">username</label>
-                    <input type="text" id="username" placeholder="ex. traveler2020" required>
+                    <input type="text" id="username-host" placeholder="ex. traveler2020" required>
     
-                    <label for="createPassword">Password</label>
-                    <input type="password" required>
+                    <label for="create-password-host">Password</label>
+                    <input type="password" id="create-password-host" required>
     
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" required>
+                    <label for="confirm-password-host">Confirm Password</label>
+
+                    <div class='password-confirm-div'>
+                        <input type="password" id="confirm-password-host" required>
+                    </div>
     
                     <label for="email">Email (optional)</label>
                     <input type="email">
     
-                    <input type="submit" value="Create Account">
+                    <input type="submit" value="Create Account" id="create-host-submit">
                 </section>
 
             </form>
@@ -261,14 +266,7 @@
                         <a href="#" class="thumb-price">$ 100</a>
                     </div>
                 </div>
-                
-
-                <!--<div style="width: 200px; height: 200px; background: black;"></div>
-                <div style="width: 200px; height: 200px; background: black;"></div>
-                <div style="width: 200px; height: 200px; background: black;"></div>
-                <div style="width: 200px; height: 200px; background: black;"></div>
-                <div style="width: 200px; height: 200px; background: black;"></div>
-                <div style="width: 200px; height: 200px; background: black;"></div>-->
+            
             </div>
         </section>
         
@@ -308,27 +306,27 @@
     </article>
 
     <footer>
-            <article>
-                <header>Site Links</header>
-                <ul>
-                    <li><a href="homepage.html">Home</a></li>
-                    <li><a href="search.html">Search</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li class="signInUp"><a href="#">Sign In</a></li>
-                    <li class="createAccountClass"><a href="#">Create Account</a></li>
-                </ul>
-            </article>
-            <article class="footer-social">
-                <header>Find Us On Social Media!</header>
-                <ul>
-                    <li><a href=""><i class="fab fa-facebook-square fa-2x"></i></a></li>
-                    <li><a href=""><i class="fab fa-instagram fa-2x"></i></a></li>
-                    <li><a href=""><i class="fab fa-github fa-2x"></i></a></li>
-                    <li><a href=""><i class="fab fa-twitter fa-2x"></i></a></li>
-                    <li><a href=""><i class="fab fa-twitch fa-2x"></i></a></li>
-                </ul>
-            </article>
+        <article>
+            <header>Site Links</header>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li class="signInUp"><a href="#">Sign In</a></li>
+                <li class="createAccountClass"><a href="#">Create Account</a></li>
+            </ul>
+        </article>
+        <article class="footer-social">
+            <header>Find Us On Social Media!</header>
+            <ul>
+                <li><a href=""><i class="fab fa-facebook-square fa-2x"></i></a></li>
+                <li><a href=""><i class="fab fa-instagram fa-2x"></i></a></li>
+                <li><a href="https://github.com/mattyd96/WDC-Project" target="_blank"><i class="fab fa-github fa-2x"></i></a></li>
+                <li><a href=""><i class="fab fa-twitter fa-2x"></i></a></li>
+                <li><a href=""><i class="fab fa-twitch fa-2x"></i></a></li>
+            </ul>
+        </article>
     
     </footer>
 

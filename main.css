@@ -82,6 +82,18 @@ nav .middle {
     display: block;
 }
 
+.create-account-nav {
+    border: 2px solid white;
+    border-radius: .2em;
+    padding: .2em;
+    margin-top: -.2em;
+    margin-right: 2em;
+}
+
+.create-account-nav:hover {
+    border-color: black;
+}
+
 #hamburgerMenu {
     margin: 1em 0;
 }
@@ -433,6 +445,31 @@ nav .middle {
     display: none;
 }
 
+.password-confirm-div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: rgba(160,160,160,0.5);
+    border-radius: .5em;
+    height: 3rem;
+}
+
+.password-confirm-div span {
+    margin: 1em;
+}
+
+#confirm-password {
+    background: none;
+    width: 80%;
+}
+
+#success-msg {
+    color: green;
+}
+#error-msg {
+    color: red;
+}
+
 @keyframes modalopen {
     from {opacity: 0}
     to {opacity: 1}
@@ -546,7 +583,8 @@ footer ul {
     justify-content: space-between;
 }
 footer header {
-    font: bold 1.5em 'proxima-nova', 'sans-serif';
+    font-weight: bold;
+    font-size: 1.5em;
     color: white;
 }
 
@@ -562,6 +600,35 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     width: 100%;
     display: flex;
     flex-direction: column;
+    padding-bottom: 3em;
+}
+
+.search-result-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.map-list-toggle {
+    text-decoration: none;
+    border: 2px solid white;
+    border-radius: .2em;
+    padding: .2em;
+    color: white;
+    font-size: .8em;
+
+}
+
+.map-list-toggle:hover {
+    color: teal;
+    border-color: darkcyan;
+}
+
+#list-view {
+    display: none;
+}
+
+.map {
+    display: none;
 }
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -573,3 +640,16 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     ACCOUNT MANAGEMENT ACCOUNT.HTML CSS   
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    ABOUT PAGE ABOUT.HTML CSS    
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+.about-content {
+    max-width: 80em;
+    margin: auto;
+}
+.about-content h1{
+    font-family: 'pacifico', 'cursive';
+    font-weight: bold;
+    color: white;
+}
