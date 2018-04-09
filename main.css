@@ -202,7 +202,7 @@ nav .middle {
         ".   .   .   .    .    mLoc    mLoc    .     .     p2    p2    p2          "
         ".   .   .   .    .    .       .       .     .     .     .     .           " */
        
-    width: 80em;
+    width: 90em;
     margin: auto;
 }
 
@@ -272,7 +272,7 @@ nav .middle {
 }
 
 /*searchbar for mobile platforms*/
-@media (max-width: 80.5em) {
+@media (max-width: 90em) {
     .search {
         grid-template-columns: 0 0 0 0 0 15em 15em 0 0 0 0 0;
         width: 30em;

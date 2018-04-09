@@ -211,9 +211,17 @@ $(document).ready(function () {
 
     //create an object based on inputs to create an account for a person or business
 
+        //users array
+
+        var users = [];
+
+        //host array
+
+        var hosts = [];
+
         //user object
 
-        function user(firstName, lastName, userName, password, email) {
+        function User(firstName, lastName, userName, password, email) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.userName = userName;
@@ -226,7 +234,9 @@ $(document).ready(function () {
             this.canEdit = false;
         }
 
-        function host(name, userName, password, email) {
+        //host object
+
+        function Host(name, userName, password, email) {
             this.name = name;
             this.userName = userName;
             this.password = password;
@@ -236,18 +246,102 @@ $(document).ready(function () {
             this.canEdit = true;
         }
 
+        //check existing usernames against submitted one to check uniqueness
+
+        function checkUserNames() {
+            
+            //users
+            for(var i = 0; i < users.length; i++) {
+                if($("#username").val() === users[i].userName || $("#username-host").val() === users[i].userName) {
+                    return false;
+                }
+            }
+
+            //hosts
+            for(var i = 0; i < hosts.length; i++) {
+                if($("#username").val() === hosts[i].userName || $("#username-host").val() === hosts[i].userName) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        //error message if username already exists
+        var $userNameErrorMsg =  $('<span id="error-msg-username"><i class="fas fa-exclamation"></i> Sorry! this username is already taken :(</span>');
+
+        //reset error message if username is valid
+        function resetUsernameError(){
+
+            var $errorCont = $("#error-msg-username");
+            if($errorCont.length > 0){
+                $errorCont.remove();
+            }  
+        }
+
+        //create new user object
         $("#create-user-submit").click(function () {
-            console.log("creating");
-            var $firstName = $("#firstName");
-            var $lastName = $("#lastName");
-            var $userName = $("#username");
-            var $password = $("#create-password");
-            var $email = $("#create-account-form input[type='email']");
 
-            var user = new user($firstName, $lastName, $userName, $password, $email);
-            console.log(user.firstName);
-            console.log(user.userName);
+            if(checkUserNames()) {
+                //assign form values to user object properties
+                console.log("creating");
+                var $firstName = $("#firstName").val();
+                var $lastName = $("#lastName").val();
+                var $userName = $("#username").val();
+                var $password = $("#create-password").val();
+                var $email = $("#create-account-form input[type='email']").val();
 
+                //create user object
+                var user = new User($firstName, $lastName, $userName, $password, $email);
+                console.log(user.firstName);
+                console.log(user.userName);
+
+                //push to user array
+                users.push(user);
+
+                //hide modal
+                $(".modal").hide();
+
+                console.log(users);
+
+                resetUsernameError();
+
+            } else {
+                $userNameErrorMsg.insertAfter($("#user-username-label"));
+            }
+
+        });
+
+        $("#create-host-submit").click(function () {
+            console.log("doing something");
+            if(checkUserNames()) {
+                //assign form values to host object properties
+                console.log("creating host");
+                var $businessName = $("#businessName").val();
+                var $userName = $("#username-host").val();
+                var $password = $("#create-password-host").val();
+                var $email = $("#create-account-form-host input[type='email']").val();
+
+                //create user object
+                var host = new Host($businessName, $userName, $password, $email);
+                console.log(host.name);
+                console.log(host.userName);
+
+                //push to user array
+                hosts.push(host);
+
+                //hide modal
+                $(".modal").hide();
+
+                console.log(hosts);
+
+                resetUsernameError();
+
+            } else {
+                $userNameErrorMsg.insertAfter($("#host-username-label"));
+            }
+
+            
         });
 
 
