@@ -45,6 +45,10 @@ $(document).ready(function () {
 
     //----------------------------- sign in modal functions ---------------------------------------//
 
+    //boolean needed for account creation functions
+    //determines which values to use for account creation (host or user)
+    var hostIsVisible = false;
+
     //display sign in form on click and hide others
     $(".signInUp").click(function () {
         $(".modal").show();
@@ -52,11 +56,13 @@ $(document).ready(function () {
         $(".becomeHost").hide();
         $(".createAccount").hide();
         $(".createOrBecomeHost").hide();
+        hostIsVisible = false;
     });
 
     //hide each form on click
     $(".closeBtn").click(function () {
         $(".modal").hide();
+        hostIsVisible = false;
     });
 
     //hide modals on any click outside of modal
@@ -64,6 +70,7 @@ $(document).ready(function () {
         //if you click on anything except the modal itself or the "open modal" link, close the modal
         if (!$(event.target).closest(".modal-content, .signInUp, .createAccountClass").length) {
             $("body").find(".modal").hide();
+            hostIsVisible = false;
         }
     });
 
@@ -73,6 +80,7 @@ $(document).ready(function () {
         $(".modal").show();
         $(".signInForm").hide();
         $(".createOrBecomeHost").css("display", "flex");
+        hostIsVisible = false;
     });
 
     // display user sign in if they click on create account button
@@ -80,6 +88,7 @@ $(document).ready(function () {
         $(".createOrBecomeHost").hide();
         $(".becomeHost").hide();
         $(".createAccount").show();
+        hostIsVisible = false;
     });
 
     //display host sign in if they click on "become a host!"
@@ -87,6 +96,7 @@ $(document).ready(function () {
         $(".createOrBecomeHost").hide();
         $(".createAccount").hide();
         $(".becomeHost").show();
+        hostIsVisible = true;
     });
 
     //----------------------------- map toggle functions ---------------------------------------//
@@ -130,15 +140,23 @@ $(document).ready(function () {
     //check that confirm password and password are matching
 
         //check whether host or user create account is visible and assigns appropriate id's to variables
-        if($(".becomeHost").length) {
-            var $submitBtn = $("#create-account-form-host input[type='submit']");
-            var $passwordBox = $("#create-password-host");
-            var $confirmBox = $("#confirm-password-host");
-        } else {
-            var $submitBtn = $("#create-account-form input[type='submit']");
-            var $passwordBox = $("#create-password");
-            var $confirmBox = $("#confirm-password");
-        }
+        var $submitBtn = $("#create-account-form-host input[type='submit']"); 
+        var $passwordBox =$("#create-password");
+        var $confirmBox = $("#confirm-password");
+
+        $(".createAccountClass, .hostBtn").click(function () {
+            console.log("function has ran");
+            if(hostIsVisible) {
+                console.log(".becomeHost confirmed");
+                $submitBtn = $("#create-account-form-host input[type='submit']");
+                $passwordBox = $("#create-password-host");
+                $confirmBox = $("#confirm-password-host");
+            } else {
+                $submitBtn = $("#create-account-form input[type='submit']");
+                $passwordBox = $("#create-password");
+                $confirmBox = $("#confirm-password");
+            }
+        });
         
         var $errorMsg =  $('<span id="error-msg"><i class="fas fa-exclamation"></i></span>');
         var $successMsg =  $('<span id="success-msg"><i class="fas fa-check"></i></span>');
@@ -154,6 +172,8 @@ $(document).ready(function () {
                     console.log("passwords not equal");
                     $submitBtn.attr("disabled", "disabled");
                     $errorMsg.insertAfter($confirmBox);
+
+                    console.log("inserted msg");
                 } else {
                     $successMsg.insertAfter($confirmBox);
                 }
@@ -172,7 +192,7 @@ $(document).ready(function () {
             }  
         }
 
-        $("#confirm-password, #password, #confirm-password-host, #create-password-host")
+        $("#confirm-password, #create-password, #confirm-password-host, #create-password-host")
              .on("keydown", function(e){
                 /* only check when the tab or enter keys are pressed
                  * to prevent the method from being called needlessly  */
@@ -216,12 +236,17 @@ $(document).ready(function () {
             this.canEdit = true;
         }
 
-        $(".create-user-submit").click(function () {
+        $("#create-user-submit").click(function () {
+            console.log("creating");
             var $firstName = $("#firstName");
             var $lastName = $("#lastName");
             var $userName = $("#username");
             var $password = $("#create-password");
             var $email = $("#create-account-form input[type='email']");
+
+            var user = new user($firstName, $lastName, $userName, $password, $email);
+            console.log(user.firstName);
+            console.log(user.userName);
 
         });
 
