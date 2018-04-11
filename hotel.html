@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
     <script
 			  src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -16,6 +16,237 @@
     <title>Hotel and Rooms</title>
 </head>
 <body>
-    
+  <!--Navbar and landing page background-->
+  <div class = "searchHR">
+      <nav>
+          <div class="left">
+              <ul>
+                  <li><a href="#">LOGO</a></li>
+              </ul>
+          </div>
+          <div class="middle">
+              <button onclick="logIn()">Log In!</button>
+              <button onclick="logOut()">Log out!</button>
+          </div>
+          <div class="right">
+              <ul>
+                  <li><a href="homepage.html">Home</a></li>
+                  <li><a href="search.html">Search</a></li>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Contact</a></li>
+                  <li class="signInUp"><a href="#">Sign In</a></li>
+                  <li class="createAccountClass"><a href="#">Create Account</a></li>
+                  <li class="loggedInWelcome">
+                      <a href="#">Welcome, Username</a>
+                      <ul>
+                          <li><a href="#">Manage Account</a></li>
+                          <li><a href="#">Favorites</a></li>
+                          <li><a href="#">Wishlist</a></li>
+                          <li><a href="#">Bookings</a></li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+          <div class="hamburger">
+              <div class="bars">
+                  <div class="bar1"></div>
+                  <div class="bar2"></div>
+                  <div class="bar3"></div>
+              </div>
+              <ul id="hamburgerMenu">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Search</a></li>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Contact</a></li>
+                  <li class="signInUp"><a href="#">Sign In</a></li>
+                  <li class="signInUp"><a href="#">Create Account</a></li>
+                  <li class="loggedInWelcome">
+                      <a href="#">Welcome, Username</a>
+                      <ul>
+                          <li><a href="#">Manage Account</a></li>
+                          <li><a href="#">Favorites</a></li>
+                          <li><a href="#">Wishlist</a></li>
+                          <li><a href="#">Bookings</a></li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+      </nav>
+    </div>
+
+    <!--Modals for sign in and account creation-->
+    <aside class="modal">
+
+            <form action="#" class="modal-content signInForm">
+
+                <header>
+                    <span class="closeBtn"><i class="fas fa-times"></i></span>
+                    <h2>Sign in</h2>
+                </header>
+
+                <section>
+                    <label for="signInEmail" >Email or username</label>
+                    <input type="text" id="signInEmail" required>
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+
+                    <a id="forgotPassword">Forgot Password?</a>
+
+                    <button id="signBtn">Sign In</button>
+
+                    <p>Don't have an account? Sign up <a id="noAccountYet">here!</a></p>
+                </section>
+
+            </form>
+
+
+            <form action="#" class="modal-content createOrBecomeHost">
+                <header>
+                    <span class="closeBtn"><i class="fas fa-times"></i></span>
+                    <h2>Create Account</h2>
+                </header>
+                <section>
+                    <button class="createBtn">Create Account</button>
+                    <button class="hostBtn">Become a Host!</button>
+                </section>
+            </form>
+
+            <form action="#"  class="modal-content createAccount">
+                <header>
+                    <span class="closeBtn"><i class="fas fa-times"></i></span>
+                    <h2>Create Account</h2>
+                </header>
+
+                <section>
+
+                    <label for="firstName lastName">Name</label>
+
+
+                    <input type="text" id="firstName" placeholder="First" required>
+                    <input type="text" id="lastName" placeholder="Last" required>
+
+                    <label for="username">username</label>
+                    <input type="text" id="username" placeholder="ex. traveler2020" required>
+
+                    <label for="createPassword">Password</label>
+                    <input type="password" required>
+
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required>
+
+                    <label for="email">Email (optional)</label>
+                    <input type="email">
+
+                    <input type="submit" value="Create Account">
+                </section>
+            </form>
+
+            <form action="#" class="modal-content becomeHost">
+
+                <header>
+                    <span class="closeBtn"><i class="fas fa-times"></i></span>
+                    <h2>Create Host Account</h2>
+                </header>
+
+                <section>
+                    <label for="businessName">Name</label>
+                    <input type="text" id="businessName" placeholder="First" required>
+
+                    <label for="username">username</label>
+                    <input type="text" id="username" placeholder="ex. traveler2020" required>
+
+                    <label for="createPassword">Password</label>
+                    <input type="password" required>
+
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required>
+
+                    <label for="email">Email (optional)</label>
+                    <input type="email">
+
+                    <input type="submit" value="Create Account">
+                </section>
+
+            </form>
+
+    </aside>
+
+    <!-- Hotel name header description & pictures-->
+    <section id="hotelSection">
+    <header class="hotelName">
+      <h1>Hotel Name</h1>
+    </header>
+
+    <div class="topSection">
+
+      <div class="hotelDescription">
+        <p>description description description description description description
+        description description description description description description description description
+        description description description description description description description description
+        description description</p>
+      </div>
+
+      <div class="hotelPictures">
+        <a href="images/hotelpic1.jpg" data-lightbox="HotelPics">
+          <img src="images/hotelpic1.jpg" alt="Hotel Picture 1" class="innerPic1"></img>
+        </a>
+        <a href="images/hotelpic2.jpg" data-lightbox="HotelPics">
+          <img src="images/hotelpic2.jpg" alt="Hotel Picture 2" class="innerPic2"></img>
+        </a>
+        <a href="images/hotelpic3.jpg" data-lightbox="HotelPics">
+          <img src="images/hotelpic3.jpg" alt="Hotel Picture 3" class="innerPic3"></img>
+        </a>
+      </div>
+
+      </div>
+    </section>
+
+    <!-- Hotel rooms section -->
+    <section class="roomSection">
+
+      <div id="roomSectionGrid">
+        <h2>Rooms</h2>
+        <button id="reviewBtn">Reviews</button>
+      </div>
+
+      <div class="roomGrid">
+
+        <div class=roomName><h3>Room Name</h3></div>
+
+        <div class=roomPictures>
+          <a href="images/hotelroompic1.jpg" data-lightbox="RoomPics">
+            <img src="images/hotelroompic1.jpg" alt="Room Picture 1" class="innerRPic1"></img>
+          </a>
+          <a href="images/hotelroompic2.jpg" data-lightbox="RoomPics">
+            <img src="images/hotelroompic2.jpg" alt="Room Picture 2" class="innerRPic2"></img>
+          </a>
+        </div>
+
+        <div class=roomSize><h3>Room Size</h3></div>
+
+        <div class=roomDescription>
+          <p>description description description description description description
+          description description description description description description description description
+          description description description description description description description description
+          description description</p></div>
+        <div class="bookCell"><button id="bookBtn">Book</button></div>
+
+      </div>
+
+    </section>
+
+    <!-- The Reviews Section -->
+    <section id="Reviews">
+      <div class="username">Username</div>
+      <div class="userHistory">Rooms stayed in: </div>
+      
+      <div class="commentSection">Reviews go here
+        <button class="uploadBtn">Uploaded Pictures</button>
+      </div>
+    </section>
+
+  <script src="main.js"></script>
+  <script src="hotel.js"></script>
 </body>
 </html>

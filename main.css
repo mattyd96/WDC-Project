@@ -5,7 +5,7 @@ body {
 }
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    HOMEPAGE    
+    HOMEPAGE
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 
@@ -83,18 +83,6 @@ nav .middle {
     display: block;
 }
 
-.create-account-nav {
-    border: 2px solid white;
-    border-radius: .2em;
-    padding: .2em;
-    margin-top: -.2em;
-    margin-right: 2em;
-}
-
-.create-account-nav:hover {
-    border-color: black;
-}
-
 #hamburgerMenu {
     margin: 1em 0;
 }
@@ -113,7 +101,7 @@ nav .middle {
 
 
 /*for mobile screens = switch to hamburger menu*/
-@media (max-width: 85em) {
+@media (max-width: 70.375em) {
     .hamburger {
         display: inline-block;
         margin: 1em;
@@ -202,8 +190,8 @@ nav .middle {
         ".   .   .   .    .    mSearch mSearch .     .     .     .     .           "
         ".   .   .   .    .    mLoc    mLoc    .     .     p2    p2    p2          "
         ".   .   .   .    .    .       .       .     .     .     .     .           " */
-       
-    width: 90em;
+
+    width: 70em;
     margin: auto;
 }
 
@@ -212,7 +200,6 @@ nav .middle {
     border: none;
     height: 2rem;
     font-size: 1.2em;
-    font-weight: bold;
 }
 
 
@@ -223,23 +210,21 @@ nav .middle {
     grid-area: loc;
 }
 
-.dateStart {
+#dateStart {
     grid-area: from;
-    padding-left: 1em;
 }
 
-.dateEnd {
+#dateEnd {
     grid-column: 6/ span 2;
     grid-row: 4 / 5;
-    padding-left: 1em;
 }
 
 
-.people {
+#adult {
     grid-area: adult;
 }
 
-.rooms {
+#child {
     grid-area: child;
 }
 
@@ -255,14 +240,6 @@ nav .middle {
     color: white;
 }
 
-.search-icons {
-    background-color: white;
-}
-
-.search-number-input {
-    max-width: 10em;
-}
-
 #search-script-1 {
     grid-area: p;
 }
@@ -273,10 +250,10 @@ nav .middle {
 }
 
 /*searchbar for mobile platforms*/
-@media (max-width: 90em) {
+@media (max-width: 70.375em) {
     .search {
-        grid-template-columns: 0 0 0 0 0 15em 15em 0 0 0 0 0;
-        width: 30em;
+        grid-template-columns: 0 0 0 0 0 10em 10em 0 0 0 0 0;
+        width: 20em;
         margin: auto;
     }
     .search input {
@@ -284,30 +261,30 @@ nav .middle {
         border: none;
         height: 2rem;
     }
-    
+
     #location {
         border-radius: .5em .5em 0 0;
         padding: 1rem 1rem;
         height: 3rem;
         grid-area: mLoc;
     }
-    
-    .dateStart {
+
+    #dateStart {
         grid-area: mFrom;
     }
-    
-    .dateEnd {
+
+    #dateEnd {
         grid-area: mTo;
     }
-    
-    .people {
+
+    #adult {
         grid-area: mAdult;
     }
-    
-    .rooms {
+
+    #child {
         grid-area: mChild;
     }
-    
+
     #searchButton {
         border-radius: 0 0 .5em .5em;
         border: none;
@@ -337,6 +314,7 @@ nav .middle {
 }
 
 .modal-content {
+    background-color: #f4f4f4;
     margin: 15% auto;
     padding: 20px;
     width: 90%;
@@ -349,7 +327,7 @@ nav .middle {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: linear-gradient(rgba(40, 44, 52, 0.4), rgb(40, 44, 52)), url("images/pup.jpg");
+    background: linear-gradient(rgba(40, 44, 52, 0.4), rgb(40, 44, 52)), url("images/nihonMichi.jpg");
     background-size: 100%;
 }
 
@@ -371,19 +349,14 @@ nav .middle {
 .modal-content input[type="submit"] {
     margin-top: 1em;
     border: 2px solid darkgrey;
-    color: white;
-    font: bold 1.2em 'proxima-nova', sans-serif;
 }
 
 .modal-content button {
     border: none;
     border-radius: .5em;
     width: 100%;
-    height: 4rem;
-    background-color: rgba(160,160,160,0.5);
-    border: 2px solid darkgrey;
-    color: white;
-    font: bold 1.2em 'proxima-nova', sans-serif;
+    height: 4em;
+    background-color: #16b1b5;
 }
 
 .modal-content a,  .modal-content p {
@@ -393,7 +366,6 @@ nav .middle {
 
 .modal-content h2 {
     color: white;
-    margin-top: 0;
 }
 
 .fa-times {
@@ -423,6 +395,7 @@ nav .middle {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-image: url("images/nihonMichi.jpg");
     background-size: 100%;
 }
 
@@ -521,21 +494,11 @@ nav .middle {
     justify-content: space-between;
     padding: .5em 1em;
     background-color: #f4f4f4;
-    font-size: 1.2em;
-    font-weight: bold;
 }
 .thumb-flex a {
     text-decoration: none;
-    font-size: 1.2em;
-    
 }
 
-.thumb-price {
-    border: 2px solid teal;
-    border-radius: .2em;
-    padding: .2em;
-    margin-bottom: .2em;
-}
 .fa-heart {
     font-size: 1.5em;
     padding-top: .5em;
@@ -547,46 +510,69 @@ nav .middle {
     color: darkslategrey;
 }
 
-/*#############################################################################################*/
-/*footer contents*/
-
-footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 1em auto;
-    max-width: 80em;
-    margin: 1em auto;
-}
-
-footer a {
-    text-decoration: none;
-    font-size: 1.2em;
-    color: cyan;
-    padding: .5em 0;
-}
-
-footer ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.footer-social {
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    SEARCH PAGE SEARCH.HTML CSS
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+.searchBG2 {
+    background-image: url("images/pond.jpg");
+    background-size: cover;
+    /*background: linear-gradient(to bottom right, #7f00ff, #e100ff);*/
+    width: 100%;
     display: flex;
     flex-direction: column;
-    max-width: 50%;
 }
 
-.footer-social ul {
-    display: flex;
-    justify-content: space-between;
-}
-footer header {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: white;
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    HOTEL AND ROOMS PAGE HOTEL.HTML CSS
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+
+/*hotel room page search bar*/
+.searchHR {
+    background: linear-gradient(to bottom right, #7f00ff, #e100ff);
+    /* background: linear-gradient(to bottom right, #097cef, #42d1c5); */
+    width: 100%;
 }
 
+/*  HOTEL SECTION   */
+.hotelName {
+  font-size: 1.25em;
+  color: white;
+  margin: 5em 4.25em;
+}
 
+.topSection {
+  display: flex;
+}
+
+.hotelDescription {
+  box-sizing:border-box;
+  color: white;
+  margin: 5em;
+  flex: 50%;
+}
+
+.hotelPictures {
+  box-sizing:border-box;
+  background-color: #D7DBDD;
+  padding: 1em;
+  margin: 5em;
+  border-radius: 0.3em;
+  flex: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+[class*="innerPic"] {
+  border-radius: 0.3em;
+  max-height: 10em;
+  margin: 0.1em;
+}
+
+[class*="innerPic"]:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     SEARCH PAGE SEARCH.HTML CSS    
@@ -602,35 +588,6 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding-bottom: 3em;
-}
-
-.search-result-header {
-    display: flex;
-    justify-content: space-between;
-}
-
-.map-list-toggle {
-    text-decoration: none;
-    border: 2px solid white;
-    border-radius: .2em;
-    padding: .2em;
-    color: white;
-    font-size: .8em;
-
-}
-
-.map-list-toggle:hover {
-    color: teal;
-    border-color: darkcyan;
-}
-
-#list-view {
-    display: none;
-}
-
-.map {
-    display: none;
 }
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -1068,12 +1025,301 @@ html.lb-disable-scrolling {
 }
 
 
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    ACCOUNT MANAGEMENT ACCOUNT.HTML CSS   
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+.roomSize {
+  grid-area: RoomSize;
+
+}
+
+.roomDescription {
+  grid-area: RoomD;
+}
+
+.bookCell{
+  grid-area: BookCell;
+  /* centering button in cell */
+  align-self: center;
+  justify-self: center;
+}
+
+#bookBtn {
+  font-size: 1.1em;
+}
+
+@media (max-width: 70.375em) {
+  .roomGrid {
+    grid-template-areas: 'RoomName RoomSize'
+                         'RoomPics RoomPics'
+                         'RoomPics RoomPics'
+                         'RoomPics RoomPics'
+                         'RoomD RoomD'
+                         'RoomD RoomD'
+                         'BookCell BookCell';
+    grid-template-columns: 50% 50%;
+    min-height: 50em;
+  }
+
+  [class*="innerRPic"] {
+    flex: 80%;
+    max-width: 100%;
+  }
+}
+
+[id*="Btn"]:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+/*  Review Section  */
+#Reviews {
+  display: none;
+  margin: 0 6em;
+}
+
+.username {
+  color: white;
+  font-size: 1.2em;
+  float: left;
+  width: 20%;
+  max-width: 50%;
+}
+
+.userHistory {
+  color: white;
+  font-size: 1.2em;
+  float: left;
+  width: 30%;
+  max-width: 50%;
+}
+
+.commentSection {
+  font-size: 1.1em;
+  width: 100%;
+  margin-top: 1em;
+  border: 0.1em solid grey;
+  color: #f4b942;
+  float: left;
+  padding: 1em;
+}
+
+.uploadBtn {
+  float: right;
+  font-size: 1em;
+}
+
+/*    !!!!!!!! LIGHTBOX STYLING -NOT TO BE MESSED WITH !!!!!!!!!!   */
+
+html.lb-disable-scrolling {
+  overflow: hidden;
+  /* Position fixed required for iOS. Just putting overflow: hidden; on the body is not enough. */
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+}
+
+.lightboxOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: black;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  display: none;
+}
+
+.lightbox {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+  text-align: center;
+  line-height: 0;
+  font-weight: normal;
+}
+
+.lightbox .lb-image {
+  display: block;
+  height: auto;
+  max-width: inherit;
+  max-height: none;
+  border-radius: 3px;
+
+  /* Image border */
+  border: 4px solid white;
+}
+
+
+
+.lightbox a img {
+  border: none;
+}
+
+.lb-outerContainer {
+  position: relative;
+  *zoom: 1;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+  border-radius: 4px;
+
+  /* Background color behind image.
+     This is visible during transitions. */
+  background-color: white;
+}
+
+.lb-outerContainer:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.lb-loader {
+  position: absolute;
+  top: 43%;
+  left: 0;
+  height: 25%;
+  width: 100%;
+  text-align: center;
+  line-height: 0;
+}
+
+.lb-cancel {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+  background: url(images/loading.gif) no-repeat;
+}
+
+.lb-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+.lb-container > .nav {
+  left: 0;
+}
+
+.lb-nav a {
+  outline: none;
+  background-image: url('data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
+}
+
+.lb-prev, .lb-next {
+  height: 100%;
+  cursor: pointer;
+  display: block;
+}
+
+.lb-nav a.lb-prev {
+  width: 34%;
+  left: 0;
+  float: left;
+  background: url(images/prev.png) left 48% no-repeat;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transition: opacity 0.6s;
+  -moz-transition: opacity 0.6s;
+  -o-transition: opacity 0.6s;
+  transition: opacity 0.6s;
+}
+
+.lb-nav a.lb-prev:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+.lb-nav a.lb-next {
+  width: 25%;
+  right: 0;
+  float: right;
+  background: url(images/next.png) right 48% no-repeat;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transition: opacity 0.6s;
+  -moz-transition: opacity 0.6s;
+  -o-transition: opacity 0.6s;
+  transition: opacity 0.6s;
+}
+
+.lb-nav a.lb-next:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+.lb-dataContainer {
+  margin: 0 auto;
+  padding-top: 5px;
+  *zoom: 1;
+  width: 100%;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.lb-dataContainer:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.lb-data {
+  padding: 0 4px;
+  color: #ccc;
+}
+
+.lb-data .lb-details {
+  width: 85%;
+  float: left;
+  text-align: left;
+  line-height: 1.1em;
+}
+
+.lb-data .lb-caption {
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1em;
+}
+
+.lb-data .lb-caption a {
+  color: #4ae;
+}
+
+.lb-data .lb-number {
+  display: block;
+  clear: left;
+  padding-bottom: 1em;
+  font-size: 12px;
+  color: #999999;
+}
+
+.lb-data .lb-close {
+  display: block;
+  float: right;
+  width: 30px;
+  height: 30px;
+  background: url(images/close.png) top right no-repeat;
+  text-align: right;
+  outline: none;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  opacity: 0.7;
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
+.lb-data .lb-close:hover {
+  cursor: pointer;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    ABOUT PAGE ABOUT.HTML CSS    
+    ACCOUNT MANAGEMENT ACCOUNT.HTML CSS
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 #about {
     display: none;
