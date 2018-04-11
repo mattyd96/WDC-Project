@@ -5,7 +5,7 @@ body {
 }
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    HOMEPAGE
+    HOMEPAGE    
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 
@@ -83,6 +83,18 @@ nav .middle {
     display: block;
 }
 
+.create-account-nav {
+    border: 2px solid white;
+    border-radius: .2em;
+    padding: .2em;
+    margin-top: -.2em;
+    margin-right: 2em;
+}
+
+.create-account-nav:hover {
+    border-color: black;
+}
+
 #hamburgerMenu {
     margin: 1em 0;
 }
@@ -101,7 +113,7 @@ nav .middle {
 
 
 /*for mobile screens = switch to hamburger menu*/
-@media (max-width: 70.375em) {
+@media (max-width: 85em) {
     .hamburger {
         display: inline-block;
         margin: 1em;
@@ -190,8 +202,8 @@ nav .middle {
         ".   .   .   .    .    mSearch mSearch .     .     .     .     .           "
         ".   .   .   .    .    mLoc    mLoc    .     .     p2    p2    p2          "
         ".   .   .   .    .    .       .       .     .     .     .     .           " */
-
-    width: 70em;
+       
+    width: 90em;
     margin: auto;
 }
 
@@ -200,6 +212,7 @@ nav .middle {
     border: none;
     height: 2rem;
     font-size: 1.2em;
+    font-weight: bold;
 }
 
 
@@ -210,21 +223,23 @@ nav .middle {
     grid-area: loc;
 }
 
-#dateStart {
+.dateStart {
     grid-area: from;
+    padding-left: 1em;
 }
 
-#dateEnd {
+.dateEnd {
     grid-column: 6/ span 2;
     grid-row: 4 / 5;
+    padding-left: 1em;
 }
 
 
-#adult {
+.people {
     grid-area: adult;
 }
 
-#child {
+.rooms {
     grid-area: child;
 }
 
@@ -240,6 +255,14 @@ nav .middle {
     color: white;
 }
 
+.search-icons {
+    background-color: white;
+}
+
+.search-number-input {
+    max-width: 10em;
+}
+
 #search-script-1 {
     grid-area: p;
 }
@@ -250,10 +273,10 @@ nav .middle {
 }
 
 /*searchbar for mobile platforms*/
-@media (max-width: 70.375em) {
+@media (max-width: 90em) {
     .search {
-        grid-template-columns: 0 0 0 0 0 10em 10em 0 0 0 0 0;
-        width: 20em;
+        grid-template-columns: 0 0 0 0 0 15em 15em 0 0 0 0 0;
+        width: 30em;
         margin: auto;
     }
     .search input {
@@ -261,30 +284,30 @@ nav .middle {
         border: none;
         height: 2rem;
     }
-
+    
     #location {
         border-radius: .5em .5em 0 0;
         padding: 1rem 1rem;
         height: 3rem;
         grid-area: mLoc;
     }
-
-    #dateStart {
+    
+    .dateStart {
         grid-area: mFrom;
     }
-
-    #dateEnd {
+    
+    .dateEnd {
         grid-area: mTo;
     }
-
-    #adult {
+    
+    .people {
         grid-area: mAdult;
     }
-
-    #child {
+    
+    .rooms {
         grid-area: mChild;
     }
-
+    
     #searchButton {
         border-radius: 0 0 .5em .5em;
         border: none;
@@ -314,7 +337,6 @@ nav .middle {
 }
 
 .modal-content {
-    background-color: #f4f4f4;
     margin: 15% auto;
     padding: 20px;
     width: 90%;
@@ -327,7 +349,7 @@ nav .middle {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: linear-gradient(rgba(40, 44, 52, 0.4), rgb(40, 44, 52)), url("images/nihonMichi.jpg");
+    background: linear-gradient(rgba(40, 44, 52, 0.4), rgb(40, 44, 52)), url("images/pup.jpg");
     background-size: 100%;
 }
 
@@ -349,14 +371,19 @@ nav .middle {
 .modal-content input[type="submit"] {
     margin-top: 1em;
     border: 2px solid darkgrey;
+    color: white;
+    font: bold 1.2em 'proxima-nova', sans-serif;
 }
 
 .modal-content button {
     border: none;
     border-radius: .5em;
     width: 100%;
-    height: 4em;
-    background-color: #16b1b5;
+    height: 4rem;
+    background-color: rgba(160,160,160,0.5);
+    border: 2px solid darkgrey;
+    color: white;
+    font: bold 1.2em 'proxima-nova', sans-serif;
 }
 
 .modal-content a,  .modal-content p {
@@ -366,6 +393,7 @@ nav .middle {
 
 .modal-content h2 {
     color: white;
+    margin-top: 0;
 }
 
 .fa-times {
@@ -395,7 +423,6 @@ nav .middle {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-image: url("images/nihonMichi.jpg");
     background-size: 100%;
 }
 
@@ -494,11 +521,21 @@ nav .middle {
     justify-content: space-between;
     padding: .5em 1em;
     background-color: #f4f4f4;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 .thumb-flex a {
     text-decoration: none;
+    font-size: 1.2em;
+    
 }
 
+.thumb-price {
+    border: 2px solid teal;
+    border-radius: .2em;
+    padding: .2em;
+    margin-bottom: .2em;
+}
 .fa-heart {
     font-size: 1.5em;
     padding-top: .5em;
@@ -509,6 +546,47 @@ nav .middle {
 .fa-heart:hover {
     color: darkslategrey;
 }
+
+/*#############################################################################################*/
+/*footer contents*/
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em auto;
+    max-width: 80em;
+    margin: 1em auto;
+}
+
+footer a {
+    text-decoration: none;
+    font-size: 1.2em;
+    color: cyan;
+    padding: .5em 0;
+}
+
+footer ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+}
+
+.footer-social ul {
+    display: flex;
+    justify-content: space-between;
+}
+footer header {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: white;
+}
+
+
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     SEARCH PAGE SEARCH.HTML CSS    
@@ -524,12 +602,49 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     width: 100%;
     display: flex;
     flex-direction: column;
+    padding-bottom: 3em;
 }
+
+.search-result-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.map-list-toggle {
+    text-decoration: none;
+    border: 2px solid white;
+    border-radius: .2em;
+    padding: .2em;
+    color: white;
+    font-size: .8em;
+
+}
+
+.map-list-toggle:hover {
+    color: teal;
+    border-color: darkcyan;
+}
+
+#list-view {
+    display: none;
+}
+
+.map {
+    display: none;
+}
+
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    HOTEL AND ROOMS PAGE HOTEL.HTML CSS    
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    ACCOUNT MANAGEMENT ACCOUNT.HTML CSS
+    ACCOUNT MANAGEMENT ACCOUNT.HTML CSS   
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    ABOUT PAGE ABOUT.HTML CSS    
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 #about {
     display: none;
