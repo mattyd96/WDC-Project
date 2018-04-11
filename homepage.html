@@ -25,10 +25,7 @@
                     <li><a href="homepage.html">LOGO</a></li>
                 </ul>
             </div>
-            <div class="middle">
-                <button onclick="logIn()">Log In!</button>
-                <button onclick="logOut()">Log out!</button>
-            </div>
+
             <div class="right">
                 <ul>
                     <li><a href="homepage.html">Home</a></li>
@@ -38,12 +35,13 @@
                     <li class="signInUp"><a href="#">Sign In</a></li>
                     <li class="createAccountClass create-account-nav"><a href="#">Create Account</a></li>
                     <li class="loggedInWelcome">
-                        <a href="#">Welcome, Username</a>
+                        <a href="#" class="nav-welcome">Welcome, Username</a>
                         <ul>
                             <li><a href="#">Manage Account</a></li>
                             <li><a href="#">Favorites</a></li>
                             <li><a href="#">Wishlist</a></li>
                             <li><a href="#">Bookings</a></li>
+                            <li><a href="#" class="sign-out">Sign out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -68,6 +66,7 @@
                             <li><a href="#">Favorites</a></li>
                             <li><a href="#">Wishlist</a></li>
                             <li><a href="#">Bookings</a></li>
+                            <li><a href="#" class="sign-out">Sign out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -114,10 +113,10 @@
                 </header>
     
                 <section>
-                    <label for="signInEmail" >Email or username</label>
+                    <label for="signInEmail" id="username-sign-in-label">Email or username</label>
                     <input type="text" id="signInEmail" required>
                     
-                    <label for="password">Password</label>
+                    <label for="password" id="password-label">Password</label>
                     <input type="password" id="password" required>
 
                     <a id="forgotPassword">Forgot Password?</a>
@@ -151,25 +150,25 @@
                     
                     <label for="firstName lastName">Name</label>
         
-                    <input type="text" id="firstName" placeholder="First" required>
-                    <input type="text" id="lastName" placeholder="Last" required>
+                    <input type="text" name="firstName"id="firstName" placeholder="First" required>
+                    <input type="text" name="lastName" id="lastName" placeholder="Last" required>
                 
                     <label for="username" id="user-username-label">username</label>
-                    <input type="text" id="username" placeholder="ex. traveler2020" required>
+                    <input type="text" name="username" id="username" placeholder="ex. traveler2020" required>
     
                     <label for="createPassword">Password</label>
-                    <input type="password" id="create-password" required>
+                    <input type="password" name="password" id="create-password" required>
     
                     <label for="confirm-password">Confirm Password</label>
 
                     <div class='password-confirm-div'>
-                        <input type="password" id="confirm-password" required>
+                        <input type="password" name="confirmPassword" id="confirm-password" required>
                     </div>
                     
                     <label for="email">Email (optional)</label>
-                    <input type="email">
+                    <input type="email" name="email">
     
-                    <input type="submit" value="Create Account" id="create-user-submit">
+                    <input type="submit" value="Create Account" class="create-user-submit">
                 </section> 
             </form>
 
@@ -199,7 +198,7 @@
                     <label for="email">Email (optional)</label>
                     <input type="email">
     
-                    <input type="submit" value="Create Account" id="create-host-submit">
+                    <input type="submit" value="Create Account" class="create-host-submit">
                 </section>
 
             </form>

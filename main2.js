@@ -83,6 +83,29 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
+
+    //----------------------------- nav functions ---------------------------------------//
+
+    $("#search-nav").click(function (){
+        $(".nav-and-search").addClass("searchBG2");
+        $(".nav-and-search").removeClass("searchBG");
+        $("#home, #about").hide();
+        $("#search, .search").show();
+    });
+
+    $("#home-nav").click(function (){
+        $(".nav-and-search").addClass("searchBG");
+        $(".nav-and-search").removeClass("searchBG2");
+        $("#home, .search").show();
+        $("#search, #about").hide();
+    });
+
+    $("#about-nav").click(function() {
+        $("#search, #home, .search").hide();
+        $("#about").show();
+        $(".nav-and-search").removeClass("searchBG");
+    });
+
     //----------------------------- map toggle functions ---------------------------------------//
 
     $("#map-view").click(function() {
@@ -455,8 +478,3 @@ $(document).ready(function () {
 
 
 });// DOM Function
-
-
-
-
-
