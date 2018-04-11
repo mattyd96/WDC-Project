@@ -15,6 +15,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 nav {
     display: flex;
     white-space: nowrap;
+    justify-content: space-between;
 }
 
 nav ul {
@@ -373,6 +374,7 @@ nav .middle {
     color: white;
     font: bold 1.2em 'proxima-nova', sans-serif;
 }
+
 .modal-content button {
     border: none;
     border-radius: .5em;
@@ -383,10 +385,12 @@ nav .middle {
     color: white;
     font: bold 1.2em 'proxima-nova', sans-serif;
 }
+
 .modal-content a,  .modal-content p {
     color: white;
     padding: .5em;
 }
+
 .modal-content h2 {
     color: white;
     margin-top: 0;
@@ -401,12 +405,6 @@ nav .middle {
     color: white;
     font-weight: bold;
 }
-
-/*.signInForm input {
-    border: 1px solid darkgrey;
-    border-radius: .5em;
-    outline: none;
-}*/
 
 .closeBtn {
     color: darkslategrey;
@@ -458,7 +456,7 @@ nav .middle {
     margin: 1em;
 }
 
-#confirm-password {
+#confirm-password, #confirm-password-host {
     background: none;
     width: 80%;
 }
@@ -593,6 +591,10 @@ footer header {
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     SEARCH PAGE SEARCH.HTML CSS    
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+#search {
+    display: none;
+}
+
 .searchBG2 {
     background-image: url("images/pond.jpg");
     background-size: cover;
@@ -644,6 +646,10 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     ABOUT PAGE ABOUT.HTML CSS    
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+#about {
+    display: none;
+}
+
 .about-content {
     max-width: 80em;
     margin: auto;
