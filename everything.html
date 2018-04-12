@@ -28,19 +28,18 @@
     
                 <div class="right">
                     <ul>
-                        <li><a href="#" id="home-nav">Home</a></li>
-                        <li><a href="#" id="search-nav">Search</a></li>
-                        <li><a href="#" id="about-nav">About</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#" class="home-nav">Home</a></li>
+                        <li><a href="#" class="search-nav">Search</a></li>
+                        <li><a href="#" class="about-nav">About</a></li>
                         <li class="signInUp"><a href="#">Sign In</a></li>
                         <li class="createAccountClass create-account-nav"><a href="#">Create Account</a></li>
                         <li class="loggedInWelcome">
                             <a href="#" class="nav-welcome">Welcome, Username</a>
                             <ul>
-                                <li><a href="#">Manage Account</a></li>
-                                <li><a href="#">Favorites</a></li>
-                                <li><a href="#">Wishlist</a></li>
-                                <li><a href="#">Bookings</a></li>
+                                <li><a href="#" class="manage-account-nav">Manage Account</a></li>
+                                <li><a href="#" class="favorites-nav">Favorites</a></li>
+                                <li class="booking-toggle"><a href="#" class="bookings-nav">Bookings</a></li>
+                                <li class="listing-toggle"><a href="#" class="listings-nav">Listings</a></li>
                                 <li><a href="#" class="sign-out">Sign out</a></li>
                             </ul>
                         </li>
@@ -53,19 +52,18 @@
                         <div class="bar3"></div>
                     </div>
                     <ul id="hamburgerMenu">
-                        <li><a href="#" id="home-nav">Home</a></li>
-                        <li><a href="#" id="search-nav">Search</a></li>
-                        <li><a href="#" id="about-nav">About</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#" class="home-nav">Home</a></li>
+                        <li><a href="#" class="search-nav">Search</a></li>
+                        <li><a href="#" class="about-nav">About</a></li>
                         <li class="signInUp"><a href="#">Sign In</a></li>
                         <li class="createAccountClass"><a href="#">Create Account</a></li>
                         <li class="loggedInWelcome">
                             <a href="#">Welcome, Username</a>
                             <ul>
-                                <li><a href="#">Manage Account</a></li>
-                                <li><a href="#">Favorites</a></li>
-                                <li><a href="#">Wishlist</a></li>
-                                <li><a href="#">Bookings</a></li>
+                                <li><a href="#" class="manage-account-nav">Manage Account</a></li>
+                                <li><a href="#" class="favorites-nav">Favorites</a></li>
+                                <li class="booking-toggle"><a href="#" class="bookings-nav">Bookings</a></li>
+                                <li class="listing-toggle"><a href="#" class="listings-nav">Listings</a></li>
                                 <li><a href="#" class="sign-out">Sign out</a></li>
                             </ul>
                         </li>
@@ -386,7 +384,81 @@
                 </header>
             </main>
          </div>
+
+
+        <!--##################################################### account Management contents ###################################################-->
+        <div id="account-management">
+            <main id="account-management-content">
+                <header>
+                    <h1>Account Management</h1>
+                </header>
+                <aside id="account-management-menu-user">
+                    <ul>
+                        <li><a href="#" class="manage-account-nav">Account Information</a></li>
+                        <li class="booking-toggle"><a href="#" class="bookings-nav">Bookings</a></li>
+                        <li class="listing-toggle"><a href="#" class="listings-nav">Listings</a></li>
+                        <li><a href="#" class="favorites-nav">Favorites</a></li>
+                    </ul>
+
+                </aside>
+                <section id="account-management-view">
+                    <article id="account-information-host">
+                            <h2>Account Information</h2>
+
+                            <label for="businessName-manage">Name</label>
+                            
+                            <div>
+                                <input type="text" name="businessName" id="businessName-manage">
+                                <button type="submit" class="">Change</button>
+                            </div>
+                            
+                            <label for="email-manage-host">Email (optional)</label>
     
+                            <div>
+                                <input type="email" name="email" id="email-manage-host">
+                                <button type="submit" class="">Change</button>
+                            </div>
+                    </article>
+                    <article id="account-information-user">
+                        <h2>Account Information</h2>
+
+                        <label for="firstName-manage lastName-manage">Name</label>
+                        
+                        <div>
+                            <input type="text" name="firstName" id="firstName-manage">
+                            <button type="submit" class="">Change</button>
+                        </div>
+
+                        <div>
+                            <input type="text" name="lastName" id="lastName-manage">
+                            <button type="submit" class="">Change</button>
+                        </div>
+                        
+                        <label for="email-manage">Email (optional)</label>
+
+                        <div>
+                            <input type="email" name="email" id="email-manage">
+                            <button type="submit" class="">Change</button>
+                        </div>
+                        
+                    </article>
+
+                    <article id="bookings">
+                        <h2>Bookings</h2>
+                    </article>
+
+                    <article id="listings">
+                        <h2>Listings</h2>
+                    </article>
+
+                    <article id="favorites">
+                        <h2>Favorites</h2>
+                    </article>
+                    
+                </section>
+            </main>
+        </div>
+        <!--##################################################### footer ###################################################-->
         <footer>
             <article>
                 <header>Site Links</header>

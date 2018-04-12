@@ -86,25 +86,67 @@ $(document).ready(function () {
 
     //----------------------------- nav functions ---------------------------------------//
 
-    $("#search-nav").click(function (){
+    $(".search-nav").click(function (){
         $(".nav-and-search").addClass("searchBG2");
         $(".nav-and-search").removeClass("searchBG");
-        $("#home, #about").hide();
+        $("#home, #about, #account-management").hide();
         $("#search, .search").show();
     });
 
-    $("#home-nav").click(function (){
+    $(".home-nav").click(function (){
         $(".nav-and-search").addClass("searchBG");
         $(".nav-and-search").removeClass("searchBG2");
         $("#home, .search").show();
-        $("#search, #about").hide();
+        $("#search, #about, #account-management").hide();
     });
 
-    $("#about-nav").click(function() {
-        $("#search, #home, .search").hide();
+    $(".about-nav").click(function() {
+        $("#search, #home, #account-management, .search").hide();
         $("#about").show();
         $(".nav-and-search").removeClass("searchBG");
+        $(".nav-and-search").removeClass("searchBG2");
     });
+
+    $(".nav-welcome, .manage-account-nav, .favorites-nav, .bookings-nav, .listings-nav").click(function() {
+        $("#search, #home, #about, .search").hide();
+        $("#account-management").show();
+        $(".nav-and-search").removeClass("searchBG");
+        $(".nav-and-search").removeClass("searchBG2");
+    });
+
+    $(".manage-account-nav").click(function() {
+        $("#bookings, #favorites, #listings").hide();
+        if(currentUser.bookings) {
+            $("#account-information-user").show();
+            $("#bookings, #favorites, #listings, #account-information-host").hide();
+        } else {
+            $("#account-information-host").show();
+            $("#bookings, #favorites, #listings, #account-information-user").hide();
+        }
+    });
+
+    $(".bookings-nav").click(function() {
+        $("#bookings").show();
+        $("#account-information-user, #account-information-host, #favorites, #listings").hide();
+    });
+
+    $(".favorites-nav").click(function() {
+        $("#favorites").show();
+        $("#bookings, #account-information-user, #account-information-host, #listings").hide();
+    });
+
+    $(".listings-nav").click(function() {
+        $("#listings").show();
+        $("#bookings, #account-information-user, #account-information-host, #favorites").hide();
+    });
+
+    $(".sign-out").click(function() {
+        $(".nav-and-search").addClass("searchBG");
+        $("#home, .search").show();
+        $("#search, #about, #account-management").hide();
+    });
+
+    
 
     //----------------------------- map toggle functions ---------------------------------------//
 
@@ -394,13 +436,15 @@ $(document).ready(function () {
 
             function returnUsername() {
 
-                if(foundUser) {
+                if(foundUser.length > 0) {
                     foundUsername = foundUser[0];
-                } else if(foundHost) {
+
+                } else if(foundHost.length > 0) {
                     foundUsername = foundHost[0];
                 } else {
                     signInErrorMsg.insertAfter($("#username-sign-in-label"));
                 }
+
             }
 
             function checkUsernamePasswordMatch () {
@@ -441,6 +485,10 @@ $(document).ready(function () {
             checkUsernamePasswordMatch();
 
             currentUser = foundUsername;
+            signIn();
+
+            $('#signInEmail, #password').removeAttr('required');
+            $(".signInForm")[0].reset();
 
              //prevent default form actions
              e.preventDefault();
@@ -469,10 +517,22 @@ $(document).ready(function () {
         function isLoggedIn() {
             if(loggedIn) {
                 $(".loggedInWelcome").css("display", "flex");
+
+                //change menu based on host or user status
+                if(currentUser.bookings) {
+                    $(".bookings-nav, .booking-toggle").css("display", "block");
+                    $(".listings-nav, .listing-toggle").css("display", "none");
+                } else {
+                    $(".listings-nav, .listing-toggle").css("display", "block");
+                    $(".bookings-nav, .booking-toggle").css("display", "none");
+                }
             } else {
                 $(".loggedInWelcome").css("display", "none");
             }
         }
+
+
+        //------------------------------------------ Account Management functions ------------------------------------->
 
        
 
