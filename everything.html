@@ -1,488 +1,762 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
-    <script
-			  src="https://code.jquery.com/jquery-3.3.1.min.js"
-			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			  crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <link rel="stylesheet" href="https://use.typekit.net/xlg8fuk.css">
     <link rel="stylesheet" href="main.css">
+    <link href="lightbox/lightbox.css" rel="stylesheet">
     <title>Document</title>
 </head>
+
 <body>
     <!--Navbar and landing page background-->
-    <div class = "nav-and-search searchBG">
-            <nav>
-                <div class="left">
-                    <ul>
-                        <li><a href="homepage.html">LOGO</a></li>
-                    </ul>
-                </div>
-    
-                <div class="right">
-                    <ul>
-                        <li><a href="#" class="home-nav">Home</a></li>
-                        <li><a href="#" class="search-nav">Search</a></li>
-                        <li><a href="#" class="about-nav">About</a></li>
-                        <li class="signInUp"><a href="#">Sign In</a></li>
-                        <li class="createAccountClass create-account-nav"><a href="#">Create Account</a></li>
-                        <li class="loggedInWelcome">
-                            <a href="#" class="nav-welcome">Welcome, Username</a>
-                            <ul>
-                                <li><a href="#" class="manage-account-nav">Manage Account</a></li>
-                                <li><a href="#" class="favorites-nav">Favorites</a></li>
-                                <li class="booking-toggle"><a href="#" class="bookings-nav">Bookings</a></li>
-                                <li class="listing-toggle"><a href="#" class="listings-nav">Listings</a></li>
-                                <li><a href="#" class="sign-out">Sign out</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="hamburger">
-                    <div class="bars">
-                        <div class="bar1"></div>
-                        <div class="bar2"></div>
-                        <div class="bar3"></div>
-                    </div>
-                    <ul id="hamburgerMenu">
-                        <li><a href="#" class="home-nav">Home</a></li>
-                        <li><a href="#" class="search-nav">Search</a></li>
-                        <li><a href="#" class="about-nav">About</a></li>
-                        <li class="signInUp"><a href="#">Sign In</a></li>
-                        <li class="createAccountClass"><a href="#">Create Account</a></li>
-                        <li class="loggedInWelcome">
-                            <a href="#">Welcome, Username</a>
-                            <ul>
-                                <li><a href="#" class="manage-account-nav">Manage Account</a></li>
-                                <li><a href="#" class="favorites-nav">Favorites</a></li>
-                                <li class="booking-toggle"><a href="#" class="bookings-nav">Bookings</a></li>
-                                <li class="listing-toggle"><a href="#" class="listings-nav">Listings</a></li>
-                                <li><a href="#" class="sign-out">Sign out</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <div class="search">
-    
-                <p id="search-script-1">Where will</p>
-                <p id="search-script-2">you go?</p>
-    
-                <input type="search" name="location" id="location" placeholder="Where to?">
-    
-                <div  class="search-icons dateStart">
-                    <i class="fas fa-calendar-alt fa-lg"></i>
-                    <input type="date" name="dateStart">
-                </div>
-    
-                <div class="search-icons dateEnd">
-                    <i class="fas fa-calendar-alt fa-lg"></i>
-                    <input type="date" name="dateEnd"  placeholder="To">
-                </div>       
-                
-                <div class="search-icons people">
-                    <input type="number" name="people" placeholder="People" class="search-number-input">
-                </div>
-                <div class="search-icons rooms">
-                    <input type="number" name="rooms"  placeholder="Rooms" class="search-number-input">
-                </div>
-                
-                
-                <button type="submit" id="searchButton"><i class="fas fa-search fa-lg"></i></button>
+    <div class="nav-and-search searchBG">
+        <nav>
+            <div class="left">
+                <ul>
+                    <li>
+                        <a href="homepage.html">LOGO</a>
+                    </li>
+                </ul>
             </div>
-        </div> <!--searchBG-->
-    
-        <!--Modals for sign in and account creation-->
-    
-        <aside class="modal">
-    
-                <form action="#" class="modal-content signInForm">
-    
-                    <header>
-                        <span class="closeBtn"><i class="fas fa-times"></i></span>
-                        <h2>Sign in</h2>
-                    </header>
-        
-                    <section>
-                        <label for="signInEmail" id="username-sign-in-label">Email or username</label>
-                        <input type="text" id="signInEmail" required>
-                        
-                        <label for="password" id="password-label">Password</label>
-                        <input type="password" id="password" required>
-    
-                        <a id="forgotPassword">Forgot Password?</a>
-                
-                        <button id="signBtn">Sign In</button>
-    
-                        <p>Don't have an account? Sign up <a href="#" class="createAccountClass">here!</a></p>
-                    </section>
-        
-                </form>
-    
-    
-                <form action="#" class="modal-content createOrBecomeHost">
-                    <header>
-                        <span class="closeBtn"><i class="fas fa-times"></i></span>
-                        <h2>Create Account</h2>
-                    </header>
-                    <section>
-                        <button class="createBtn">Create Account</button>
-                        <button class="hostBtn">Become a Host!</button>
-                    </section> 
-                </form>
-    
-                <form action="#"  class="modal-content createAccount" id="create-account-form">
-                    <header>
-                        <span class="closeBtn"><i class="fas fa-times"></i></span>
-                        <h2>Create Account</h2>
-                    </header>
-    
-                    <section>
-                        
-                        <label for="firstName lastName">Name</label>
-            
-                        <input type="text" name="firstName" id="firstName" placeholder="First search" required>
-                        <input type="text" name="lastName" id="lastName" placeholder="Last" required>
-                    
-                        <label for="username-search" id="user-username-label">username</label>
-                        <input type="text" name="username" id="username" placeholder="ex. traveler2020" required>
-        
-                        <label for="createPassword">Password</label>
-                        <input type="password" name="password" id="create-password" required>
-        
-                        <label for="confirm-password">Confirm Password</label>
-    
-                        <div class='password-confirm-div'>
-                            <input type="password" name="confirmPassword" id="confirm-password" required>
-                        </div>
-                        
-                        <label for="email">Email (optional)</label>
-                        <input type="email" name="email">
-        
-                        <input type="submit" value="Create Account" class="create-user-submit">
-                    </section> 
-                </form>
-    
-                <form action="#" class="modal-content becomeHost" id="create-account-form-host">
-    
-                    <header>
-                        <span class="closeBtn"><i class="fas fa-times"></i></span>
-                        <h2>Create Host Account</h2>
-                    </header>
-    
-                    <section>
-                        <label for="businessName">Name</label>
-                        <input type="text" id="businessName" placeholder="First" required>
-        
-                        <label for="username" id="host-username-label">username</label>
-                        <input type="text" id="username-host" placeholder="ex. traveler2020" required>
-        
-                        <label for="create-password-host">Password</label>
-                        <input type="password" id="create-password-host" required>
-        
-                        <label for="confirm-password-host">Confirm Password</label>
-    
-                        <div class='password-confirm-div'>
-                            <input type="password" id="confirm-password-host" required>
-                        </div>
-        
-                        <label for="email">Email (optional)</label>
-                        <input type="email">
-        
-                        <input type="submit" value="Create Account" class="create-host-submit">
-                    </section>
-    
-                </form>
-    
-        </aside>
-     
-        <!--########################################### searchpage contents ################################################-->
-        <div id="search">
-            <article class="homeResults">
-        
-                <section id="results">
-        
-                    <header class="resultHeader search-result-header">
-                        <h3>Results</h3>
-                        <h3 id="map-view"><a href="#" class="map-list-toggle">Map View</a></h3>
-                        <h3 id="list-view"><a href="#" class="map-list-toggle">List View</a></h3>
-                    </header>
-        
-                    <main class="homeResultGrid">
-        
-                            <div class="hotelRoomThumbnail">
-                                <div class="thumbImg">
-                                </div>
-                                <div class="thumb-flex">
-                                    <p>Cybernet Kissaten</p>
-                                    <span class="favThis"><i class="fas fa-heart"></i></span>
-                                </div>
-                                <div class="thumb-flex">
-                                    <a href="#"><i class="fas fa-compass fa-lg"></i> Tokyo</a>
-                                    <a href="#" class="thumb-price">$ 100</a>
-                                </div>
-                            </div>
-                            <div class="hotelRoomThumbnail">
-                                <div class="thumbImg">
-                                </div>
-                                <div class="thumb-flex">
-                                    <p>Cybernet Kissaten</p>
-                                    <span class="favThis"><i class="fas fa-heart"></i></span>
-                                </div>
-                                <div class="thumb-flex">
-                                    <a href="#"><i class="fas fa-compass fa-lg"></i> Tokyo</a>
-                                    <a href="#" class="thumb-price">$ 100</a>
-                                </div>
-                            </div>
-                            <div class="hotelRoomThumbnail">
-                                <div class="thumbImg">
-                                </div>
-                                <div class="thumb-flex">
-                                    <p>Cybernet Kissaten</p>
-                                    <span class="favThis"><i class="fas fa-heart"></i></span>
-                                </div>
-                                <div class="thumb-flex">
-                                    <a href="#"><i class="fas fa-compass fa-lg"></i> Tokyo</a>
-                                    <a href="#" class="thumb-price">$ 100</a>
-                                </div>
-                            </div>
-                            <div class="hotelRoomThumbnail">
-                                <div class="thumbImg">
-                                </div>
-                                <div class="thumb-flex">
-                                    <p>Cybernet Kissaten</p>
-                                    <span class="favThis"><i class="fas fa-heart"></i></span>
-                                </div>
-                                <div class="thumb-flex">
-                                    <a href="#"><i class="fas fa-compass fa-lg"></i> Tokyo</a>
-                                    <a href="#" class="thumb-price">$ 100</a>
-                                </div>
-                            </div>
-                        
-                    </main>
-        
-                    <main class="map">
-                        <h2>Map Goes Here :)</h2>
-                    </main>
-                </section>
-                
-            </article>
-        </div>
 
-      <!--##################################################### homepage contents ###################################################-->
-        <div id="home">
+            <div class="right">
+                <ul>
+                    <li>
+                        <a href="#" class="home-nav">Home</a>
+                    </li>
+                    <li>
+                        <a href="#" class="search-nav">Search</a>
+                    </li>
+                    <li>
+                        <a href="#" class="about-nav">About</a>
+                    </li>
+                    <li class="signInUp">
+                        <a href="#">Sign In</a>
+                    </li>
+                    <li class="createAccountClass create-account-nav">
+                        <a href="#">Create Account</a>
+                    </li>
+                    <li class="loggedInWelcome">
+                        <a href="#" class="nav-welcome">Welcome, Username</a>
+                        <ul>
+                            <li>
+                                <a href="#" class="manage-account-nav">Manage Account</a>
+                            </li>
+                            <li>
+                                <a href="#" class="favorites-nav">Favorites</a>
+                            </li>
+                            <li class="booking-toggle">
+                                <a href="#" class="bookings-nav">Bookings</a>
+                            </li>
+                            <li class="listing-toggle">
+                                <a href="#" class="listings-nav">Listings</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sign-out">Sign out</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="hamburger">
+                <div class="bars">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+                <ul id="hamburgerMenu">
+                    <li>
+                        <a href="#" class="home-nav">Home</a>
+                    </li>
+                    <li>
+                        <a href="#" class="search-nav">Search</a>
+                    </li>
+                    <li>
+                        <a href="#" class="about-nav">About</a>
+                    </li>
+                    <li class="signInUp">
+                        <a href="#">Sign In</a>
+                    </li>
+                    <li class="createAccountClass">
+                        <a href="#">Create Account</a>
+                    </li>
+                    <li class="loggedInWelcome">
+                        <a href="#">Welcome, Username</a>
+                        <ul>
+                            <li>
+                                <a href="#" class="manage-account-nav">Manage Account</a>
+                            </li>
+                            <li>
+                                <a href="#" class="favorites-nav">Favorites</a>
+                            </li>
+                            <li class="booking-toggle">
+                                <a href="#" class="bookings-nav">Bookings</a>
+                            </li>
+                            <li class="listing-toggle">
+                                <a href="#" class="listings-nav">Listings</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sign-out">Sign out</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="search">
+
+            <p id="search-script-1">Where will</p>
+            <p id="search-script-2">you go?</p>
+
+            <input type="search" name="location" id="location" placeholder="Where to?">
+
+            <div class="search-icons dateStart">
+                <i class="fas fa-calendar-alt fa-lg"></i>
+                <input type="date" name="dateStart">
+            </div>
+
+            <div class="search-icons dateEnd">
+                <i class="fas fa-calendar-alt fa-lg"></i>
+                <input type="date" name="dateEnd" placeholder="To">
+            </div>
+
+            <div class="search-icons people">
+                <input type="number" name="people" placeholder="People" class="search-number-input">
+            </div>
+            <div class="search-icons rooms">
+                <input type="number" name="rooms" placeholder="Rooms" class="search-number-input">
+            </div>
+
+
+            <button type="submit" id="searchButton">
+                <i class="fas fa-search fa-lg"></i>
+            </button>
+        </div>
+    </div>
+    <!--searchBG-->
+
+    <!--Modals for sign in and account creation-->
+
+    <aside class="modal">
+
+        <form action="#" class="modal-content signInForm">
+
+            <header>
+                <span class="closeBtn">
+                    <i class="fas fa-times"></i>
+                </span>
+                <h2>Sign in</h2>
+            </header>
+
+            <section>
+                <label for="signInEmail" id="username-sign-in-label">Email or username</label>
+                <input type="text" id="signInEmail" required>
+
+                <label for="password" id="password-label">Password</label>
+                <input type="password" id="password" required>
+
+                <a id="forgotPassword">Forgot Password?</a>
+
+                <button id="signBtn">Sign In</button>
+
+                <p>Don't have an account? Sign up
+                    <a href="#" class="createAccountClass">here!</a>
+                </p>
+            </section>
+
+        </form>
+
+
+        <form action="#" class="modal-content createOrBecomeHost">
+            <header>
+                <span class="closeBtn">
+                    <i class="fas fa-times"></i>
+                </span>
+                <h2>Create Account</h2>
+            </header>
+            <section>
+                <button class="createBtn">Create Account</button>
+                <button class="hostBtn">Become a Host!</button>
+            </section>
+        </form>
+
+        <form action="#" class="modal-content createAccount" id="create-account-form">
+            <header>
+                <span class="closeBtn">
+                    <i class="fas fa-times"></i>
+                </span>
+                <h2>Create Account</h2>
+            </header>
+
+            <section>
+
+                <label for="firstName lastName">Name</label>
+
+                <input type="text" name="firstName" id="firstName" placeholder="First search" required>
+                <input type="text" name="lastName" id="lastName" placeholder="Last" required>
+
+                <label for="username-search" id="user-username-label">username</label>
+                <input type="text" name="username" id="username" placeholder="ex. traveler2020" required>
+
+                <label for="createPassword">Password</label>
+                <input type="password" name="password" id="create-password" required>
+
+                <label for="confirm-password">Confirm Password</label>
+
+                <div class='password-confirm-div'>
+                    <input type="password" name="confirmPassword" id="confirm-password" required>
+                </div>
+
+                <label for="email">Email (optional)</label>
+                <input type="email" name="email">
+
+                <input type="submit" value="Create Account" class="create-user-submit">
+            </section>
+        </form>
+
+        <form action="#" class="modal-content becomeHost" id="create-account-form-host">
+
+            <header>
+                <span class="closeBtn">
+                    <i class="fas fa-times"></i>
+                </span>
+                <h2>Create Host Account</h2>
+            </header>
+
+            <section>
+                <label for="businessName">Name</label>
+                <input type="text" id="businessName" placeholder="First" required>
+
+                <label for="username" id="host-username-label">username</label>
+                <input type="text" id="username-host" placeholder="ex. traveler2020" required>
+
+                <label for="create-password-host">Password</label>
+                <input type="password" id="create-password-host" required>
+
+                <label for="confirm-password-host">Confirm Password</label>
+
+                <div class='password-confirm-div'>
+                    <input type="password" id="confirm-password-host" required>
+                </div>
+
+                <label for="email">Email (optional)</label>
+                <input type="email">
+
+                <input type="submit" value="Create Account" class="create-host-submit">
+            </section>
+
+        </form>
+
+    </aside>
+
+    <!--########################################### searchpage contents ################################################-->
+    <div id="search">
         <article class="homeResults">
 
-                <section id="recommended">
-        
-                    <header class="resultHeader">
-                        <h3>Recommended!</h3>
-                    </header>
-        
-                    <div class="homeResultGrid">
-        
-                        <div class="hotelRoomThumbnail">
-                            <div class="thumbImg">
-                            </div>
-                            <div class="thumb-flex">
-                                <p>Cybernet Kissaten</p>
-                                <span class="favThis"><i class="fas fa-heart"></i></span>
-                            </div>
-                            <div class="thumb-flex">
-                                <a href="#"><i class="fas fa-compass fa-lg"></i> Tokyo</a>
-                                <a href="#" class="thumb-price">$ 100</a>
-                            </div>
+            <section id="results">
+
+                <header class="resultHeader search-result-header">
+                    <h3>Results</h3>
+                    <h3 id="map-view">
+                        <a href="#" class="map-list-toggle">Map View</a>
+                    </h3>
+                    <h3 id="list-view">
+                        <a href="#" class="map-list-toggle">List View</a>
+                    </h3>
+                </header>
+
+                <main class="homeResultGrid">
+
+                    <div class="hotelRoomThumbnail">
+                        <div class="thumbImg">
                         </div>
-                        <div class="hotelRoomThumbnail">
-                            <div class="thumbImg">
-                            </div>
-                            <div class="thumb-flex">
-                                <p>Cybernet Kissaten</p>
-                                <span class="favThis"><i class="fas fa-heart"></i></span>
-                            </div>
-                            <div class="thumb-flex">
-                                <a href="#"><i class="fas fa-compass fa-lg"></i> Tokyo</a>
-                                <a href="#" class="thumb-price">$ 100</a>
-                            </div>
+                        <div class="thumb-flex">
+                            <p>Cybernet Kissaten</p>
+                            <span class="favThis">
+                                <i class="fas fa-heart"></i>
+                            </span>
                         </div>
-                        <div class="hotelRoomThumbnail">
-                            <div class="thumbImg">
-                            </div>
-                            <div class="thumb-flex">
-                                <p>Cybernet Kissaten</p>
-                                <span class="favThis"><i class="fas fa-heart"></i></span>
-                            </div>
-                            <div class="thumb-flex">
-                                <a href="#"><i class="fas fa-compass fa-lg"></i> Tokyo</a>
-                                <a href="#" class="thumb-price">$ 100</a>
-                            </div>
-                        </div>
-                        <div class="hotelRoomThumbnail">
-                            <div class="thumbImg">
-                            </div>
-                            <div class="thumb-flex">
-                                <p>Cybernet Kissaten</p>
-                                <span class="favThis"><i class="fas fa-heart"></i></span>
-                            </div>
-                            <div class="thumb-flex">
-                                <a href="#"><i class="fas fa-compass fa-lg"></i> Tokyo</a>
-                                <a href="#" class="thumb-price">$ 100</a>
-                            </div>
-                        </div>
-                    
-                    </div>
-                </section>
-                
-                <section id="Popular">
-                    <header class="resultHeader">
-                        <h3>Popular</h3>
-                    </header>
-                    <div class="homeResultGrid">
-                        <div class="hotelRoomThumbnail">
+                        <div class="thumb-flex">
                             <a href="#">
-                                <div class="thumbImg">
-                        
-                                </div>
-                            </a>
-                            
-                            <div class="thumb-flex">
-                                <p>The Pound</p>
-                                <span class="favThis"><i class="fas fa-heart"></i></span>
-                            </div>
-                            <div class="thumb-flex">
-                                <a href="#">Dog Town</a>
-                                <a href="#">$ 1000</a>
-                            </div>
+                                <i class="fas fa-compass fa-lg"></i> Tokyo</a>
+                            <a href="#" class="thumb-price">$ 100</a>
                         </div>
                     </div>
-                </section>
-        
-                <section id="highestRated">
-                    <header class="resultHeader">
-                        <h3>Highest Rated</h3>
-                    </header>
-                    <div class="homeResultGrid">
-        
+                    <div class="hotelRoomThumbnail">
+                        <div class="thumbImg">
+                        </div>
+                        <div class="thumb-flex">
+                            <p>Cybernet Kissaten</p>
+                            <span class="favThis">
+                                <i class="fas fa-heart"></i>
+                            </span>
+                        </div>
+                        <div class="thumb-flex">
+                            <a href="#">
+                                <i class="fas fa-compass fa-lg"></i> Tokyo</a>
+                            <a href="#" class="thumb-price">$ 100</a>
+                        </div>
                     </div>
-                </section>
-                
-            </article>
-        </div>
-        
-         <!--##################################################### about contents ###################################################-->
-         <div id="about">
-            <main class="about-content">
-                <header>
-                    <h1>About Us</h1>
+                    <div class="hotelRoomThumbnail">
+                        <div class="thumbImg">
+                        </div>
+                        <div class="thumb-flex">
+                            <p>Cybernet Kissaten</p>
+                            <span class="favThis">
+                                <i class="fas fa-heart"></i>
+                            </span>
+                        </div>
+                        <div class="thumb-flex">
+                            <a href="#">
+                                <i class="fas fa-compass fa-lg"></i> Tokyo</a>
+                            <a href="#" class="thumb-price">$ 100</a>
+                        </div>
+                    </div>
+                    <div class="hotelRoomThumbnail">
+                        <div class="thumbImg">
+                        </div>
+                        <div class="thumb-flex">
+                            <p>Cybernet Kissaten</p>
+                            <span class="favThis">
+                                <i class="fas fa-heart"></i>
+                            </span>
+                        </div>
+                        <div class="thumb-flex">
+                            <a href="#">
+                                <i class="fas fa-compass fa-lg"></i> Tokyo</a>
+                            <a href="#" class="thumb-price">$ 100</a>
+                        </div>
+                    </div>
+
+                </main>
+
+                <main class="map">
+                    <h2>Map Goes Here :)</h2>
+                </main>
+            </section>
+
+        </article>
+    </div>
+
+    <!--##################################################### homepage contents ###################################################-->
+    <div id="home">
+        <article class="homeResults">
+
+            <section id="recommended">
+
+                <header class="resultHeader">
+                    <h3>Recommended!</h3>
                 </header>
-            </main>
-         </div>
 
+                <div class="homeResultGrid">
 
-        <!--##################################################### account Management contents ###################################################-->
-        <div id="account-management">
-            <main id="account-management-content">
-                <header>
-                    <h1>Account Management</h1>
+                    <div class="hotelRoomThumbnail">
+                        <div class="thumbImg">
+                        </div>
+                        <div class="thumb-flex">
+                            <p>Cybernet Kissaten</p>
+                            <span class="favThis">
+                                <i class="fas fa-heart"></i>
+                            </span>
+                        </div>
+                        <div class="thumb-flex">
+                            <a href="#">
+                                <i class="fas fa-compass fa-lg"></i> Tokyo</a>
+                            <a href="#" class="thumb-price">$ 100</a>
+                        </div>
+                    </div>
+                    <div class="hotelRoomThumbnail">
+                        <div class="thumbImg">
+                        </div>
+                        <div class="thumb-flex">
+                            <p>Cybernet Kissaten</p>
+                            <span class="favThis">
+                                <i class="fas fa-heart"></i>
+                            </span>
+                        </div>
+                        <div class="thumb-flex">
+                            <a href="#">
+                                <i class="fas fa-compass fa-lg"></i> Tokyo</a>
+                            <a href="#" class="thumb-price">$ 100</a>
+                        </div>
+                    </div>
+                    <div class="hotelRoomThumbnail">
+                        <div class="thumbImg">
+                        </div>
+                        <div class="thumb-flex">
+                            <p>Cybernet Kissaten</p>
+                            <span class="favThis">
+                                <i class="fas fa-heart"></i>
+                            </span>
+                        </div>
+                        <div class="thumb-flex">
+                            <a href="#">
+                                <i class="fas fa-compass fa-lg"></i> Tokyo</a>
+                            <a href="#" class="thumb-price">$ 100</a>
+                        </div>
+                    </div>
+                    <div class="hotelRoomThumbnail">
+                        <div class="thumbImg">
+                        </div>
+                        <div class="thumb-flex">
+                            <p>Cybernet Kissaten</p>
+                            <span class="favThis">
+                                <i class="fas fa-heart"></i>
+                            </span>
+                        </div>
+                        <div class="thumb-flex">
+                            <a href="#">
+                                <i class="fas fa-compass fa-lg"></i> Tokyo</a>
+                            <a href="#" class="thumb-price">$ 100</a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="Popular">
+                <header class="resultHeader">
+                    <h3>Popular</h3>
                 </header>
-                <aside id="account-management-menu-user">
-                    <ul>
-                        <li><a href="#" class="manage-account-nav">Account Information</a></li>
-                        <li class="booking-toggle"><a href="#" class="bookings-nav">Bookings</a></li>
-                        <li class="listing-toggle"><a href="#" class="listings-nav">Listings</a></li>
-                        <li><a href="#" class="favorites-nav">Favorites</a></li>
-                    </ul>
+                <div class="homeResultGrid">
+                    <div class="hotelRoomThumbnail">
+                        <a href="#">
+                            <div class="thumbImg">
 
-                </aside>
-                <section id="account-management-view">
-                    <article id="account-information-host">
-                            <h2>Account Information</h2>
-
-                            <label for="businessName-manage">Name</label>
-                            
-                            <div>
-                                <input type="text" name="businessName" id="businessName-manage">
-                                <button type="submit" class="">Change</button>
                             </div>
-                            
-                            <label for="email-manage-host">Email (optional)</label>
+                        </a>
+
+                        <div class="thumb-flex">
+                            <p>The Pound</p>
+                            <span class="favThis">
+                                <i class="fas fa-heart"></i>
+                            </span>
+                        </div>
+                        <div class="thumb-flex">
+                            <a href="#">Dog Town</a>
+                            <a href="#">$ 1000</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="highestRated">
+                <header class="resultHeader">
+                    <h3>Highest Rated</h3>
+                </header>
+                <div class="homeResultGrid">
+
+                </div>
+            </section>
+
+        </article>
+    </div>
+
+    <!--##################################################### about contents ###################################################-->
+    <div id="about">
+        <main class="about-content">
+            <header>
+                <h1>About Us</h1>
+            </header>
+        </main>
+    </div>
+
+
+    <!--##################################################### account Management contents ###################################################-->
+    <div id="account-management">
+        <main id="account-management-content">
+            <header>
+                <h1>Account Management</h1>
+            </header>
+            <aside id="account-management-menu-user">
+                <ul>
+                    <li>
+                        <a href="#" class="manage-account-nav">Account Information</a>
+                    </li>
+                    <li class="booking-toggle">
+                        <a href="#" class="bookings-nav">Bookings</a>
+                    </li>
+                    <li class="listing-toggle">
+                        <a href="#" class="listings-nav">Listings</a>
+                    </li>
+                    <li>
+                        <a href="#" class="favorites-nav">Favorites</a>
+                    </li>
+                </ul>
+
+            </aside>
+            <section id="account-management-view">
+                <article id="account-information-host">
+                    <h2>Account Information</h2>
+
+                    <label for="businessName-manage">Name</label>
+
+                    <div>
+                        <input type="text" name="businessName" id="businessName-manage">
+                        <button type="submit" class="">Change</button>
+                    </div>
+
+                    <label for="email-manage-host">Email (optional)</label>
+
+                    <div>
+                        <input type="email" name="email" id="email-manage-host">
+                        <button type="submit" class="">Change</button>
+                    </div>
+                </article>
+                <article id="account-information-user">
+                    <h2>Account Information</h2>
+
+                    <label for="firstName-manage lastName-manage">Name</label>
+
+                    <div>
+                        <input type="text" name="firstName" id="firstName-manage">
+                        <button type="submit" class="">Change</button>
+                    </div>
+
+                    <div>
+                        <input type="text" name="lastName" id="lastName-manage">
+                        <button type="submit" class="">Change</button>
+                    </div>
+
+                    <label for="email-manage">Email (optional)</label>
+
+                    <div>
+                        <input type="email" name="email" id="email-manage">
+                        <button type="submit" class="">Change</button>
+                    </div>
+
+                </article>
+
+                <article id="bookings">
+                    <h2>Bookings</h2>
+                </article>
+
+                <article id="listings">
+                    <h2>Listings</h2>
+                </article>
+
+                <article id="favorites">
+                    <h2>Favorites</h2>
+                </article>
+
+            </section>
+        </main>
+    </div>
+
+    <!--##################################################### Hotels and Rooms content ###################################################-->
+    <div id="hotels">
+        <section id="hotel-1">
+
+            <!-- Hotel name header description & pictures-->
+            <section id="hotelSection">
+                <header class="hotelName">
+                    <h1>Cybernet Kissaten</h1>
+                </header>
     
-                            <div>
-                                <input type="email" name="email" id="email-manage-host">
-                                <button type="submit" class="">Change</button>
-                            </div>
-                    </article>
-                    <article id="account-information-user">
-                        <h2>Account Information</h2>
-
-                        <label for="firstName-manage lastName-manage">Name</label>
-                        
-                        <div>
-                            <input type="text" name="firstName" id="firstName-manage">
-                            <button type="submit" class="">Change</button>
-                        </div>
-
-                        <div>
-                            <input type="text" name="lastName" id="lastName-manage">
-                            <button type="submit" class="">Change</button>
-                        </div>
-                        
-                        <label for="email-manage">Email (optional)</label>
-
-                        <div>
-                            <input type="email" name="email" id="email-manage">
-                            <button type="submit" class="">Change</button>
-                        </div>
-                        
-                    </article>
-
-                    <article id="bookings">
-                        <h2>Bookings</h2>
-                    </article>
-
-                    <article id="listings">
-                        <h2>Listings</h2>
-                    </article>
-
-                    <article id="favorites">
-                        <h2>Favorites</h2>
-                    </article>
-                    
+                <div class="topSection">
+    
+                    <div class="hotelDescription">
+                        <p>description description description description description description description description description
+                            description description description description description description description description description
+                            description description description description description description</p>
+                    </div>
+    
+                    <div class="hotelPictures">
+                        <a href="images/hotelpic1.jpg" data-lightbox="HotelPics">
+                            <img src="images/hotelpic1.jpg" alt="Hotel Picture 1" class="innerPic1">
+                        </a>
+                        <a href="images/hotelpic2.jpg" data-lightbox="HotelPics">
+                            <img src="images/hotelpic2.jpg" alt="Hotel Picture 2" class="innerPic2">
+                        </a>
+                        <a href="images/hotelpic3.jpg" data-lightbox="HotelPics">
+                            <img src="images/hotelpic3.jpg" alt="Hotel Picture 3" class="innerPic3">
+                        </a>
+                    </div>
+    
+                </div>
+            </section>
+    
+            <!-- Hotel rooms section -->
+            <section class="roomSection">
+    
+                <div id="roomSectionGrid">
+                    <h2>Rooms</h2>
+                    <button id="reviewBtn">Reviews</button>
+                </div>
+    
+                <div class="roomGrid">
+    
+                    <div class=roomName>
+                        <h3>Room Name</h3>
+                    </div>
+    
+                    <div class="roomPictures">
+                        <a href="images/hotelroompic1.jpg" data-lightbox="RoomPics">
+                            <img src="images/hotelroompic1.jpg" alt="Room Picture 1" class="innerRPic1">
+                        </a>
+                        <a href="images/hotelroompic2.jpg" data-lightbox="RoomPics">
+                            <img src="images/hotelroompic2.jpg" alt="Room Picture 2" class="innerRPic2">
+                        </a>
+                    </div>
+    
+                    <div class="roomSize">
+                        <h3>Room Size</h3>
+                    </div>
+    
+                    <div class="roomDescription">
+                        <p>description description description description description description description description description
+                            description description description description description description description description description
+                            description description description description description description</p>
+                    </div>
+                    <div class="bookCell">
+                        <button class="bookBtn">Book</button>
+                    </div>
+    
+                </div>
+    
+                <!-- The Reviews Section -->
+                <section id="Reviews">
+                    <div class="username">Username</div>
+                    <div class="userHistory">Rooms stayed in: </div>
+    
+                    <div class="commentSection">Reviews go here
+                        <button class="uploadBtn">Uploaded Pictures</button>
+                    </div>
                 </section>
-            </main>
-        </div>
-        <!--##################################################### footer ###################################################-->
-        <footer>
-            <article>
-                <header>Site Links</header>
-                <ul>
-                    <li><a href="homepage.html">Home</a></li>
-                    <li><a href="search.html">Search</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li class="signInUp"><a href="#">Sign In</a></li>
-                    <li class="createAccountClass"><a href="#">Create Account</a></li>
-                </ul>
-            </article>
-            <article class="footer-social">
-                <header>Find Us On Social Media!</header>
-                <ul>
-                    <li><a href=""><i class="fab fa-facebook-square fa-2x"></i></a></li>
-                    <li><a href=""><i class="fab fa-instagram fa-2x"></i></a></li>
-                    <li><a href="https://github.com/mattyd96/WDC-Project" target="_blank"><i class="fab fa-github fa-2x"></i></a></li>
-                    <li><a href=""><i class="fab fa-twitter fa-2x"></i></a></li>
-                    <li><a href=""><i class="fab fa-twitch fa-2x"></i></a></li>
-                </ul>
-            </article>
-        </footer>
-  
+            </section>
+
+        </section>
+        <!-- Booking Modals -->
+        <aside>
+            <!-- The Modal -->
+            <div class="bookModal">
+
+                <!-- Modal content -->
+                <div class="bookModal-content">
+                    <span class="closeBookBtn">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <br /> From:
+                    <br />
+                    <input type="date" name="From" />
+                    <br />
+                    <br /> To:
+                    <br />
+                    <input type="date" name="To" />
+                    <br />
+                    <input type="submit" value="Book" id="calBkBtn" />
+                </div>
+            </div>
+
+            <!-- Payment Details Modal -->
+            <div class="paymentModal">
+
+                <div class="paymentModal-content">
+                    <span class="closeBookBtn">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span>Your Booking</span>
+                    <div id="bookingDetailsDiv">
+
+                    </div>
+                    <span>Payment Details</span>
+                    <div id="paymenDetailsDiv">
+
+                    </div>
+                    <button id="confirmBookBtn">Book!</button>
+                </div>
+            </div>
+
+            <!-- Receipt Modal -->
+            <div class="receiptModal">
+                <div class="receiptModal-content">
+                    <span class="closeBookBtn">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span>Here is Your Receipt!</span>
+                    <div id="receiptDetailsDiv">
+
+                    </div>
+                    <span>You can edit your booking in your account!</span>
+                    <button id="contBrowse">Continue Browsing</button>
+                    <button id="myAccount" onclick="location.href='#';">My Account</button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!--##################################################### footer ###################################################-->
+    <footer>
+        <article>
+            <header>Site Links</header>
+            <ul>
+                <li>
+                    <a href="homepage.html">Home</a>
+                </li>
+                <li>
+                    <a href="search.html">Search</a>
+                </li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+                <li class="signInUp">
+                    <a href="#">Sign In</a>
+                </li>
+                <li class="createAccountClass">
+                    <a href="#">Create Account</a>
+                </li>
+            </ul>
+        </article>
+        <article class="footer-social">
+            <header>Find Us On Social Media!</header>
+            <ul>
+                <li>
+                    <a href="">
+                        <i class="fab fa-facebook-square fa-2x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fab fa-instagram fa-2x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/mattyd96/WDC-Project" target="_blank">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fab fa-twitter fa-2x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fab fa-twitch fa-2x"></i>
+                    </a>
+                </li>
+            </ul>
+        </article>
+    </footer>
+
+    <!--scripts for webpage-->
+    <script src="lightbox/lightbox.js"></script>
     <script src="main2.js"></script>
 </body>
+
 </html>

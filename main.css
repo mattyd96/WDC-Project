@@ -634,12 +634,6 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 }
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    HOTEL AND ROOMS PAGE HOTEL.HTML CSS    
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
-
-
-
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     ACCOUNT MANAGEMENT ACCOUNT.HTML CSS   
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 #account-management {
@@ -742,3 +736,618 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     font-weight: bold;
     color: white;
 }
+
+
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    HOTEL AND ROOMS PAGE HOTEL.HTML CSS    
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+/*  HOTEL SECTION   */
+
+.hotelName {
+    font-size: 1.25em;
+    color: white;
+    margin: 5em 4.25em;
+  }
+
+  .topSection {
+    display: flex;
+  }
+
+  .hotelDescription {
+    box-sizing: border-box;
+    color: white;
+    margin: 5em;
+    flex: 50%;
+  }
+
+  .hotelPictures {
+    box-sizing: border-box;
+    background-color: #D7DBDD;
+    padding: 1em;
+    margin: 5em;
+    border-radius: 0.3em;
+    flex: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  [class*="innerPic"] {
+    border-radius: 0.3em;
+    max-height: 10em;
+    margin: 0.1em;
+  }
+
+  [class*="innerPic"]:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  /*   mobile query    */
+
+  @media (max-width: 70.375em) {
+    .topSection {
+      flex-direction: column;
+    }
+    .hotelDescription {
+      flex: 100%;
+    }
+    .hotelPictures {
+      flex: 100%;
+    }
+  }
+
+  /*   mobile query  - very small devices  */
+
+  @media (max-width: 45em) {
+    .hotelPictures {
+      flex-direction: column;
+      align-items: center;
+    }
+    [class*="innerPic"] {
+      max-width: 100%;
+    }
+  }
+
+  /*  ROOMS SECTION   */
+
+  #roomSectionGrid {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25em;
+    color: white;
+    margin: 5em 4.25em;
+  }
+
+  #reviewBtn {
+    height: 2em;
+    font-size: 0.9em;
+  }
+
+  .roomGrid {
+    display: grid;
+    grid-template-areas: 'RoomName . . BookCell' 'RoomPics RoomSize . .' 'RoomPics RoomD RoomD RoomD' 'RoomPics RoomD RoomD RoomD';
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 25% 25% 25% 25%;
+    /* grid-gap: 1em; */
+    margin: 5em;
+    color: white;
+    background-color: grey;
+  }
+
+  .roomGrid>* {
+    padding: 1em;
+    margin: 1em;
+    font-size: 1.2em;
+  }
+
+  .roomName {
+    grid-area: RoomName;
+  }
+
+  .roomPictures {
+    grid-area: RoomPics;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #D7DBDD;
+    border-radius: 0.3em;
+  }
+
+  [class*="innerRPic"] {
+    flex: 80%;
+    max-width: 100%;
+    border-radius: 0.3em;
+    /* max-width: 50%;
+    max-height: 10em; */
+    margin: 0.1em;
+  }
+
+  [class*="innerRPic"]:hover {
+    cursor: pointer;
+    opacity: 0.7;
+
+  }
+
+  .roomSize {
+    grid-area: RoomSize;
+
+  }
+
+  .roomDescription {
+    grid-area: RoomD;
+  }
+
+  .bookCell {
+    grid-area: BookCell;
+    /* centering button in cell */
+    align-self: center;
+    justify-self: center;
+  }
+
+  .bookBtn {
+    font-size: 1.1em;
+  }
+
+  @media (max-width: 70.375em) {
+    .roomGrid {
+      grid-template-areas: 'RoomName RoomSize' 'RoomPics RoomPics' 'RoomPics RoomPics' 'RoomPics RoomPics' 'RoomD RoomD' 'RoomD RoomD' 'BookCell BookCell';
+      grid-template-columns: 50% 50%;
+      min-height: 50em;
+    }
+
+    [class*="innerRPic"] {
+      flex: 80%;
+      max-width: 100%;
+    }
+  }
+
+
+
+  /*  Review Section  */
+
+  #Reviews {
+    display: none;
+    margin: 0 6em;
+  }
+
+  .username {
+    color: white;
+    font-size: 1.2em;
+    float: left;
+    width: 20%;
+    max-width: 50%;
+  }
+
+  .userHistory {
+    color: white;
+    font-size: 1.2em;
+    float: left;
+    width: 30%;
+    max-width: 50%;
+  }
+
+  .commentSection {
+    font-size: 1.1em;
+    width: 100%;
+    margin-top: 1em;
+    border: 0.1em solid grey;
+    color: #f4b942;
+    float: left;
+    padding: 1em;
+  }
+
+  .uploadBtn {
+    float: right;
+    font-size: 1em;
+  }
+
+  /* styling all buttons when hovered over */
+
+  [class*="Btn"]:hover,
+  [class*="Btn"]:focus {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  [id*="Btn"]:hover,
+  [id*="Btn"]:focus {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  /* The Book Modal (background) */
+
+  .bookModal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+
+  .bookModal-content {
+    margin: 25% auto;
+    /* 25% from the top and centered */
+    padding: 10px;
+    border: 1px solid #888;
+    max-width: 25%;
+    /* Could be more or less, depending on screen size */
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: 0.5s;
+    background: rgb(100, 100, 100);
+    /* min-height: 40vh;  */
+    font-size: 1.25em;
+    color: rgb(243, 198, 66);
+  }
+
+  .closeBookBtn {
+    text-align: right;
+    margin-left: 96%;
+  }
+
+
+  .bookModal-content input {
+    padding: 1em;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: .5em;
+    font-size: 1em;
+    margin-left: 22%;
+  }
+
+  .bookModal-content input[type="submit"] {
+    margin-top: 1em;
+    border-radius: .5em;
+    width: 50%;
+    line-height: 0.8em;
+    background-color: #16b1b5;
+    font-size: 1.1em;
+    margin-left: 25%;
+  }
+
+  @media (max-width: 70.375em) {
+    .bookModal-content {
+      min-width: 50%;
+    }
+    .bookModal-content input {
+      margin-left: 25%;
+    }
+  }
+
+  .paymentModal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  .paymentModal-content {
+    margin: 25% auto;
+    /* 25% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 50%;
+    /* Could be more or less, depending on screen size */
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: 0.5s;
+    background: rgb(100, 100, 100);
+    /* min-height: 40vh;  */
+    font-size: 1.25em;
+    color: rgb(243, 198, 66);
+    overflow-y: auto;
+  }
+
+  #bookingDetailsDiv {
+    background-color: white;
+    max-width: 80%;
+    min-height: 10em;
+    margin: 1em auto;
+  }
+
+  #confirmBookBtn {
+    float: right;
+    font-size: 1em;
+  }
+
+  @media (max-width: 70.375em) {
+    #paymentModal-content {
+      min-width: 80%;
+    }
+
+  }
+
+  .receiptModal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  .receiptModal-content {
+    margin: 25% auto;
+    /* 25% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 50%;
+    /* Could be more or less, depending on screen size */
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: 0.5s;
+    background: rgb(100, 100, 100);
+    /* min-height: 40vh;  */
+    font-size: 1.25em;
+    color: rgb(243, 198, 66);
+    overflow-y: auto;
+  }
+
+  #receiptDetailsDiv {
+    background-color: white;
+    max-width: 80%;
+    min-height: 10em;
+    margin: 1em auto;
+  }
+
+
+  /*    !!!!!!!! LIGHTBOX STYLING -NOT TO BE MESSED WITH !!!!!!!!!!   */
+
+  html.lb-disable-scrolling {
+    overflow: hidden;
+    /* Position fixed required for iOS. Just putting overflow: hidden; on the body is not enough. */
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .lightboxOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: black;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+    opacity: 0.8;
+    display: none;
+  }
+
+  .lightbox {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: 10000;
+    text-align: center;
+    line-height: 0;
+    font-weight: normal;
+  }
+
+  .lightbox .lb-image {
+    display: block;
+    height: auto;
+    max-width: inherit;
+    max-height: none;
+    border-radius: 3px;
+
+    /* Image border */
+    border: 4px solid white;
+  }
+
+
+
+  .lightbox a img {
+    border: none;
+  }
+
+  .lb-outerContainer {
+    position: relative;
+    *zoom: 1;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+    border-radius: 4px;
+
+    /* Background color behind image.
+       This is visible during transitions. */
+    background-color: white;
+  }
+
+  .lb-outerContainer:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .lb-loader {
+    position: absolute;
+    top: 43%;
+    left: 0;
+    height: 25%;
+    width: 100%;
+    text-align: center;
+    line-height: 0;
+  }
+
+  .lb-cancel {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+    background: url(images/loading.gif) no-repeat;
+  }
+
+  .lb-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .lb-container>.nav {
+    left: 0;
+  }
+
+  .lb-nav a {
+    outline: none;
+    background-image: url('data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
+  }
+
+  .lb-prev,
+  .lb-next {
+    height: 100%;
+    cursor: pointer;
+    display: block;
+  }
+
+  .lb-nav a.lb-prev {
+    width: 34%;
+    left: 0;
+    float: left;
+    background: url(images/prev.png) left 48% no-repeat;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transition: opacity 0.6s;
+    -moz-transition: opacity 0.6s;
+    -o-transition: opacity 0.6s;
+    transition: opacity 0.6s;
+  }
+
+  .lb-nav a.lb-prev:hover {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
+  }
+
+  .lb-nav a.lb-next {
+    width: 25%;
+    right: 0;
+    float: right;
+    background: url(images/next.png) right 48% no-repeat;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transition: opacity 0.6s;
+    -moz-transition: opacity 0.6s;
+    -o-transition: opacity 0.6s;
+    transition: opacity 0.6s;
+  }
+
+  .lb-nav a.lb-next:hover {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
+  }
+
+  .lb-dataContainer {
+    margin: 0 auto;
+    padding-top: 5px;
+    *zoom: 1;
+    width: 100%;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  .lb-dataContainer:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .lb-data {
+    padding: 0 4px;
+    color: #ccc;
+  }
+
+  .lb-data .lb-details {
+    width: 85%;
+    float: left;
+    text-align: left;
+    line-height: 1.1em;
+  }
+
+  .lb-data .lb-caption {
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1em;
+  }
+
+  .lb-data .lb-caption a {
+    color: #4ae;
+  }
+
+  .lb-data .lb-number {
+    display: block;
+    clear: left;
+    padding-bottom: 1em;
+    font-size: 12px;
+    color: #999999;
+  }
+
+  .lb-data .lb-close {
+    display: block;
+    float: right;
+    width: 30px;
+    height: 30px;
+    background: url(images/close.png) top right no-repeat;
+    text-align: right;
+    outline: none;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+    opacity: 0.7;
+    -webkit-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    transition: opacity 0.2s;
+  }
+
+  .lb-data .lb-close:hover {
+    cursor: pointer;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
+  }
