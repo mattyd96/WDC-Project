@@ -1012,11 +1012,13 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     /* min-height: 40vh;  */
     font-size: 1.25em;
     color: rgb(243, 198, 66);
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap: 1em;
   }
 
   .closeBookBtn {
-    text-align: right;
-    margin-left: 96%;
+      justify-self: end;
   }
 
 
@@ -1027,7 +1029,6 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     border: none;
     border-radius: .5em;
     font-size: 1em;
-    margin-left: 22%;
   }
 
   .bookModal-content input[type="submit"] {

@@ -571,24 +571,45 @@
         $(function () {
             $("#calBkBtn").click(function () {
 
-                var available = true;
+                //remove any previous error messages
+                $("#error-msg-book").remove();
 
-                //get this button
-                var thisBtn = $(this);
+                if(loggedIn) {
+                    //get this button
+                    var thisBtn = $(this);
 
-                //book the dates if they are available
-                bookingRoom(thisBtn);
-                
-                //if the dates are available
-                if(available === true) {
+                    //book the dates if they are available -- also stores true flase value in var available
+                    var available = bookingRoom(thisBtn);
+                    
+                    //if the dates are available
+                    if(available) {
 
-                    //continue to next window
-                    console.log("selected booking date");
-                    $(".bookModal").hide();
-                    $(".paymentModal").show();
+                        //create booking object
+
+                        var newBooking = new Booking(currentRoom[0].name, currentHotel[0].name);
+
+                        newBooking.dates = available;
+
+                        console.log(newBooking);
+
+                        console.log(currentUser);
+
+                        currentUser.bookings.push(newBooking);
+
+                        console.log(currentUser.bookings);
+                        //continue to next window
+                        console.log("selected booking date");
+                        $(".bookModal").hide();
+                        $(".paymentModal").show();
+                    } else {
+                        //stay at current window and alert that dates are not available
+                        var selectDateErrorMsg =  $('<span id="error-msg-book"><i class="fas fa-exclamation"></i> Sorry! these dates are not available :(</span>');
+                        selectDateErrorMsg.insertAfter($(".closeBookBtn"));
+                    }
                 } else {
-                    //stay at current window and alert that dates are not available
+                    alert("you need to sign in idiot!");
                 }
+                
                 
             });
         });
@@ -673,6 +694,7 @@
              this.description = "This is a default description. Ability to change to be included later";
          }
 
+         //these will capture the current hotel and current room being booked or looked at
          var currentHotel = {};
          var currentRoom = {};
 
@@ -772,16 +794,10 @@
 
                     if(bookYear === year && bookMonth === month && bookDay === day) {
                         console.log("dates not available");
-                        available = false;
-                        console.log(available);
                         return false;
                     }
                 }
             }
-
-            available = true;
-
-            console.log(available + "after loop");
 
             for(var k = 0; k < getDateArray.length; k++) {
                 currentRoom[0].booked.push(getDateArray[k]);
@@ -789,8 +805,7 @@
 
             console.log('current bookings are' + currentRoom[0].booked);
 
-            console.log(from);
-            console.log(to);
+            return getDateArray;
         }
 
          //dynamically setting description based on objects -- its just hard coded at the moment so will need to work on later
