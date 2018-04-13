@@ -628,7 +628,247 @@
             });
         });
 
-        /*  !!!!!!!!!! LIGHTBOX JAVASCRIPT - NOT TO BE MESSED WITH !!!!!!!!  */
+       
+        //Review Button function
+        $(function () {
+            $("#reviewBtn").click(function () {
+                $(".roomGrid").toggle();
+                $("#Reviews").toggle();
+            });
+        });
+
+
+        //THIS SECTION IS FOR ROOM OBJECT AND HOTEL OBJECT CREATION
+
+         //hotels array
+
+         var hotels = [];
+         var hotelNumber;
+
+         //rooms array - dont need this at the moment
+ 
+         var rooms = [];
+ 
+         //hotel object
+ 
+         function Hotel(name, location) {
+             this.name = name;
+             this.location = location;
+             this.rooms = [];
+             this.images = [];
+             this.description = "This is a default description. Ability to change to be included later";
+             this.hotelId = hotelNumber;
+             hotelNumber++;
+         }
+ 
+         //Room object
+ 
+         function Room(name, hotel, people, price) {
+             this.name = name;
+             this.hotel = hotel;
+             this.people = people;
+             this.price = price;
+             this.booked = [];
+             this.images = [];
+             this.description = "This is a default description. Ability to change to be included later";
+         }
+
+         var currentHotel = {};
+         var currentRoom = {};
+
+         //booking object -- these will be inserted into the currentUser object
+
+         function Booking(room, hotel) {
+            this.room = room;
+            this.hotel = hotel;
+            this.dates =[];
+         }
+
+
+         //hard coding a hotel and room for testing purposes  TODO remove after testing is finished
+
+         var hotelTest = new Hotel("Cybernet Kissaten", "Tokyo");
+         var roomTest = new Room("room ichi", "Tokyo Tavern", 10, "1000");
+
+         hotels.push(hotelTest);
+         hotels[0].rooms.push(roomTest);
+
+         console.log(hotels);
+
+
+         //find hotel object when thumbnail is clicked
+
+         function findHotel(a) {
+            
+            //get name in thumbnail
+            var hotel = a.find(".room-name-thumb p").html();
+
+            console.log(hotel); // debugging
+
+            //match thumbnail name with the hotel object that has that name
+            var foundHotel = $.grep(hotels, function(v) {
+                return v.name === hotel;
+            });
+
+            //set hotel as the current hotel
+            currentHotel = foundHotel;
+
+            console.log(foundHotel); //debugging
+
+         }
+
+         //find room in hotel object when book button clicked
+
+         function findRoom(a) {
+            var room = a.parents(".roomGrid").find(".roomName h3").html();
+
+            console.log(currentHotel);
+
+            var foundRoom = $.grep(currentHotel[0].rooms, function(v) {
+                return v.name === room;
+            });
+
+            console.log(foundRoom);
+
+            currentRoom = foundRoom;
+         }
+
+          // date array
+          function getBookingDate(start, end) {
+
+            var
+            arr = new Array(),
+            dt = new Date(start);
+        
+            while (dt <= end) {
+            arr.push(new Date(dt));
+            dt.setDate(dt.getDate() + 1);
+            }
+        
+            return arr;
+        
+        }
+
+        function bookingRoom(a) {
+            var from = a.parent().find("#bookFrom").val();
+            var to = a.parent().find("#bookTo").val();
+
+            var startDate = new Date(from); //YYYY-MM-DD
+            var endDate = new Date(to); //YYYY-MM-DD
+
+            var getDateArray = getBookingDate(startDate, endDate);
+
+            for(var i = 0; i < getDateArray.length; i++) {
+
+                var bookYear = getDateArray[i].getFullYear();
+                var bookMonth = getDateArray[i].getMonth();
+                var bookDay = getDateArray[i].getDate();
+
+                for(var j = 0; j < currentRoom[0].booked.length; j++) {
+
+                    var year = currentRoom[0].booked[j].getFullYear();
+                    var month = currentRoom[0].booked[j].getMonth();
+                    var day = currentRoom[0].booked[j].getDate();
+
+                    if(bookYear === year && bookMonth === month && bookDay === day) {
+                        console.log("dates not available");
+                        available = false;
+                        console.log(available);
+                        return false;
+                    }
+                }
+            }
+
+            available = true;
+
+            console.log(available + "after loop");
+
+            for(var k = 0; k < getDateArray.length; k++) {
+                currentRoom[0].booked.push(getDateArray[k]);
+            }
+
+            console.log('current bookings are' + currentRoom[0].booked);
+
+            console.log(from);
+            console.log(to);
+        }
+
+         //dynamically setting description based on objects -- its just hard coded at the moment so will need to work on later
+         $("#room1 .roomDescription p").html(hotels[0].rooms[0].description);
+
+         //when the first book button in the room object is selected
+         $(".bookBtn").click(function() {
+            
+            var currentBtn = $(this);
+            findRoom(currentBtn);
+
+         });
+
+         //when modal book button is clicked
+        /*$("#calBkBtn").click(function () {
+            var thisBtn = $(this);
+            bookingRoom(thisBtn);
+            
+            if(bookingRoom) {
+                continue;
+            } else {
+
+            }
+        });*/
+
+         //displaying hotel page when clicking on thumbnail
+
+         $(".hotelRoomThumbnail").click(function() {
+            var currentThumb = $(this);
+            findHotel(currentThumb);
+            $("#search, #home, #account-management, .search, #about").hide();
+            $("#hotels").show();
+            $(".nav-and-search").removeClass("searchBG");
+            $(".nav-and-search").removeClass("searchBG2");
+         });
+
+
+//});// DOM Function
+
+
+
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$     lightbox functions below        $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+
+ /*  !!!!!!!!!! LIGHTBOX JAVASCRIPT - NOT TO BE MESSED WITH !!!!!!!!  */
 
         // Uses Node, AMD or browser globals to create a module.
         (function (root, factory) {
@@ -1135,196 +1375,3 @@
 
             return new Lightbox();
         }));
-
-        //Review Button function
-        $(function () {
-            $("#reviewBtn").click(function () {
-                $(".roomGrid").toggle();
-                $("#Reviews").toggle();
-            });
-        });
-
-
-        //THIS SECTION IS FOR ROOM OBJECT AND HOTEL OBJECT CREATION
-
-         //hotels array
-
-         var hotels = [];
-         var hotelNumber;
-
-         //rooms array - dont need this at the moment
- 
-         var rooms = [];
- 
-         //hotel object
- 
-         function Hotel(name, location) {
-             this.name = name;
-             this.location = location;
-             this.rooms = [];
-             this.images = [];
-             this.description = "This is a default description. Ability to change to be included later";
-             this.hotelId = hotelNumber;
-             hotelNumber++;
-         }
- 
-         //Room object
- 
-         function Room(name, hotel, people, price) {
-             this.name = name;
-             this.hotel = hotel;
-             this.people = people;
-             this.price = price;
-             this.booked = [];
-             this.images = [];
-             this.description = "This is a default description. Ability to change to be included later";
-         }
-
-         var currentHotel = {};
-         var currentRoom = {};
-
-
-         //hard coding a hotel and room for testing purposes  TODO remove after testing is finished
-
-         var hotelTest = new Hotel("Cybernet Kissaten", "Tokyo");
-         var roomTest = new Room("room ichi", "Tokyo Tavern", 10, "1000");
-
-         hotels.push(hotelTest);
-         hotels[0].rooms.push(roomTest);
-
-         console.log(hotels);
-
-
-         //find hotel object when thumbnail is clicked
-
-         function findHotel(a) {
-            
-            //get name in thumbnail
-            var hotel = a.find(".room-name-thumb p").html();
-
-            console.log(hotel); // debugging
-
-            //match thumbnail name with the hotel object that has that name
-            var foundHotel = $.grep(hotels, function(v) {
-                return v.name === hotel;
-            });
-
-            //set hotel as the current hotel
-            currentHotel = foundHotel;
-
-            console.log(foundHotel); //debugging
-
-         }
-
-         //find room in hotel object when book button clicked
-
-         function findRoom(a) {
-            var room = a.parents(".roomGrid").find(".roomName h3").html();
-
-            console.log(currentHotel);
-
-            var foundRoom = $.grep(currentHotel[0].rooms, function(v) {
-                return v.name === room;
-            });
-
-            console.log(foundRoom);
-
-            currentRoom = foundRoom;
-         }
-
-          // date array
-          function getBookingDate(start, end) {
-
-            var
-            arr = new Array(),
-            dt = new Date(start);
-        
-            while (dt <= end) {
-            arr.push(new Date(dt));
-            dt.setDate(dt.getDate() + 1);
-            }
-        
-            return arr;
-        
-        }
-
-        function bookingRoom(a) {
-            var from = a.parent().find("#bookFrom").val();
-            var to = a.parent().find("#bookTo").val();
-
-            var startDate = new Date(from); //YYYY-MM-DD
-            var endDate = new Date(to); //YYYY-MM-DD
-
-            var getDateArray = getBookingDate(startDate, endDate);
-
-            for(var i = 0; i < getDateArray.length; i++) {
-
-                var bookYear = getDateArray[i].getFullYear();
-                var bookMonth = getDateArray[i].getMonth();
-                var bookDay = getDateArray[i].getDate();
-
-                for(var j = 0; j < currentRoom[0].booked.length; j++) {
-
-                    var year = currentRoom[0].booked[j].getFullYear();
-                    var month = currentRoom[0].booked[j].getMonth();
-                    var day = currentRoom[0].booked[j].getDate();
-
-                    if(bookYear === year && bookMonth === month && bookDay === day) {
-                        console.log("dates not available");
-                        available = false;
-                        console.log(available);
-                        return false;
-                    }
-                }
-            }
-
-            available = true;
-
-            console.log(available + "after loop");
-
-            for(var k = 0; k < getDateArray.length; k++) {
-                currentRoom[0].booked.push(getDateArray[k]);
-            }
-
-            console.log('current bookings are' + currentRoom[0].booked);
-
-            console.log(from);
-            console.log(to);
-        }
-
-         //dynamically setting description based on objects -- its just hard coded at the moment so will need to work on later
-         $("#room1 .roomDescription p").html(hotels[0].rooms[0].description);
-
-         //when the first book button in the room object is selected
-         $(".bookBtn").click(function() {
-            
-            var currentBtn = $(this);
-            findRoom(currentBtn);
-
-         });
-
-         //when modal book button is clicked
-        /*$("#calBkBtn").click(function () {
-            var thisBtn = $(this);
-            bookingRoom(thisBtn);
-            
-            if(bookingRoom) {
-                continue;
-            } else {
-
-            }
-        });*/
-
-         //displaying hotel page when clicking on thumbnail
-
-         $(".hotelRoomThumbnail").click(function() {
-            var currentThumb = $(this);
-            findHotel(currentThumb);
-            $("#search, #home, #account-management, .search, #about").hide();
-            $("#hotels").show();
-            $(".nav-and-search").removeClass("searchBG");
-            $(".nav-and-search").removeClass("searchBG2");
-         });
-
-
-//});// DOM Function
