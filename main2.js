@@ -570,9 +570,26 @@
         //Calendar booking select Modal functions
         $(function () {
             $("#calBkBtn").click(function () {
-                console.log("selected booking date");
-                $(".bookModal").hide();
-                $(".paymentModal").show();
+
+                var available = true;
+
+                //get this button
+                var thisBtn = $(this);
+
+                //book the dates if they are available
+                bookingRoom(thisBtn);
+                
+                //if the dates are available
+                if(available === true) {
+
+                    //continue to next window
+                    console.log("selected booking date");
+                    $(".bookModal").hide();
+                    $(".paymentModal").show();
+                } else {
+                    //stay at current window and alert that dates are not available
+                }
+                
             });
         });
 
@@ -1215,6 +1232,66 @@
             currentRoom = foundRoom;
          }
 
+          // date array
+          function getBookingDate(start, end) {
+
+            var
+            arr = new Array(),
+            dt = new Date(start);
+        
+            while (dt <= end) {
+            arr.push(new Date(dt));
+            dt.setDate(dt.getDate() + 1);
+            }
+        
+            return arr;
+        
+        }
+
+        function bookingRoom(a) {
+            var from = a.parent().find("#bookFrom").val();
+            var to = a.parent().find("#bookTo").val();
+
+            var startDate = new Date(from); //YYYY-MM-DD
+            var endDate = new Date(to); //YYYY-MM-DD
+
+            var getDateArray = getBookingDate(startDate, endDate);
+
+            for(var i = 0; i < getDateArray.length; i++) {
+
+                var bookYear = getDateArray[i].getFullYear();
+                var bookMonth = getDateArray[i].getMonth();
+                var bookDay = getDateArray[i].getDate();
+
+                for(var j = 0; j < currentRoom[0].booked.length; j++) {
+
+                    var year = currentRoom[0].booked[j].getFullYear();
+                    var month = currentRoom[0].booked[j].getMonth();
+                    var day = currentRoom[0].booked[j].getDate();
+
+                    if(bookYear === year && bookMonth === month && bookDay === day) {
+                        console.log("dates not available");
+                        available = false;
+                        console.log(available);
+                        return false;
+                    }
+                }
+            }
+
+            available = true;
+
+            console.log(available + "after loop");
+
+            for(var k = 0; k < getDateArray.length; k++) {
+                currentRoom[0].booked.push(getDateArray[k]);
+            }
+
+            console.log('current bookings are' + currentRoom[0].booked);
+
+            console.log(from);
+            console.log(to);
+        }
+
          //dynamically setting description based on objects -- its just hard coded at the moment so will need to work on later
          $("#room1 .roomDescription p").html(hotels[0].rooms[0].description);
 
@@ -1227,24 +1304,18 @@
          });
 
          //when modal book button is clicked
-         $("#calBkBtn").click(function() {
-           var from = $(this).parent().find("#bookFrom").val();
-           var to = $(this).parent().find("#bookTo").val();
+        /*$("#calBkBtn").click(function () {
+            var thisBtn = $(this);
+            bookingRoom(thisBtn);
+            
+            if(bookingRoom) {
+                continue;
+            } else {
 
-           console.log(from);
-           console.log(to);
-         });
-
-         
-
-         
-
-         
-
+            }
+        });*/
 
          //displaying hotel page when clicking on thumbnail
-
-         
 
          $(".hotelRoomThumbnail").click(function() {
             var currentThumb = $(this);
