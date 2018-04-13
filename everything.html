@@ -522,19 +522,19 @@
 
                     <div>
                         <input type="text" name="firstName" id="firstName-manage">
-                        <button type="submit" class="">Change</button>
+                        <button type="submit" class="firstNameChangeBtn">Change</button>
                     </div>
 
                     <div>
                         <input type="text" name="lastName" id="lastName-manage">
-                        <button type="submit" class="">Change</button>
+                        <button type="submit" class="lastNameChangeBtn">Change</button>
                     </div>
 
                     <label for="email-manage">Email (optional)</label>
 
                     <div>
                         <input type="email" name="email" id="email-manage">
-                        <button type="submit" class="">Change</button>
+                        <button type="submit" class="emailChangeBtn">Change</button>
                     </div>
 
                 </article>
@@ -675,11 +675,15 @@
                     <span class="closeBookBtn">
                         <i class="fas fa-times"></i>
                     </span>
-                    <h3>From</h3> 
-                    <input type="date" name="From" id="bookFrom">
-                    <h3>To</h3> 
-                    <input type="date" name="To" id="bookTo">
-                    <input type="submit" value="Book" id="calBkBtn">
+                    <br /> From:
+                    <br />
+                    <input type="date" name="From" id="bookFrom" />
+                    <br />
+                    <br /> To:
+                    <br />
+                    <input type="date" name="To" id="bookTo"/>
+                    <br />
+                    <input type="submit" value="Book" id="calBkBtn" />
                 </div>
             </div>
 
@@ -692,27 +696,13 @@
                     </span>
                     <span>Your Booking</span>
                     <div id="bookingDetailsDiv">
-                        <div>
-                            <h3>Hotel</h3>
-                            <span id="bookedHotel"></span>
-                        </div>
 
-                        <div>
-                            <h3>Room</h3>
-                            <span id="bookedRoom"></span>
-                        </div>
-
-                        <div>
-                            <h3>Dates Booked</h3>
-                            <span id="bookFromModal"></span>
-                            <span id="bookToModal"></span>     
-                        </div>
                     </div>
                     <span>Payment Details</span>
                     <div id="paymenDetailsDiv">
-                        <p>Payment Details and modal will go here when implemented</p>
+
                     </div>
-                    <button id="confirmBookBtn">OK lets go!</button>
+                    <button id="confirmBookBtn">Book!</button>
                 </div>
             </div>
 
