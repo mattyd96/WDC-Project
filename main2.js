@@ -540,21 +540,21 @@
         //------------------------------------------ Account Management functions ------------------------------------->
         //loading user/host object to account management inputs
 
-        $('.manage-account-nav').click(function () {
+        $('.manage-account-nav').on('click', function () {
             console.log(currentUser.firstName);
             //conditional to check if a user is currently signed in
-            if (currentUser.length > 0) {
+            // if (currentUser.length > 0) {
 
                 $('#firstName-manage').val(currentUser.firstName);
                 $('#lastName-manage').val(currentUser.lastName);
                 $('#email-manage').val(currentUser.email);
-            }
+            // }
         });
 
         //changing first name
         $(".firstNameChangeBtn").click(function () {
             //conditional to check if a user is currently signed in
-            if (currentUser.length > 0) {
+            // if (currentUser.length > 0) {
                 //using first name to find the user's account
                 var oldFirstName = currentUser.firstName;
                 var foundUserAcc = $.grep(users, function (v) {
@@ -562,13 +562,13 @@
                 });
                 foundUserAcc.firstName = $('#firstName-manage').val();
                 console.log('first-name changed');
-            }
+            // }
         });
 
         //changing last name
         $(".lastNameChangeBtn").click(function () {
             //conditional to check if a user is currently signed in
-            if (currentUser.length > 0) {
+            // if (currentUser.length > 0) {
                 //using first name to find the user's account
                 var oldFirstName = currentUser.firstName;
                 var foundUserAcc = $.grep(users, function (v) {
@@ -576,13 +576,13 @@
                 });
                 foundUserAcc.lastName = $('#lastName-manage').val();
                 console.log('last-name changed');
-            }
+            // }
         });
 
         //changing email
         $(".emailChangeBtn").click(function () {
             //conditional to check if a user is currently signed in
-            if (currentUser.length > 0) {
+            // if (currentUser.length > 0) {
                 //using first name to find the user's account
                 var oldFirstName = currentUser.firstName;
                 var foundUserAcc = $.grep(users, function (v) {
@@ -590,8 +590,18 @@
                 });
                 foundUserAcc.email = $('#email-manage').val();
                 console.log('email changed');
-            }
+            // }
         });
+
+        /*$(".bookings-nav").click(function() {
+            //create html box for each booking
+            var newBooking;
+
+            for(var i = 0; i < currentUser.bookings.length; i ++) {
+                newBooking += "<div class='bookingThumbnail " + i + "'><h3>Hotel</h3><p class='bookingThumbHotel'></p><h3>Room</h3><p class='bookingThumbRoom'></p><h3>Date</h3><p>From <span class='bookingThumbFrom'></span> To <span class='bookingThumbTo'></span></p></div>";
+            }
+        });*/
+
 
         //------------------------------------------ Hotel and Booking Page functions ------------------------------------->
 
@@ -651,7 +661,9 @@
 
                         console.log(currentUser.bookings);
 
+                        //push values to next window
                         bookingConfirmPush(thisBtn);
+
                         //continue to next window
                         console.log("selected booking date");
                         $(".bookModal").hide();
@@ -876,9 +888,6 @@
             $("#bookFromModal").html(from);
             $("#bookToModal").html(to);
         }
-
-         //dynamically setting description based on objects -- its just hard coded at the moment so will need to work on later
-         $("#room1 .roomDescription p").html(hotels[0].rooms[0].description);
 
          //when the first book button in the room object is selected
          $(".bookBtn").click(function() {
