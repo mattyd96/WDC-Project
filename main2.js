@@ -146,7 +146,7 @@
         $("#search, #about, #account-management").hide();
     });
 
-    
+
 
     //----------------------------- map toggle functions ---------------------------------------//
 
@@ -174,7 +174,7 @@
 
     //----------------------------- favorite functions ---------------------------------------//
 
-    
+
     var isButtonRed = false; //boolean for favorite button color
     $(".favThis").click(function() {
 
@@ -189,7 +189,7 @@
     //check that confirm password and password are matching
 
         //check whether host or user create account is visible and assigns appropriate id's to variables
-        var $submitBtn = $("#create-account-form-host input[type='submit']"); 
+        var $submitBtn = $("#create-account-form-host input[type='submit']");
         var $passwordBox =$("#create-password");
         var $confirmBox = $("#confirm-password");
 
@@ -206,7 +206,7 @@
                 $confirmBox = $("#confirm-password");
             }
         });
-        
+
         var $errorMsg =  $('<span id="error-msg"><i class="fas fa-exclamation"></i></span>');
         var $successMsg =  $('<span id="success-msg"><i class="fas fa-check"></i></span>');
 
@@ -235,10 +235,10 @@
             var $successCont = $("#success-msg");
             if($errorCont.length > 0){
                 $errorCont.remove();
-            }  
+            }
             if($successCont.length > 0){
                 $successCont.remove();
-            }  
+            }
         }
 
         $("#confirm-password, #create-password, #confirm-password-host, #create-password-host")
@@ -249,16 +249,17 @@
                     checkMatchingPasswords();
                 }
              })
-             .on("blur", function(){                    
+             .on("blur", function(){
                 // also check when the element looses focus (clicks somewhere else)
                 checkMatchingPasswords();
             })
             .on("focus", function(){
                 // reset the error message when they go to make a change
                 resetPasswordError();
-            })
+            });
 
     //create an object based on inputs to create an account for a person or business
+
 
         //users array
 
@@ -299,7 +300,7 @@
         //check existing usernames against submitted one to check uniqueness
 
         function checkUserNames() {
-            
+
             //users
             for(var i = 0; i < users.length; i++) {
                 if($("#username").val() === users[i].userName || $("#username-host").val() === users[i].userName) {
@@ -326,8 +327,9 @@
             var $errorCont = $("#error-msg-username");
             if($errorCont.length > 0){
                 $errorCont.remove();
-            }  
+            }
         }
+
 
         //create new user object
         $(".create-user-submit").click(function (e) {
@@ -354,7 +356,7 @@
                 $("#create-account-form")[0].reset();
 
                 //hide modal
-                $(".create-account-form").hide;
+                $(".create-account-form").hide();
                 $(".modal").hide();
 
                 console.log(users);
@@ -370,7 +372,7 @@
             e.preventDefault();
         });
 
-        //create host object 
+        //create host object
         $(".create-host-submit").click(function (e) {
             console.log("doing something");
             if(checkUserNames()) {
@@ -394,7 +396,7 @@
                 $("#create-account-form-host")[0].reset();
 
                 //hide modal
-                $(".create-account-form-host").hide;
+                $(".create-account-form-host").hide();
                 $(".modal").hide();
 
                 console.log(hosts);
@@ -420,9 +422,11 @@
 
             var signInErrorMsg =  $('<span id="error-msg-sign-in"><i class="fas fa-exclamation"></i> Sorry! this username is not registered :(</span>');
             var signInPasswordErrorMsg =  $('<span id="error-msg-sign-in"><i class="fas fa-exclamation"></i> Sorry! this passwrod is incorrect :(</span>');
-            
+
             var signInUserName = $("#signInEmail").val();
             var signInPassword = $("#password").val();
+
+
 
             var foundUser = $.grep(users, function(v) {
                 return v.userName === signInUserName;
@@ -453,7 +457,7 @@
 
                 console.log(signInPassword);
                 console.log(foundUsername.password);
-                
+
                 if(foundUsername.password == signInPassword) {
                     signIn(); //TODO make this function
                 } else {
@@ -473,7 +477,7 @@
                 $(".signInUp").css("display", "none");
                 $(".createAccount").css("display", "none");
                 $(".createAccountClass").css("display", "none");
-                
+
                 $(".signIn Form, .modal").hide();
 
                 loggedIn = true;
@@ -539,6 +543,58 @@
 
         //------------------------------------------ Account Management functions ------------------------------------->
 
+        //loading user/host object to account management inputs
+
+          $('.manage-account-nav').click(function(){
+              console.log(currentUser.firstName);
+            //conditional to check if a user is currently signed in
+            if(currentUser.length > 0 ){
+
+              $('#firstName-manage').val(currentUser.firstName);
+              $('#lastName-manage').val(currentUser.lastName);
+              $('#email-manage').val(currentUser.email);
+          }
+        });
+
+        //changing first name
+        $(".firstNameChangeBtn").click(function(){
+          //conditional to check if a user is currently signed in
+          if(currentUser.length > 0 ){
+            //using first name to find the user's account
+            var oldFirstName = currentUser.firstName;
+            var foundUserAcc = $.grep(users, function(v) {
+                return v.userName === oldFirstName;
+            });
+            foundUserAcc.firstName = $('#firstName-manage').val();
+            console.log('first-name changed');
+          }
+        });
+        //changing last name
+        $(".lastNameChangeBtn").click(function(){
+          //conditional to check if a user is currently signed in
+          if(currentUser.length > 0 ){
+            //using first name to find the user's account
+            var oldFirstName = currentUser.firstName;
+            var foundUserAcc = $.grep(users, function(v) {
+                return v.userName === oldFirstName;
+            });
+            foundUserAcc.lastName = $('#lastName-manage').val();
+            console.log('last-name changed');
+          }
+        });
+        //changing email
+        $(".emailChangeBtn").click(function(){
+          //conditional to check if a user is currently signed in
+          if(currentUser.length > 0 ){
+            //using first name to find the user's account
+            var oldFirstName = currentUser.firstName;
+            var foundUserAcc = $.grep(users, function(v) {
+                return v.userName === oldFirstName;
+            });
+            foundUserAcc.email = $('#email-manage').val();
+            console.log('email changed');
+          }
+        });
 
         //------------------------------------------ Hotel and Booking Page functions ------------------------------------->
 
@@ -571,46 +627,25 @@
         $(function () {
             $("#calBkBtn").click(function () {
 
-                //remove any previous error messages
-                $("#error-msg-book").remove();
+                var available = true;
 
-                if(loggedIn) {
-                    //get this button
-                    var thisBtn = $(this);
+                //get this button
+                var thisBtn = $(this);
 
-                    //book the dates if they are available -- also stores true flase value in var available
-                    var available = bookingRoom(thisBtn);
-                    
-                    //if the dates are available
-                    if(available) {
+                //book the dates if they are available
+                bookingRoom(thisBtn);
 
-                        //create booking object
+                //if the dates are available
+                if(available === true) {
 
-                        var newBooking = new Booking(currentRoom[0].name, currentHotel[0].name);
-
-                        newBooking.dates = available;
-
-                        console.log(newBooking);
-
-                        console.log(currentUser);
-
-                        currentUser.bookings.push(newBooking);
-
-                        console.log(currentUser.bookings);
-                        //continue to next window
-                        console.log("selected booking date");
-                        $(".bookModal").hide();
-                        $(".paymentModal").show();
-                    } else {
-                        //stay at current window and alert that dates are not available
-                        var selectDateErrorMsg =  $('<span id="error-msg-book"><i class="fas fa-exclamation"></i> Sorry! these dates are not available :(</span>');
-                        selectDateErrorMsg.insertAfter($(".closeBookBtn"));
-                    }
+                    //continue to next window
+                    console.log("selected booking date");
+                    $(".bookModal").hide();
+                    $(".paymentModal").show();
                 } else {
-                    alert("you need to sign in idiot!");
+                    //stay at current window and alert that dates are not available
                 }
-                
-                
+
             });
         });
 
@@ -649,7 +684,7 @@
             });
         });
 
-       
+
         //Review Button function
         $(function () {
             $("#reviewBtn").click(function () {
@@ -667,11 +702,11 @@
          var hotelNumber;
 
          //rooms array - dont need this at the moment
- 
+
          var rooms = [];
- 
+
          //hotel object
- 
+
          function Hotel(name, location) {
              this.name = name;
              this.location = location;
@@ -681,9 +716,9 @@
              this.hotelId = hotelNumber;
              hotelNumber++;
          }
- 
+
          //Room object
- 
+
          function Room(name, hotel, people, price) {
              this.name = name;
              this.hotel = hotel;
@@ -694,7 +729,6 @@
              this.description = "This is a default description. Ability to change to be included later";
          }
 
-         //these will capture the current hotel and current room being booked or looked at
          var currentHotel = {};
          var currentRoom = {};
 
@@ -721,7 +755,7 @@
          //find hotel object when thumbnail is clicked
 
          function findHotel(a) {
-            
+
             //get name in thumbnail
             var hotel = a.find(".room-name-thumb p").html();
 
@@ -761,14 +795,14 @@
             var
             arr = new Array(),
             dt = new Date(start);
-        
+
             while (dt <= end) {
             arr.push(new Date(dt));
             dt.setDate(dt.getDate() + 1);
             }
-        
+
             return arr;
-        
+
         }
 
         function bookingRoom(a) {
@@ -794,10 +828,16 @@
 
                     if(bookYear === year && bookMonth === month && bookDay === day) {
                         console.log("dates not available");
+                        available = false;
+                        console.log(available);
                         return false;
                     }
                 }
             }
+
+            available = true;
+
+            console.log(available + "after loop");
 
             for(var k = 0; k < getDateArray.length; k++) {
                 currentRoom[0].booked.push(getDateArray[k]);
@@ -805,7 +845,8 @@
 
             console.log('current bookings are' + currentRoom[0].booked);
 
-            return getDateArray;
+            console.log(from);
+            console.log(to);
         }
 
          //dynamically setting description based on objects -- its just hard coded at the moment so will need to work on later
@@ -813,7 +854,7 @@
 
          //when the first book button in the room object is selected
          $(".bookBtn").click(function() {
-            
+
             var currentBtn = $(this);
             findRoom(currentBtn);
 
@@ -823,7 +864,7 @@
         /*$("#calBkBtn").click(function () {
             var thisBtn = $(this);
             bookingRoom(thisBtn);
-            
+
             if(bookingRoom) {
                 continue;
             } else {
@@ -930,7 +971,7 @@
                 Sanitize Title
                 If the caption data is trusted, for example you are hardcoding it in, then leave this to false.
                 This will free you to add html tags, such as links, in the caption.
-            
+
                 If the caption data is user submitted or from some other untrusted source, then set this to true
                 to prevent xss and other injection attacks.
                     */
@@ -1037,11 +1078,11 @@
 
                 /*
                     Show context menu for image on right-click
-            
+
                     There is a div containing the navigation that spans the entire image and lives above of it. If
                     you right-click, you are right clicking this div and not the image. This prevents users from
                     saving the image or using other context menu actions with the image.
-            
+
                     To fix this, when we detect the right mouse button is pressed down, but not yet clicked, we
                     set pointer-events to none on the nav div. This is so that the upcoming right-click event on
                     the next mouseup will bubble down to the image. Once the right-click/contextmenu event occurs
