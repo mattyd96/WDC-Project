@@ -637,7 +637,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     ACCOUNT MANAGEMENT ACCOUNT.HTML CSS   
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 #account-management {
-    display: block;
+    display: none;
 }
 
 #account-management-content {
@@ -742,6 +742,10 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     HOTEL AND ROOMS PAGE HOTEL.HTML CSS    
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 /*  HOTEL SECTION   */
+
+#hotels {
+    display: none;
+}
 
 .hotelName {
     font-size: 1.25em;
@@ -1084,8 +1088,12 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     background: rgb(100, 100, 100);
     /* min-height: 40vh;  */
     font-size: 1.25em;
-    color: rgb(243, 198, 66);
+    color: white;
     overflow-y: auto;
+  }
+
+  .paymentModal-content h3 {
+      font-weight: bold;
   }
 
   #bookingDetailsDiv {

@@ -650,6 +650,8 @@
                         currentUser.bookings.push(newBooking);
 
                         console.log(currentUser.bookings);
+
+                        bookingConfirmPush(thisBtn);
                         //continue to next window
                         console.log("selected booking date");
                         $(".bookModal").hide();
@@ -763,10 +765,12 @@
          //hard coding a hotel and room for testing purposes  TODO remove after testing is finished
 
          var hotelTest = new Hotel("Cybernet Kissaten", "Tokyo");
-         var roomTest = new Room("room ichi", "Tokyo Tavern", 10, "1000");
+         var roomTest = new Room("room ichi", "Cybernet Kissaten", 10, "1000");
+         var roomTest2 = new Room("pod 2","Cybernet Kissaten", 20, "2000");
 
          hotels.push(hotelTest);
          hotels[0].rooms.push(roomTest);
+         hotels[0].rooms.push(roomTest2);
 
          console.log(hotels);
 
@@ -861,6 +865,18 @@
             return getDateArray;
         }
 
+        //pushing booking values to next menu
+        function bookingConfirmPush(a) {
+
+            var from = a.parent().find("#bookFrom").val();
+            var to = a.parent().find("#bookTo").val();
+
+            $("#bookedHotel").html(currentHotel[0].name);
+            $("#bookedRoom").html(currentRoom[0].name);
+            $("#bookFromModal").html(from);
+            $("#bookToModal").html(to);
+        }
+
          //dynamically setting description based on objects -- its just hard coded at the moment so will need to work on later
          $("#room1 .roomDescription p").html(hotels[0].rooms[0].description);
 
@@ -872,17 +888,6 @@
 
          });
 
-         //when modal book button is clicked
-        /*$("#calBkBtn").click(function () {
-            var thisBtn = $(this);
-            bookingRoom(thisBtn);
-            
-            if(bookingRoom) {
-                continue;
-            } else {
-
-            }
-        });*/
 
          //displaying hotel page when clicking on thumbnail
 
