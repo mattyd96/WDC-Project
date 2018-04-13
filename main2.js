@@ -1133,6 +1133,7 @@
          //hotels array
 
          var hotels = [];
+         var hotelNumber;
 
          //rooms array - dont need this at the moment
  
@@ -1146,6 +1147,8 @@
              this.rooms = [];
              this.images = [];
              this.description = "This is a default description. Ability to change to be included later";
+             this.hotelId = hotelNumber;
+             hotelNumber++;
          }
  
          //Room object
@@ -1156,8 +1159,12 @@
              this.people = people;
              this.price = price;
              this.booked = [];
+             this.images = [];
              this.description = "This is a default description. Ability to change to be included later";
          }
+
+         var currentHotel = {};
+         var currentRoom = {};
 
 
          //hard coding a hotel and room for testing purposes  TODO remove after testing is finished
@@ -1171,10 +1178,77 @@
          console.log(hotels);
 
 
+         //find hotel object when thumbnail is clicked
+
+         function findHotel(a) {
+            
+            //get name in thumbnail
+            var hotel = a.find(".room-name-thumb p").html();
+
+            console.log(hotel); // debugging
+
+            //match thumbnail name with the hotel object that has that name
+            var foundHotel = $.grep(hotels, function(v) {
+                return v.name === hotel;
+            });
+
+            //set hotel as the current hotel
+            currentHotel = foundHotel;
+
+            console.log(foundHotel); //debugging
+
+         }
+
+         //find room in hotel object when book button clicked
+
+         function findRoom(a) {
+            var room = a.parents(".roomGrid").find(".roomName h3").html();
+
+            console.log(currentHotel);
+
+            var foundRoom = $.grep(currentHotel[0].rooms, function(v) {
+                return v.name === room;
+            });
+
+            console.log(foundRoom);
+
+            currentRoom = foundRoom;
+         }
+
+         //dynamically setting description based on objects -- its just hard coded at the moment so will need to work on later
+         $("#room1 .roomDescription p").html(hotels[0].rooms[0].description);
+
+         //when the first book button in the room object is selected
+         $(".bookBtn").click(function() {
+            
+            var currentBtn = $(this);
+            findRoom(currentBtn);
+
+         });
+
+         //when modal book button is clicked
+         $("#calBkBtn").click(function() {
+           var from = $(this).parent().find("#bookFrom").val();
+           var to = $(this).parent().find("#bookTo").val();
+
+           console.log(from);
+           console.log(to);
+         });
+
+         
+
+         
+
+         
+
+
          //displaying hotel page when clicking on thumbnail
 
-         $(".hotelRoomThumbnail").click(function() {
+         
 
+         $(".hotelRoomThumbnail").click(function() {
+            var currentThumb = $(this);
+            findHotel(currentThumb);
             $("#search, #home, #account-management, .search, #about").hide();
             $("#hotels").show();
             $(".nav-and-search").removeClass("searchBG");

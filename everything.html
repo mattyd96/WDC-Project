@@ -282,7 +282,7 @@
                     <div class="hotelRoomThumbnail">
                         <div class="thumbImg">
                         </div>
-                        <div class="thumb-flex">
+                        <div class="thumb-flex room-name-thumb">
                             <p>Cybernet Kissaten</p>
                             <span class="favThis">
                                 <i class="fas fa-heart"></i>
@@ -596,12 +596,12 @@
                     <button id="reviewBtn">Reviews</button>
                 </div>
     
-                <div class="roomGrid">
-    
+                <div class="roomGrid" id="room1">
+                
                     <div class=roomName>
-                        <h3>Room Name</h3>
+                        <h3>room ichi</h3>
                     </div>
-    
+                
                     <div class="roomPictures">
                         <a href="images/hotelroompic1.jpg" data-lightbox="RoomPics">
                             <img src="images/hotelroompic1.jpg" alt="Room Picture 1" class="innerRPic1">
@@ -610,22 +610,49 @@
                             <img src="images/hotelroompic2.jpg" alt="Room Picture 2" class="innerRPic2">
                         </a>
                     </div>
-    
+                
                     <div class="roomSize">
                         <h3>Room Size</h3>
                     </div>
-    
+                
                     <div class="roomDescription">
-                        <p>description description description description description description description description description
-                            description description description description description description description description description
-                            description description description description description description</p>
+                        <p>description description description description description description description description description description
+                            description description description description description description description description description description
+                            description description description description</p>
                     </div>
                     <div class="bookCell">
                         <button class="bookBtn">Book</button>
                     </div>
-    
                 </div>
-    
+
+                <div class="roomGrid" id="room2">
+                
+                        <div class=roomName>
+                            <h3>pod 2</h3>
+                        </div>
+                    
+                        <div class="roomPictures">
+                            <a href="images/hotelroompic1.jpg" data-lightbox="RoomPics">
+                                <img src="images/hotelroompic1.jpg" alt="Room Picture 1" class="innerRPic1">
+                            </a>
+                            <a href="images/hotelroompic2.jpg" data-lightbox="RoomPics">
+                                <img src="images/pup.jpg" alt="Room Picture 2" class="innerRPic2">
+                            </a>
+                        </div>
+                    
+                        <div class="roomSize">
+                            <h3>Room Size</h3>
+                        </div>
+                    
+                        <div class="roomDescription">
+                            <p>description description description description description description description description description description
+                                description description description description description description description description description description
+                                description description description description</p>
+                        </div>
+                        <div class="bookCell">
+                            <button class="bookBtn">Book</button>
+                        </div>
+                    </div>
                 <!-- The Reviews Section -->
                 <section id="Reviews">
                     <div class="username">Username</div>
@@ -650,11 +677,11 @@
                     </span>
                     <br /> From:
                     <br />
-                    <input type="date" name="From" />
+                    <input type="date" name="From" id="bookFrom" />
                     <br />
                     <br /> To:
                     <br />
-                    <input type="date" name="To" />
+                    <input type="date" name="To" id="bookTo"/>
                     <br />
                     <input type="submit" value="Book" id="calBkBtn" />
                 </div>

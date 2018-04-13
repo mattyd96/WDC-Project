@@ -821,9 +821,18 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     margin: 5em 4.25em;
   }
 
+  #roomSectionGrid h2 {
+      font-size: 2em;
+  }
+
   #reviewBtn {
-    height: 2em;
-    font-size: 0.9em;
+    font-size: 1.25em;
+    font-weight: bold;
+    border: 2px solid white;
+    border-radius: .2em;
+    padding: .2em;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
   }
 
   .roomGrid {
@@ -855,13 +864,11 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     justify-content: center;
     align-items: center;
     background-color: #D7DBDD;
-    border-radius: 0.3em;
   }
 
   [class*="innerRPic"] {
     flex: 80%;
     max-width: 100%;
-    border-radius: 0.3em;
     /* max-width: 50%;
     max-height: 10em; */
     margin: 0.1em;
@@ -886,11 +893,17 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     grid-area: BookCell;
     /* centering button in cell */
     align-self: center;
-    justify-self: center;
+    justify-self: end;
   }
 
   .bookBtn {
-    font-size: 1.1em;
+    font-size: 1.25em;
+    font-weight: bold;
+    border: 2px solid white;
+    border-radius: .2em;
+    padding: .2em;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
   }
 
   @media (max-width: 70.375em) {
