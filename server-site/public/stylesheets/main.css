@@ -593,7 +593,7 @@ footer header {
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 .searchBG2 {
-    background-image: url("images/pond.jpg");
+    background-image: url("/images/pond.jpg");
     background-size: cover;
     /*background: linear-gradient(to bottom right, #7f00ff, #e100ff);*/
     width: 100%;

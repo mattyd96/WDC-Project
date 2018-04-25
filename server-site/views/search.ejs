@@ -74,16 +74,21 @@
     </article>
 </div>
 
+<script>
+    var hoteru = <%- JSON.stringify(hotels) %>;
+    
+    console.log(hoteru[0]);
+</script>
 
 <script>
     var map;
-    var hotels = <%= hotels %>
-    console.log(hotels);
+    console.log(hoteru);
     function initMap() {
 
-        
-        var latitude = <%= hotels[1].lat %>; 
-        var longitude = <%= hotels[1].lng %>; 
+        var latitude = hoteru[0].lat;
+        console.log(latitude); 
+        var longitude = hoteru[0].lng;
+        console.log(longitude);  
         var hotel = {lat: latitude, lng: longitude};
 
         map = new google.maps.Map(document.getElementById('map'), {
@@ -91,17 +96,23 @@
             center: hotel
         });
 
-        var marker = new google.maps.Marker({
+        hoteru.forEach(function(hotel) {
+            var latitude = hotel.lat;
+            console.log(latitude); 
+            var longitude = hotel.lng;
+            var hotel = {lat: latitude, lng: longitude}; 
+
+            var marker = new google.maps.Marker({
             position: hotel,
-            map: map
+            map: map,
+            animation: google.maps.Animation.DROP
         });
-
-        
-
-         
+            
+        });    
       
     }
 </script>
+
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRpaCamDo5U3yCs143HVVpDXEjgfvCz6g&callback=initMap">
 </script>

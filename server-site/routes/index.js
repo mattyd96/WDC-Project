@@ -97,6 +97,8 @@ hotels.forEach(function(){
   rooms.push(roomTest1);
 });
 
+console.log(hotels);
+
 
 
 module.exports = router;

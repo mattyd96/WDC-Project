@@ -773,18 +773,7 @@
             this.dates =[];
          }
 
-
-         //hard coding a hotel and room for testing purposes  TODO remove after testing is finished
-
-         var hotelTest = new Hotel("Cybernet Kissaten", "Tokyo");
-         var roomTest = new Room("room ichi", "Cybernet Kissaten", 10, "1000");
-         var roomTest2 = new Room("pod 2","Cybernet Kissaten", 20, "2000");
-
-         hotels.push(hotelTest);
-         hotels[0].rooms.push(roomTest);
-         hotels[0].rooms.push(roomTest2);
-
-         console.log(hotels);
+    
 
 
          //find hotel object when thumbnail is clicked
