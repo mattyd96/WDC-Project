@@ -900,14 +900,35 @@
 
          //displaying hotel page when clicking on thumbnail
 
-         $(".hotelRoomThumbnail").click(function() {
+         /*$(".hotelRoomThumbnail").click(function() {
             var currentThumb = $(this);
             findHotel(currentThumb);
             $("#search, #home, #account-management, .search, #about").hide();
             $("#hotels").show();
             $(".nav-and-search").removeClass("searchBG");
             $(".nav-and-search").removeClass("searchBG2");
-         });
+         });*/
+
+
+         //-----------------Google Maps Functions --------------//
+
+         /*var map;
+
+
+            function initMap() {
+                var adelaide = { lat: -34.919159, lng: 138.60414 };
+                map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 20,
+                    center: adelaide
+                });
+                var marker = new google.maps.Marker({
+                    position: adelaide,
+                    map: map
+                });
+              
+            }*/
+
+
 
 
 //});// DOM Function

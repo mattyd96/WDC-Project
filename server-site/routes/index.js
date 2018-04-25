@@ -28,6 +28,19 @@ router.get('/manage-account', function(req, res, next) {
   res.render('manage-account');
 });
 
+router.get('/hotels/:id', function(req, res) {
+  
+  var thisHotel;
+  for(var i = 0; i < hotels.length; i++) {
+    if(hotels[i].id == req.params.id) {
+      thisHotel = hotels[i];
+    }
+  }
+
+  res.render('hotel', {thisHotel: thisHotel});
+  
+});
+
 
 //----------------objects and arrays---------------------//
 //these are needed to fill out all the pages, later on (in submssion 4 i think, this will all be transferred to a database)
@@ -40,13 +53,16 @@ var rooms = [];
 
 //hotel object
 
-function Hotel(name, location) {
+function Hotel(name, location, lat, lng) {
     this.name = name;
     this.location = location;
+    this.lat = lat;
+    this.lng = lng;
     this.rooms = [];
     this.images = [];
     this.description = "This is a default description. Ability to change to be included later";
-    this.hotelId = hotelNumber;
+    this.id = name.replace(/\s+/g, ''); 
+    //this.hotelId = hotelNumber;
 }
 
 //Room object
@@ -62,12 +78,16 @@ function Room(name, hotel, people, price) {
 }
 
 //some dummy hotels for testing
-var hotelTest = new Hotel("Cybernet Kissaten", "Tokyo");
-var hotelTest2 = new Hotel("Kratos' shack", "Norway");
-var hotelTest3 = new Hotel("Kaer Morhen", "Poland?");
-var hotelTest4 = new Hotel("yorHa Bunker", "Orbit");
-var hotelTest5 = new Hotel("Baggins Hobbit Hole", "The Shire");
+var hotelTest = new Hotel("Cybernet Kissaten", "Tokyo", 35.6895, 139.6917);
+var hotelTest2 = new Hotel("Kratos' shack", "Norway", 35.6897, 139.6917);
+var hotelTest3 = new Hotel("Kaer Morhen", "Poland?", 35.6899, 139.6917);
+var hotelTest4 = new Hotel("yorHa Bunker", "Orbit", 35.6895, 139.6915);
+var hotelTest5 = new Hotel("Baggins Hobbit Hole", "The Shire", 35.6895, 139.6913);
 hotels.push(hotelTest);
+hotels.push(hotelTest2);
+hotels.push(hotelTest3);
+hotels.push(hotelTest4);
+hotels.push(hotelTest5);
 
 //dummy room 
 var roomTest1 = new Room("Pod 1", "all of them for now", "over 9000!", "alot");
@@ -77,27 +97,6 @@ hotels.forEach(function(){
   rooms.push(roomTest1);
 });
 
- //users array
 
- var users = [];
-
- var currentUser = {};
-
- //user object
-
- function User(firstName, lastName, userName, password, email) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.userName = userName;
-  this.password = password;
-  this.email = email;
-  this.favorites = [];
-  this.wishlist = [];
-  this.recentlyVisited = [];
-  this.bookings = [];
-  this.reviews = [];
-  this.canEdit = false;
-}
-         
 
 module.exports = router;

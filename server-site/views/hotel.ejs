@@ -16,15 +16,13 @@ have a look at how i did the search page and routes/index.html to get an idea of
     <!-- Hotel name header description & pictures-->
     <section id="hotelSection">
         <header class="hotelName">
-            <h1>Cybernet Kissaten</h1>
+            <h1><%= thisHotel.name %></h1>
         </header>
     
         <div class="topSection">
     
             <div class="hotelDescription">
-                <p>description description description description description description description description description description
-                    description description description description description description description description description
-                    description description description description description</p>
+                <p><%= thisHotel.description %></p>
             </div>
     
             <div class="hotelPictures">
@@ -57,7 +55,7 @@ have a look at how i did the search page and routes/index.html to get an idea of
             </div>
     
             <div class="roomPictures">
-                <a href="images/hotelroompic1.jpg" data-lightbox="Room1Pics">
+                <a href="../public/images/hotelpic1.jpg" data-lightbox="Room1Pics">
                     <img src="images/hotelroompic1.jpg" alt="Room Picture 1" class="innerRPic1">
                 </a>
                 <a href="images/hotelroompic2.jpg" data-lightbox="Room1Pics">
@@ -120,4 +118,5 @@ have a look at how i did the search page and routes/index.html to get an idea of
     
 </section>
 
+<script src="/lightbox/lightbox.js"></script>
 <% include partials/footer %>

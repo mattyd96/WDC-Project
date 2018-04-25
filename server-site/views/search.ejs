@@ -40,9 +40,12 @@
                 </div>
 
                 <% hotels.forEach(function(hotel) { %>
+                    
                     <div class="hotelRoomThumbnail">
-                        <div class="thumbImg">
-                        </div>
+                        <a href="/hotels/<%= hotel.id %>">
+                                <div class="thumbImg">
+                                </div> 
+                        </a>
                         <div class="thumb-flex room-name-thumb">
                             <p><%= hotel.name %></p>
                             <span class="favThis">
@@ -62,11 +65,45 @@
             </main>
 
             <main class="map">
-                <h2>Map Goes Here :)</h2>
+                <section id="map">
+
+                </section>
             </main>
         </section>
 
     </article>
 </div>
+
+
+<script>
+    var map;
+    var hotels = <%= hotels %>
+    console.log(hotels);
+    function initMap() {
+
+        
+        var latitude = <%= hotels[1].lat %>; 
+        var longitude = <%= hotels[1].lng %>; 
+        var hotel = {lat: latitude, lng: longitude};
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: hotel
+        });
+
+        var marker = new google.maps.Marker({
+            position: hotel,
+            map: map
+        });
+
+        
+
+         
+      
+    }
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRpaCamDo5U3yCs143HVVpDXEjgfvCz6g&callback=initMap">
+</script>
 
 <% include partials/footer %>
