@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express();
 var bodyParser = require("body-parser");
+const { body,validationResult } = require('express-validator/check');
+const { sanitizeBody } = require('express-validator/filter');
 
 router.use(bodyParser.urlencoded({extended: true}));
 router.set("view engine", "ejs");
@@ -28,6 +30,8 @@ router.get('/manage-account', function(req, res, next) {
   res.render('manage-account');
 });
 
+/* GET unique page for each hotel */
+//later on the id will be provided by the database, but for now i just removed whitespace from the hotel name and used that
 router.get('/hotels/:id', function(req, res) {
   
   var thisHotel;
@@ -39,6 +43,40 @@ router.get('/hotels/:id', function(req, res) {
 
   res.render('hotel', {thisHotel: thisHotel});
   
+});
+
+/* Post Search Query for hotels */
+router.post('/search', function(req, res, next) {
+
+  var filterHotel = [];
+  console.log("filtered hotels: " + filterHotel);
+
+  //sanitize input for security
+  console.log(req.body);
+  sanitizeBody('location').trim().escape();
+  sanitizeBody('dateStart').toDate();
+  sanitizeBody('dateEnd').toDate();
+  sanitizeBody('people').toInt();
+  sanitizeBody('rooms').toInt();
+
+  //for each hotel in the hotels array  (all hotels)
+  hotels.forEach(function(hotel) {
+
+    //check if hotel is in the location searched, if it is add it to the filterHotel array
+    if((hotel.location.toLowerCase() == req.body.location.toLowerCase()) && (req.body.location != '')) {
+      filterHotel.push(hotel);
+    }
+
+  });
+
+  //if the filterHotel has values, render search with that, else render the page with all hotels (later on we will want to produce an error that says we couldn't find any matches)
+  if(filterHotel.length > 0) {
+    res.render('search', {hotels: filterHotel});
+  } else {
+    res.render('search', {hotels: hotels});
+  }
+  
+
 });
 
 
@@ -98,6 +136,9 @@ hotels.forEach(function(){
 });
 
 console.log(hotels);
+
+//this list will be used for filtering serach results ... it is a copy of hotels
+
 
 
 

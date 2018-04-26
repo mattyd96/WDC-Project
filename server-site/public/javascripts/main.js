@@ -86,33 +86,6 @@
 
     //----------------------------- nav functions ---------------------------------------//
 
-    $(".search-nav").click(function (){
-        $(".nav-and-search").addClass("searchBG2");
-        $(".nav-and-search").removeClass("searchBG");
-        $("#home, #about, #account-management, #hotels").hide();
-        $("#search, .search").show();
-    });
-
-    $(".home-nav").click(function (){
-        $(".nav-and-search").addClass("searchBG");
-        $(".nav-and-search").removeClass("searchBG2");
-        $("#home, .search").show();
-        $("#search, #about, #account-management, #hotels").hide();
-    });
-
-    $(".about-nav").click(function() {
-        $("#search, #home, #account-management, .search, #hotels").hide();
-        $("#about").show();
-        $(".nav-and-search").removeClass("searchBG");
-        $(".nav-and-search").removeClass("searchBG2");
-    });
-
-    $(".nav-welcome, .manage-account-nav, .favorites-nav, .bookings-nav, .listings-nav").click(function() {
-        $("#search, #home, #about, .search, #hotels").hide();
-        $("#account-management").show();
-        $(".nav-and-search").removeClass("searchBG");
-        $(".nav-and-search").removeClass("searchBG2");
-    });
 
     $(".manage-account-nav").click(function() {
         $("#bookings, #favorites, #listings").hide();
