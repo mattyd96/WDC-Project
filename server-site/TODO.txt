@@ -1,3 +1,0 @@
-ok some things to do
-
-fix the header include so that the nav will ghange for the about page and whatnot
