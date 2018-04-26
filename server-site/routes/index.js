@@ -129,13 +129,16 @@ hotels.push(hotelTest5);
 
 //dummy room 
 var roomTest1 = new Room("Pod 1", "all of them for now", "over 9000!", "alot");
+roomTest1.images[0] = "pup.jpg";
+roomTest1.images[1] = "kabukicho.jpg";
 
 //put the room into the room array of each hotel
-hotels.forEach(function(){
-  rooms.push(roomTest1);
+hotels.forEach(function(hotel){
+  hotel.rooms.push(roomTest1);
 });
 
 console.log(hotels);
+
 
 //this list will be used for filtering serach results ... it is a copy of hotels
 

@@ -18,84 +18,86 @@ have a look at how i did the search page and routes/index.html to get an idea of
         <header class="hotelName">
             <h1><%= thisHotel.name %></h1>
         </header>
-    
+
         <div class="topSection">
-    
+
             <div class="hotelDescription">
                 <p><%= thisHotel.description %></p>
             </div>
-    
+
             <div class="hotelPictures">
-                <a href="images/hotelpic1.jpg" data-lightbox="HotelPics">
-                    <img src="images/hotelpic1.jpg" alt="Hotel Picture 1" class="innerPic1">
+                <a href="/images/<%= thisHotel.images[0] %>" data-lightbox="HotelPics">
+                    <img src="/images/<%= thisHotel.images[0] %>" alt="Hotel Picture 1" class="innerPic1">
                 </a>
-                <a href="images/hotelpic2.jpg" data-lightbox="HotelPics">
-                    <img src="images/hotelpic2.jpg" alt="Hotel Picture 2" class="innerPic2">
+                <a href="/images/<%= thisHotel.images[1] %>" data-lightbox="HotelPics">
+                    <img src="/images/<%= thisHotel.images[1] %>" alt="Hotel Picture 2" class="innerPic2">
                 </a>
-                <a href="images/hotelpic3.jpg" data-lightbox="HotelPics">
-                    <img src="images/hotelpic3.jpg" alt="Hotel Picture 3" class="innerPic3">
+                <a href="/images/<%= thisHotel.images[2] %>" data-lightbox="HotelPics">
+                    <img src="/images/<%= thisHotel.images[2] %>" alt="Hotel Picture 3" class="innerPic3">
                 </a>
             </div>
-    
+
         </div>
     </section>
-    
+
     <!-- Hotel rooms section -->
     <section class="roomSection">
-    
+
         <div id="roomSectionGrid">
             <h2>Rooms</h2>
             <button id="reviewBtn">Reviews</button>
         </div>
-    
-        <div class="roomGrid" id="room1">
-    
+            
+        <!--changed up the code a bit but, i need you to mak room1 room2 etc dynamic in the loop-->
+        <% thisHotel.rooms.forEach(function(room) { %>
+            <div class="roomGrid" id="room1">
             <div class=roomName>
-                <h3>room ichi</h3>
+                <!-- didnt add the [0] after room bcuz it gives an undefined error -->
+                <h3><%= room.name %></h3>
             </div>
-    
             <div class="roomPictures">
-                <a href="../public/images/hotelpic1.jpg" data-lightbox="Room1Pics">
-                    <img src="images/hotelroompic1.jpg" alt="Room Picture 1" class="innerRPic1">
+                <a href="/images/<%= room.images[0] %>" data-lightbox="Room1Pics">
+                    <img src="/images/<%= room.images[0] %>" alt="Room Picture 1" class="innerRPic1">
                 </a>
-                <a href="images/hotelroompic2.jpg" data-lightbox="Room1Pics">
-                    <img src="images/hotelroompic2.jpg" alt="Room Picture 2" class="innerRPic2">
+                <a href="/images/<%= room.images[1] %>" data-lightbox="Room1Pics">
+                    <img src="/images/<%= room.images[1] %>" alt="Room Picture 2" class="innerRPic2">
                 </a>
             </div>
-    
+
             <div class="roomSize">
-                <h3>Room Size</h3>
+                    <h3>Room Size</h3>
+                </div>
+                <!-- Same here. Didnt add [0] -->
+                <div class="roomDescription">
+                    <p><%= room.description %></p>
+                </div>
+                <div class="bookCell">
+                    <button class="bookBtn">Book</button>
+                </div>
             </div>
-    
-            <div class="roomDescription">
-                <p>description description description description description description description description description description
-                    description description description description description description description description description
-                    description description description description description</p>
-            </div>
-            <div class="bookCell">
-                <button class="bookBtn">Book</button>
-            </div>
-        </div>
-    
-        <div class="roomGrid" id="room2">
-    
+        <% }); %>
+
+          
+
+        <!--<div class="roomGrid" id="room2">
+
             <div class=roomName>
                 <h3>pod 2</h3>
             </div>
-    
+
             <div class="roomPictures">
-                <a href="images/hotelroompic1.jpg" data-lightbox="Room2Pics">
-                    <img src="images/hotelroompic1.jpg" alt="Room Picture 1" class="innerRPic1">
+                <a href="/images/hotelroompic1.jpg" data-lightbox="Room2Pics">
+                    <img src="/images/hotelroompic1.jpg" alt="Room Picture 1" class="innerRPic1">
                 </a>
-                <a href="images/pup.jpg" data-lightbox="Room2Pics">
-                    <img src="images/pup.jpg" alt="Room Picture 2" class="innerRPic2">
+                <a href="/images/pup.jpg" data-lightbox="Room2Pics">
+                    <img src="/images/pup.jpg" alt="Room Picture 2" class="innerRPic2">
                 </a>
             </div>
-    
+
             <div class="roomSize">
                 <h3>Room Size</h3>
             </div>
-    
+
             <div class="roomDescription">
                 <p>description description description description description description description description description description
                     description description description description description description description description description
@@ -104,18 +106,18 @@ have a look at how i did the search page and routes/index.html to get an idea of
             <div class="bookCell">
                 <button class="bookBtn">Book</button>
             </div>
-        </div>
+        </div>-->
         <!-- The Reviews Section -->
         <section id="Reviews">
             <div class="username">Username</div>
             <div class="userHistory">Rooms stayed in: </div>
-    
+
             <div class="commentSection">Reviews go here
                 <button class="uploadBtn">Uploaded Pictures</button>
             </div>
         </section>
     </section>
-    
+
 </section>
 
 <script src="/lightbox/lightbox.js"></script>
