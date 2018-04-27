@@ -5,7 +5,7 @@ body {
 }
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    HOMEPAGE    
+    HOMEPAGE
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 
@@ -173,7 +173,7 @@ nav .middle {
 /*SEARCHBAR*/
 
 .searchBG {
-    background-image: url("images/pond.jpg");
+    background-image: url("../images/pond.jpg");
     background-size: cover;
     /*background: linear-gradient(to bottom right, #7f00ff, #e100ff);*/
     width: 100%;
@@ -202,7 +202,7 @@ nav .middle {
         ".   .   .   .    .    mSearch mSearch .     .     .     .     .           "
         ".   .   .   .    .    mLoc    mLoc    .     .     p2    p2    p2          "
         ".   .   .   .    .    .       .       .     .     .     .     .           " */
-       
+
     width: 90em;
     margin: auto;
 }
@@ -284,30 +284,30 @@ nav .middle {
         border: none;
         height: 2rem;
     }
-    
+
     #location {
         border-radius: .5em .5em 0 0;
         padding: 1rem 1rem;
         height: 3rem;
         grid-area: mLoc;
     }
-    
+
     .dateStart {
         grid-area: mFrom;
     }
-    
+
     .dateEnd {
         grid-area: mTo;
     }
-    
+
     .people {
         grid-area: mAdult;
     }
-    
+
     .rooms {
         grid-area: mChild;
     }
-    
+
     #searchButton {
         border-radius: 0 0 .5em .5em;
         border: none;
@@ -349,7 +349,7 @@ nav .middle {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: linear-gradient(rgba(40, 44, 52, 0.4), rgb(40, 44, 52)), url("images/pup.jpg");
+    background: linear-gradient(rgba(40, 44, 52, 0.4), rgb(40, 44, 52)), url("../images/pup.jpg");
     background-size: 100%;
 }
 
@@ -511,7 +511,7 @@ nav .middle {
     min-width: 10rem;
     max-width: 100%;
     height: 13rem;
-    background-image: url("images/kabukicho.jpg");
+    background-image: url("../images/kabukicho.jpg");
     background-size: cover;
 }
 
@@ -527,7 +527,7 @@ nav .middle {
 .thumb-flex a {
     text-decoration: none;
     font-size: 1.2em;
-    
+
 }
 
 .thumb-price {
@@ -589,14 +589,11 @@ footer header {
 
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    SEARCH PAGE SEARCH.HTML CSS    
+    SEARCH PAGE SEARCH.HTML CSS
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
-#search {
-    display: none;
-}
 
 .searchBG2 {
-    background-image: url("images/pond.jpg");
+    background-image: url("/images/pond.jpg");
     background-size: cover;
     /*background: linear-gradient(to bottom right, #7f00ff, #e100ff);*/
     width: 100%;
@@ -633,12 +630,17 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     display: none;
 }
 
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    ACCOUNT MANAGEMENT ACCOUNT.HTML CSS   
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
-#account-management {
-    display: none;
+/* Google Map CSS*/
+
+#map {
+    width: 100%;
+    height: 100vh;
+    background-color: grey;
 }
+
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    ACCOUNT MANAGEMENT ACCOUNT.HTML CSS
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 #account-management-content {
     display: grid;
@@ -721,11 +723,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     font-size: 1.2em;
 }
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    ABOUT PAGE ABOUT.HTML CSS    
+    ABOUT PAGE ABOUT.HTML CSS
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
-#about {
-    display: none;
-}
 
 .about-content {
     max-width: 80em;
@@ -739,13 +738,9 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    HOTEL AND ROOMS PAGE HOTEL.HTML CSS    
+    HOTEL AND ROOMS PAGE HOTEL.HTML CSS
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 /*  HOTEL SECTION   */
-
-#hotels {
-    display: none;
-}
 
 .hotelName {
     font-size: 1.25em;
@@ -1160,6 +1155,11 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     margin: 1em auto;
   }
 
+#infoWindowText {
+  font-size: 2em;
+  font-weight: bold;
+  font-family: 'Times New Roman', 'Serif';
+}
 
   /*    !!!!!!!! LIGHTBOX STYLING -NOT TO BE MESSED WITH !!!!!!!!!!   */
 
@@ -1243,7 +1243,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     width: 32px;
     height: 32px;
     margin: 0 auto;
-    background: url(images/loading.gif) no-repeat;
+    background: url(/images/loading.gif) no-repeat;
   }
 
   .lb-nav {
@@ -1275,7 +1275,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     width: 34%;
     left: 0;
     float: left;
-    background: url(images/prev.png) left 48% no-repeat;
+    background: url(/images/prev.png) left 48% no-repeat;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
     -webkit-transition: opacity 0.6s;
@@ -1293,7 +1293,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     width: 25%;
     right: 0;
     float: right;
-    background: url(images/next.png) right 48% no-repeat;
+    background: url(/images/next.png) right 48% no-repeat;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
     -webkit-transition: opacity 0.6s;
@@ -1357,7 +1357,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     float: right;
     width: 30px;
     height: 30px;
-    background: url(images/close.png) top right no-repeat;
+    background: url(/images/close.png) top right no-repeat;
     text-align: right;
     outline: none;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
