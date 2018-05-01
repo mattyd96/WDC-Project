@@ -303,7 +303,7 @@
         }
 
         //create new user object
-        $(".create-user-submit").click(function (e) {
+       /* $(".create-user-submit").click(function (e) {
 
             if(checkUserNames()) {
                 //assign form values to user object properties
@@ -334,14 +334,14 @@
 
                 resetUsernameError();
                 resetPasswordError();
-                e.preventDefault();
+                //e.preventDefault();
             } else {
                 $userNameErrorMsg.insertAfter($("#user-username-label"));
             }
 
             //prevent default form actions
-            e.preventDefault();
-        });
+            //e.preventDefault();
+        });*/
 
         //create host object 
         $(".create-host-submit").click(function (e) {

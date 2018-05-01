@@ -2,7 +2,7 @@
 
  <aside class="modal">
 
-        <form action="#" class="modal-content signInForm">
+        <form action="/users" method="POST" class="modal-content signInForm">
 
             <header>
                 <span class="closeBtn">
@@ -12,11 +12,11 @@
             </header>
 
             <section>
-                <label for="signInEmail" id="username-sign-in-label">Email or username</label>
-                <input type="text" id="signInEmail" required>
+                <label for="signInEmail" id="username-sign-in-label">Username</label>
+                <input type="text"  name="logusername" id="signInEmail" required>
 
                 <label for="password" id="password-label">Password</label>
-                <input type="password" id="password" required>
+                <input type="password" name="logpassword" id="password" required>
 
                 <a id="forgotPassword">Forgot Password?</a>
 
@@ -43,7 +43,7 @@
             </section>
         </form>
 
-        <form action="/users/create-account" class="modal-content createAccount" id="create-account-form" method="POST">
+        <form action="/users" class="modal-content createAccount" id="create-account-form" method="POST">
             <header>
                 <span class="closeBtn">
                     <i class="fas fa-times"></i>
@@ -67,7 +67,7 @@
                 <label for="confirm-password">Confirm Password</label>
 
                 <div class='password-confirm-div'>
-                    <input type="password" name="confirmPassword" id="confirm-password" required>
+                    <input type="password" name="passwordConf" id="confirm-password" required>
                 </div>
 
                 <label for="email">Email (optional)</label>
