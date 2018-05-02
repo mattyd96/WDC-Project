@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express();
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var bodyParser = require("body-parser");
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
@@ -13,6 +13,9 @@ router.set("view engine", "ejs");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  if(req.session) {
+    console.log("in session BOY");
+  }
   res.render('landing', {hotels:hotels, recommended:recommended, popular:popular, highestRated: highestRated});
 });
 
