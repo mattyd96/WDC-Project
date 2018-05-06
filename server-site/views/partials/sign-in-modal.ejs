@@ -81,7 +81,7 @@
             </section>
         </form>
 
-        <form action="#" class="modal-content becomeHost" id="create-account-form-host">
+        <form action="/users" method="POST" class="modal-content becomeHost" id="create-account-form-host">
 
             <header>
                 <span class="closeBtn">
@@ -92,18 +92,18 @@
 
             <section>
                 <label for="businessName">Name</label>
-                <input type="text" id="businessName" placeholder="First" required>
+                <input type="text" id="businessName" name="businessName" placeholder="Your Business Name" required>
 
                 <label for="username" id="host-username-label">username</label>
-                <input type="text" id="username-host" placeholder="ex. traveler2020" required>
+                <input type="text" id="username-host"  name="username_host" placeholder="ex. traveler2020" required>
 
                 <label for="create-password-host">Password</label>
-                <input type="password" id="create-password-host" required>
+                <input type="password" id="create-password-host" name="password_host" required>
 
                 <label for="confirm-password-host">Confirm Password</label>
 
                 <div class='password-confirm-div'>
-                    <input type="password" id="confirm-password-host" required>
+                    <input type="password" id="confirm-password-host" name="passwordConf_host" required>
                 </div>
 
                 <label for="email">Email (optional)</label>
