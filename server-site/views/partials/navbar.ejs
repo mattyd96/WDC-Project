@@ -18,34 +18,45 @@
             <li>
                 <a href="/about">About</a>
             </li>
+
+            <% if(!session) { %>
             <li class="signInUp">
                 <a href="#">Sign In</a>
             </li>
             <li class="createAccountClass create-account-nav">
                 <a href="#">Create Account</a>
             </li>
+            <% } %>
+
+            <% if(session) { %>
             <li class="loggedInWelcome">
                 <a href="#" class="nav-welcome">Welcome, Username</a>
                 <ul>
                     <li>
-                        <a href="/manage-account" class="manage-account-nav">Manage Account</a>
+                        <a href="/users/<%= session.username %>" class="manage-account-nav">Manage Account</a>
                     </li>
                     <li>
-                        <a href="/manage-account" class="favorites-nav">Favorites</a>
+                        <a href="/users/<%= session.username %>" class="favorites-nav">Favorites</a>
                     </li>
+                    <% if(!session.ishost) { %>
                     <li class="booking-toggle">
-                        <a href="/manage-account" class="bookings-nav">Bookings</a>
+                        <a href="/users/<%= session.username %>" class="bookings-nav">Bookings</a>
                     </li>
+                    <% } else {%>
                     <li class="listing-toggle">
-                        <a href="/manage-account" class="listings-nav">Listings</a>
+                        <a href="/users/<%= session.username %>" class="listings-nav">Listings</a>
                     </li>
+                    <% } %>
                     <li>
-                        <a href="#" class="sign-out">Sign out</a>
+                        <a href="/users/logout" class="sign-out">Sign out</a>
                     </li>
                 </ul>
             </li>
+            <% } %>
         </ul>
     </div>
+
+
     <div class="hamburger">
         <div class="bars">
             <div class="bar1"></div>
@@ -62,32 +73,41 @@
             <li>
                 <a href="/about">About</a>
             </li>
+
+            <% if(!session) { %>
             <li class="signInUp">
                 <a href="#">Sign In</a>
             </li>
-            <li class="createAccountClass">
+            <li class="createAccountClass create-account-nav">
                 <a href="#">Create Account</a>
             </li>
+            <% } %>
+
+            <% if(session) { %>
             <li class="loggedInWelcome">
                 <a href="#" class="nav-welcome">Welcome, Username</a>
                 <ul>
                     <li>
-                        <a href="#" class="manage-account-nav">Manage Account</a>
+                        <a href="/users/<%= session.username %>" class="manage-account-nav">Manage Account</a>
                     </li>
                     <li>
-                        <a href="#" class="favorites-nav">Favorites</a>
+                        <a href="/users/<%= session.username %>" class="favorites-nav">Favorites</a>
                     </li>
+                    <% if(!session.ishost) { %>
                     <li class="booking-toggle">
-                        <a href="#" class="bookings-nav">Bookings</a>
+                        <a href="/users/<%= session.username %>" class="bookings-nav">Bookings</a>
                     </li>
+                    <% } else {%>
                     <li class="listing-toggle">
-                        <a href="#" class="listings-nav">Listings</a>
+                        <a href="/users/<%= session.username %>" class="listings-nav">Listings</a>
                     </li>
+                    <% } %>
                     <li>
-                        <a href="#" class="sign-out">Sign out</a>
+                        <a href="/users/logout" class="sign-out">Sign out</a>
                     </li>
                 </ul>
             </li>
+            <% } %>
         </ul>
     </div>
 </nav>

@@ -23,6 +23,54 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+/* GET logout */
+router.get('/logout', function (req, res, next) {
+
+  req.session.destroy(function(err) {
+    // cannot access session here
+    res.redirect('../');
+  })
+  
+});
+
+/* GET user account page*/
+router.get('/:id', function(req, res, next) {
+
+  if(!req.session) {
+      res.redirect("../");
+  } else {
+    var currUser;
+    for(var i =0; i < users.length; i ++) {
+      if(req.session.username == users[i].username) {
+        currUser = users[i];
+
+        res.render('manage-account', {currUser: currUser});
+      } 
+    }
+  }
+  
+});
+
+/* GET host account page*/
+router.get('/hosts/:id', function(req, res, next) {
+  
+  if(!req.session) {
+      res.redirect("../");
+  } else {
+    var currUser;
+    for(var i =0; i < users.length; i ++) {
+      if(req.session.username == hosts[i].username) {
+        currUser = hosts[i];
+
+        res.render('manage-account', {currUser: currUser});
+      } 
+    }
+  }
+
+  
+});
+
+
 //POST route for updating data (create Account and sign in)
 router.post('/', function (req, res, next) {
 
@@ -67,14 +115,17 @@ router.post('/', function (req, res, next) {
       } 
     });
 
-    var newUser = new User(req.body.firstName, req.body.lastName, req.body.username, req.body.password, req.body.email);
+    var newUser = new User1(req.body.firstName, req.body.lastName, req.body.username, req.body.password, req.body.email);
     users.push(newUser);
 
     sess = req.session;
-    sess.username = req.body.username;
-    sess.password = req.body.password;
+    req.session.username = req.body.username;
+    req.session.password = req.body.password;
+    req.session.isHost   = false;
     console.log("created user");
-    console.log(sess);
+    console.log(req.session);
+
+    res.redirect('/');
 
   //if host creation form is filled out
   } else if(req.body.businessName && req.body.username_host && req.body.password_host && req.body.passwordConf_host) {
@@ -109,14 +160,17 @@ router.post('/', function (req, res, next) {
         } 
       });
 
-      var newHost = new User(req.body.businessName, req.body.username_host, req.body.password_host, req.body.email);
+      var newHost = new Host(req.body.businessName, req.body.username_host, req.body.password_host, req.body.email);
       hosts.push(newHost);
 
       sess = req.session;
-      sess.username = req.body.username;
-      sess.password = req.body.password;
+      req.session.username = newHost.username;
+      req.session.password = newHost.password;
+      req.session.isHost   = true;
       console.log("created Host");
-      console.log(sess);
+      console.log(req.session);
+
+      res.redirect('../');
 
   } else if (req.body.logusername && req.body.logpassword) {
 
@@ -125,11 +179,15 @@ router.post('/', function (req, res, next) {
       if(req.body.logusername == user.username && req.body.logpassword == user.password) {
 
         sess = req.session;
-        sess.username = req.body.username;
-        sess.password = req.body.password;
+        req.session.username = user.username;
+        req.session.password = user.password;
+        req.session.isHost   = false;
         console.log("foundUser");
-
+        console.log(req.session);
         res.redirect('../');
+
+      } else if(req.body.logusername == user.username && req.body.logpassword != user.password) {
+        res.send(JSON.stringify({error: "Password and Username do not match"}));
       }
     });
 
@@ -138,11 +196,14 @@ router.post('/', function (req, res, next) {
       if(req.body.logusername == user.username && req.body.logpassword == user.password) {
 
         sess = req.session;
-        sess.username = req.body.username;
-        sess.password = req.body.password;
-        console.log("foundUser");
-
+        req.session.username = user.username;
+        req.session.password = user.password;
+        req.session.isHost   = true;
+        console.log("foundHost");
         res.redirect('../');
+
+      } else if(req.body.logusername == user.username && req.body.logpassword != user.password) {
+        res.send(JSON.stringify({error: "Password and Username do not match"}));
       }
     });
     
@@ -221,7 +282,7 @@ var hosts = [];
 
 function Host(name, userName, password, email) {
   this.name = name;
-  this.userName = userName;
+  this.username = userName;
   this.password = password;
   this.email = email;
   this.favorites = [];

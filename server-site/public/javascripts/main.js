@@ -83,6 +83,24 @@
         e.preventDefault();
     });
 
+   /* $('.signInForm').on('submit', function(e) {
+        e.preventDefault();
+        var data =  $(this).serialize();
+        $.post('/users', data, function(result) {
+            if(result.valid == true)
+            {
+
+            }
+            else
+            {
+                console.log(result);
+                console.log("not matching passwords - message from ajax");
+                //result.insertAfter($("#username-sign-in-label"));
+                $('#loginPopup').html(result);
+            }
+        });
+    });*/
+
     //----------------------------- google sign in functions ---------------------------------------//
     function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
@@ -387,7 +405,7 @@
         });*/
 
         //create host object 
-        $(".create-host-submit").click(function (e) {
+        /*$(".create-host-submit").click(function (e) {
             console.log("doing something");
             if(checkUserNames()) {
                 //assign form values to host object properties
@@ -424,7 +442,7 @@
 
             //prevent default form actions
             e.preventDefault();
-        });
+        });*/
 
 
     //----------------------------- Sign In functions ---------------------------------------//
@@ -432,7 +450,7 @@
         var currentUser ={};
         var loggedIn;
 
-        function signMeIn(e) {
+        /*function signMeIn(e) {
 
             var signInErrorMsg =  $('<span id="error-msg-sign-in"><i class="fas fa-exclamation"></i> Sorry! this username is not registered :(</span>');
             var signInPasswordErrorMsg =  $('<span id="error-msg-sign-in"><i class="fas fa-exclamation"></i> Sorry! this passwrod is incorrect :(</span>');
@@ -508,12 +526,12 @@
 
              //prevent default form actions
              e.preventDefault();
-        }
+        }*/
 
 
         //signing out
 
-        $(".sign-out").click(function(e) {
+        /*$(".sign-out").click(function(e) {
 
             currentUser = {};
 
@@ -545,12 +563,12 @@
             } else {
                 $(".loggedInWelcome").css("display", "none");
             }
-        }
+        }*/
 
-        $("#signBtn").click(function(e) {
+        /*$("#signBtn").click(function(e) {
             signMeIn(e);
             e.preventDefault();
-        });
+        });*/
 
 
         //------------------------------------------ Account Management functions ------------------------------------->

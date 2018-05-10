@@ -57,7 +57,7 @@ nav .middle {
 }
 
 .loggedInWelcome {
-    display: none;
+    /*display: none;*/
     position: relative;
 }
 
