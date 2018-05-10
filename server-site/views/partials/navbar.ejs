@@ -30,7 +30,7 @@
 
             <% if(session) { %>
             <li class="loggedInWelcome">
-                <a href="#" class="nav-welcome">Welcome, Username</a>
+                <a href="#" class="nav-welcome">Welcome, <%= session.username %></a>
                 <ul>
                     <li>
                         <a href="/users/<%= session.username %>" class="manage-account-nav">Manage Account</a>
@@ -85,7 +85,7 @@
 
             <% if(session) { %>
             <li class="loggedInWelcome">
-                <a href="#" class="nav-welcome">Welcome, Username</a>
+                <a href="#" class="nav-welcome">Welcome, <%= session.username %></a>
                 <ul>
                     <li>
                         <a href="/users/<%= session.username %>" class="manage-account-nav">Manage Account</a>

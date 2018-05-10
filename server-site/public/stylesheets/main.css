@@ -641,6 +641,9 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     ACCOUNT MANAGEMENT ACCOUNT.HTML CSS   
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+#account-information, #bookings, #listings, #favorites {
+    display: none;
+}
 
 #account-management-content {
     display: grid;
@@ -688,7 +691,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     color: cyan;
 }
 
-#account-information-user {
+#account-information {
     display: grid;
     grid-template-rows: auto;
     grid-gap: .5em;
@@ -700,7 +703,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     font-size: 1.5em;
 }
 
-#account-information-user input {
+#account-information input {
     padding: 1em;
     color: white;
     background-color: rgba(160,160,160,0.5);
@@ -708,7 +711,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     border-radius: .5em;
 }
 
-#account-information-user button {
+#account-information button {
     padding: .9em;
     color: white;
     background-color: rgba(160,160,160,0.5);
@@ -717,7 +720,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     margin-left: 1em;
 }
 
-#account-information-user label {
+#account-information label {
     color: white;
     font-weight: bold;
     font-size: 1.2em;

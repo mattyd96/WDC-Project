@@ -40,12 +40,20 @@ router.get('/:id', function(req, res, next) {
       res.redirect("../");
   } else {
     var currUser;
+
+    //check user array
     for(var i =0; i < users.length; i ++) {
       if(req.session.username == users[i].username) {
         currUser = users[i];
-
-        res.render('manage-account', {currUser: currUser});
+        res.render('manage-account', {currUser: currUser, session: req.session});
       } 
+    }
+    //check hosts array
+    for(var i =0; i < hosts.length; i ++) {
+      if(req.session.username == hosts[i].username) {
+        currUser = hosts[i];
+        res.render('manage-account', {currUser: currUser, session: req.session});
+      }
     }
   }
   
@@ -62,7 +70,7 @@ router.get('/hosts/:id', function(req, res, next) {
       if(req.session.username == hosts[i].username) {
         currUser = hosts[i];
 
-        res.render('manage-account', {currUser: currUser});
+        res.render('manage-account', {currUser: currUser, session: req.session});
       } 
     }
   }
