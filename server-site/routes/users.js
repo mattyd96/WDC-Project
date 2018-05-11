@@ -3,7 +3,10 @@ var router = express();
 //var mongoose = require('mongoose');
 var bodyParser = require("body-parser");
 var session = require('express-session');
-var User  = require("../models/users.js");
+const passport  = require('passport');
+var passportSetup = require('../models/passport-setup');
+const {OAuth2Client} = require('google-auth-library');
+const client = new OAuth2Client('515705211844-17nbhti5hk7njhelk62kaeup52fggent.apps.googleusercontent.com');
 
 //mongoose.connect("mongodb://localhost/27017");
 
@@ -33,6 +36,16 @@ router.get('/logout', function (req, res, next) {
   
 });
 
+/* GET google sign in page */
+router.get('/google', passport.authenticate('google', {
+  scope: ['profile','email']
+}));
+
+/*GET an add username form after google sign in*/
+router.get('/google/addUsername', passport.authenticate('google'), (req,res,next) => {
+  res.send("ok this will be the add username page BOY");
+});
+
 /* GET user account page*/
 router.get('/:id', function(req, res, next) {
 
@@ -58,26 +71,6 @@ router.get('/:id', function(req, res, next) {
   }
   
 });
-
-/* GET host account page*/
-router.get('/hosts/:id', function(req, res, next) {
-  
-  if(!req.session) {
-      res.redirect("../");
-  } else {
-    var currUser;
-    for(var i =0; i < users.length; i ++) {
-      if(req.session.username == hosts[i].username) {
-        currUser = hosts[i];
-
-        res.render('manage-account', {currUser: currUser, session: req.session});
-      } 
-    }
-  }
-
-  
-});
-
 
 //POST route for updating data (create Account and sign in)
 router.post('/', function (req, res, next) {
@@ -126,7 +119,6 @@ router.post('/', function (req, res, next) {
     var newUser = new User1(req.body.firstName, req.body.lastName, req.body.username, req.body.password, req.body.email);
     users.push(newUser);
 
-    sess = req.session;
     req.session.username = req.body.username;
     req.session.password = req.body.password;
     req.session.isHost   = false;
@@ -171,7 +163,6 @@ router.post('/', function (req, res, next) {
       var newHost = new Host(req.body.businessName, req.body.username_host, req.body.password_host, req.body.email);
       hosts.push(newHost);
 
-      sess = req.session;
       req.session.username = newHost.username;
       req.session.password = newHost.password;
       req.session.isHost   = true;
@@ -186,7 +177,6 @@ router.post('/', function (req, res, next) {
     users.forEach( function(user) {
       if(req.body.logusername == user.username && req.body.logpassword == user.password) {
 
-        sess = req.session;
         req.session.username = user.username;
         req.session.password = user.password;
         req.session.isHost   = false;
@@ -203,7 +193,6 @@ router.post('/', function (req, res, next) {
     hosts.forEach( function(user) {
       if(req.body.logusername == user.username && req.body.logpassword == user.password) {
 
-        sess = req.session;
         req.session.username = user.username;
         req.session.password = user.password;
         req.session.isHost   = true;
@@ -216,29 +205,92 @@ router.post('/', function (req, res, next) {
     });
     
 
-  } else if(req.body.idtoken) {
+  } else if (req.body.idtoken) {
     console.log("Google Token Recieved!");
 
     async function verify() {
       const ticket = await client.verifyIdToken({
-        idToken: req.body.idtoken,
-        audience: CLIENT_ID
+          idToken: req.body.idtoken,
+          audience: '515705211844-17nbhti5hk7njhelk62kaeup52fggent.apps.googleusercontent.com',  // Specify the CLIENT_ID of the app that accesses the backend
       });
       const payload = ticket.getPayload();
       const userid = payload['sub'];
+      const useremail = payload['email'];
+      const userfirst = payload['family_name'];
+      const userlast = payload['given_name'];
 
-      users.forEach( function(user) {
+      console.log(userid);
+      console.log(useremail);
 
-        if(user.google === userid) {
-          sess[req.session.id] = user.username;
-          currentUser = user;
-        } else {
-          console.log("could not find google id");
-        }
+      //check through the users array
+      users.forEach(function(user) {
+        if(userid == user.google) {
+          //log this user in
+          req.session.username = user.username;
+          req.session.password = user.password;
+          req.session.isHost   = false;
+
+          res.redirect('../');
+
+        } else if(useremail == user.email) {
+          //log this person in and...
+          req.session.username = user.username;
+          req.session.password = user.password;
+          req.session.isHost   = false;
+
+          //assign google id to account
+          user.google = userid;
+
+          res.redirect('../');
+        } 
       });
-      res.json(currentUser);
+
+      //check through the hosts array
+      hosts.forEach(function(user) {
+        if(userid == user.google) {
+          //log this user in
+          req.session.username = user.username;
+          req.session.password = user.password;
+          req.session.isHost   = true;
+
+          res.redirect('../');
+        } else if(useremail == user.email) {
+          //log this person in and...
+          req.session.username = user.username;
+          req.session.password = user.password;
+          req.session.isHost   = true;
+
+          //assign google id to account
+          user.google = userid;
+
+          res.redirect('../');
+        } 
+      });
+
+      //if there is no user redirect to a special page with just the user account creation modal
+      //fill that modal with what google does give you
+      //prompt the user to fill out the rest - specifically a unique password and username
+      //submit that form through the normal route
+
+      var newUser = new User1(userfirst, userlast, useremail, password, req.body.email);
+      users.push(newUser);
+
+      req.session.username = useremail;
+      req.session.password = req.body.password;
+      req.session.isHost   = false;
+      console.log("created user");
+      console.log(req.session);
+
+      res.redirect('/');
+
+
     }
     verify().catch(console.error);
+
+    console.log('verified BOY');
+
+    
+
 
   } else {
     console.log("nothing happened");

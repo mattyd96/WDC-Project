@@ -96,35 +96,15 @@
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
 
-        getUserInfo(id_token);
-      };
-      
-      function getUserInfo(params) {
-
-        // Create new AJAX request
-        var xhttp =new XMLHttpRequest();
-    
-        // Define behaviour for a response
-        xhttp.onreadystatechange =function(){
-    
-            if(this.readyState == 4 && this.status == 200){
-                
-                var user = JSON.parse(xhttp.responseText);
-
-                if(user.username !== null) {
-
-                    //populate the nav bar with appropriate account management links
-                } else {
-                    var signInErrorMsg =  $('<span id="error-msg-sign-in"><i class="fas fa-exclamation"></i> Sorry! this username is not registered :(</span>');
-                    signInErrorMsg.insertAfter($("#username-sign-in-label"));
-                }
-                
-            }
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/users');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+        console.log('Signed in as: ' + xhr.responseText);
         };
+        xhr.send('idtoken=' + id_token);
+      };
 
-        xhttp.open("POST", "/users", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
-    }
     //----------------------------- nav functions ---------------------------------------//
 
 
@@ -185,7 +165,6 @@
     
     var isButtonRed = false; //boolean for favorite button color
     $(".favThis").click(function() {
-
         //change favorite button color
         $(this).children(".fa-heart").css('color', isButtonRed ? 'grey' : 'tomato');
         isButtonRed = !isButtonRed;
@@ -310,9 +289,6 @@
         //these are here just to prevent some undefined errors in the meantime
         var currentUser ={};
         var loggedIn;
-
-        
-
 
     //------------------------------------------ Account Management functions ------------------------------------->
         //loading user/host object to account management inputs
