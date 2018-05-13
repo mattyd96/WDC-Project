@@ -11,8 +11,6 @@ const client = new OAuth2Client('515705211844-17nbhti5hk7njhelk62kaeup52fggent.a
 //mongoose.connect("mongodb://localhost/27017");
 
 router.use(bodyParser.urlencoded({extended: true}));
-
-
 router.set("view engine", "ejs");
 
 //variable used to store active sessions
@@ -43,7 +41,11 @@ router.get('/google', passport.authenticate('google', {
 
 /*GET an add username form after google sign in*/
 router.get('/google/addUsername', passport.authenticate('google'), (req,res,next) => {
-  res.send("ok this will be the add username page BOY");
+    if(!req.session) {
+      res.render('google-account-creation', {newUser: newUser});
+    } else {
+      res.redirect('../');
+    }
 });
 
 /* GET user account page*/
@@ -208,22 +210,28 @@ router.post('/', function (req, res, next) {
   } else if (req.body.idtoken) {
     console.log("Google Token Recieved!");
 
+    var userid, useremail, userfirst, userlast;
+
     async function verify() {
       const ticket = await client.verifyIdToken({
           idToken: req.body.idtoken,
           audience: '515705211844-17nbhti5hk7njhelk62kaeup52fggent.apps.googleusercontent.com',  // Specify the CLIENT_ID of the app that accesses the backend
       });
       const payload = ticket.getPayload();
-      const userid = payload['sub'];
-      const useremail = payload['email'];
-      const userfirst = payload['family_name'];
-      const userlast = payload['given_name'];
+      userid = payload['sub'];
+      useremail = payload['email'];
+      userfirst = payload['family_name'];
+      userlast = payload['given_name'];
 
       console.log(userid);
       console.log(useremail);
-
+    }
+    verify().catch(console.error);
+    verify().then(function() {
+      
       //check through the users array
       users.forEach(function(user) {
+        console.log("going through users array");
         if(userid == user.google) {
           //log this user in
           req.session.username = user.username;
@@ -272,25 +280,15 @@ router.post('/', function (req, res, next) {
       //prompt the user to fill out the rest - specifically a unique password and username
       //submit that form through the normal route
 
-      var newUser = new User1(userfirst, userlast, useremail, password, req.body.email);
-      users.push(newUser);
-
-      req.session.username = useremail;
-      req.session.password = req.body.password;
-      req.session.isHost   = false;
-      console.log("created user");
-      console.log(req.session);
-
-      res.redirect('/');
-
-
-    }
-    verify().catch(console.error);
-
-    console.log('verified BOY');
-
-    
-
+      var newUser = {
+        first_name: userfirst,
+        last_name: userlast,
+        email: useremail,
+      }
+      res.render('google-account-creation', {newUser: newUser});
+      console.log("went through entire 'then'");
+      console.log(newUser);
+    });
 
   } else {
     console.log("nothing happened");
@@ -298,6 +296,8 @@ router.post('/', function (req, res, next) {
     err.status = 400;
     return next(err);
   }
+
+  console.log('request finished');
 });
 
 
@@ -325,7 +325,7 @@ function User1(firstName, lastName, userName, password, email) {
  this.canEdit = false;
 }
 
-var testUser1 = new User1("Toru", "Sasaki", "toru991", "password", "example@gmail.com");
+var testUser1 = new User1("Toru", "Sasaki", "toru991", "password", "mdcodejam@gmail.com");
 var testUser2 = new User1("Toru2", "Sasaki", "toru992", "password", "example@gmail.com");
 var testUser3 = new User1("Toru3", "Sasaki", "toru993", "password", "example@gmail.com");
 var testUser4 = new User1("Toru4", "Sasaki", "toru994", "password", "example@gmail.com");
@@ -359,3 +359,5 @@ hosts.push(testHost2);
 hosts.push(testHost3);
 
 module.exports = router;
+module.exports.users = users;
+module.exports.hosts = hosts;

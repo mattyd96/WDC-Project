@@ -4,6 +4,7 @@ var router = express();
 var bodyParser = require("body-parser");
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
+var user_data = require('./users').users;
 
 router.use(bodyParser.urlencoded({extended: true}));
 router.set("view engine", "ejs");
@@ -196,6 +197,7 @@ hotels.forEach(function(hotel){
 });
 
 console.log(hotels);
+console.log(user_data);
 
 
 //this list will be used for filtering serach results ... it is a copy of hotels
