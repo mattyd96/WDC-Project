@@ -373,7 +373,7 @@
         });
 
         //Calendar booking select Modal functions
-        $(function () {
+        /*$(function () {
             $("#calBkBtn").click(function () {
 
                 //remove any previous error messages
@@ -421,7 +421,7 @@
                 
                 
             });
-        });
+        });*/
 
         //closing the booking when somewhere outside PAYMENT modal is clicked
         $(document).click(function (event) {

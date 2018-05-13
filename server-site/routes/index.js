@@ -4,7 +4,7 @@ var router = express();
 var bodyParser = require("body-parser");
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
-var user_data = require('./users').users;
+var users = require('./users').users;
 
 router.use(bodyParser.urlencoded({extended: true}));
 router.set("view engine", "ejs");
@@ -65,6 +65,63 @@ router.get('/hotels/:id', function(req, res) {
     res.render('hotel', {thisHotel: thisHotel, session: false});
   }
 });
+
+/* Booking routes */
+router.get('/hotels/:id/:name/booking', function (req, res, next) {
+  // debugging
+  console.log('Booking date-select');
+
+  if(req.session.username)
+  {
+    res.render('booking-dateSelect',{session: req.session, hotel: req.params.id, room: req.params.name});
+  }
+  else {
+     res.status(403).send("You're are not signed in");
+  }
+
+});
+
+
+router.post('/hotels/:id/:name/booking-confirmation', function (req, res) {
+  //debugging
+  console.log(req.body);
+  var thisHotel;
+  var thisRoom;
+  //capturing the selected hotel
+  for(var i = 0; i < hotels.length; i++) {
+    if(hotels[i].id == req.params.id) {
+      thisHotel = hotels[i];
+    }
+  }
+  //capturing the selected room
+  console.log(req.params.name);
+  for(var i = 0; i < thisHotel.rooms.length; i++) {
+    if(thisHotel.rooms[i].name == req.params.name) {
+      thisRoom = thisHotel.rooms[i];
+    }
+  }
+  //checking if the room is not booked between the to and from date
+
+  //storing the booking object in the room and the selected user
+  var currUser = req.session.username;
+  thisRoom.booked  = { currUser : { from: req.body.from, to: req.body.to } };
+  console.log(thisRoom.booked);
+  users.forEach(function(user) {
+    if(user.username == req.session.username) {
+      user.bookings = req.body;
+    }
+
+  });
+
+  res.render('booking-confirmation', { thisHotel: thisHotel, thisRoom: thisRoom, date: req.body, session: req.session } );
+});
+
+/* Booking confirmation page route */
+router.get('/hotels/:id/:name/payment-details', function (req, res) {
+  res.render('payment-details', {session: req.session});
+});
+
+
 
 /* Post Search Query for hotels */
 router.post('/search', function(req, res, next) {
@@ -195,9 +252,6 @@ hotels.forEach(function(hotel){
   hotel.rooms.push(roomTest1);
   hotel.rooms.push(roomTest2);
 });
-
-console.log(hotels);
-console.log(user_data);
 
 
 //this list will be used for filtering serach results ... it is a copy of hotels

@@ -47,7 +47,7 @@ have a look at how i did the search page and routes/index.html to get an idea of
             <h2>Rooms</h2>
             <button id="reviewBtn">Reviews</button>
         </div>
-            
+
         <!--changed up the code a bit but, i need you to mak room1 room2 etc dynamic in the loop-->
         <% thisHotel.rooms.forEach(function(room) { %>
             <div class="roomGrid" id="room1">
@@ -73,7 +73,9 @@ have a look at how i did the search page and routes/index.html to get an idea of
                     <p><%= room.description %></p>
                 </div>
                 <div class="bookCell">
+                    <a href="/hotels/<%= thisHotel.id %>/<%= room.name %>/booking">
                     <button class="bookBtn">Book</button>
+                    </a>
                 </div>
             </div>
         <% }); %>

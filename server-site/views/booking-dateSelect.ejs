@@ -1,0 +1,50 @@
+<% include partials/header %>
+<% include partials/navbar %>
+<% include partials/sign-in-modal %>
+
+<main id="booking-date-select">
+
+  <h2>Select booking date for <%= room %></h2>
+  <form action="booking-confirmation" method="POST">
+
+    <label for="bookFrom">From: </label><br />
+    <input type="date" name="from" id="bookFrom" required><br />
+
+    <label for="bookTo">To: </label><br />
+    <input type="date" name="to" id="bookTo" required><br />
+
+    <input type="submit" value="Book" id="calBkBtn">
+
+  </form>
+
+  <!-- Booking confirmation -->
+  <!-- <div class="bookModal">
+
+      <div class="bookModal-content">
+        <span class="closeBookBtn">
+            <i class="fas fa-times"></i>
+        </span>
+        <p>You want to book <%= room %> in the hotel <%= hotel %>: <br />
+        from the date <div id="fromDate"></div> to the date <div id="toDate"> </div>
+        </p>
+        <a href=""><button>Confirm Booking</button></a>
+      </div>
+  </div> -->
+
+</main>
+
+<script>
+  //preventing invalid input like 'from' date later than 'to' date
+  $('#bookFrom').change(function(){
+    var fromDate = $('#bookFrom').val();
+    $('#bookTo').attr('min', fromDate);
+  });
+  // //editing confirmation message with the selected dates
+  // $('calBkBtn').click(function(){
+  //   $('#fromDate').html = $('#bookFrom').val();
+  //   $('#toDate').html = $('#bookTo').val();
+  // });
+
+</script>
+
+<% include partials/footer %>

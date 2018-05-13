@@ -1,0 +1,22 @@
+<% include partials/header %>
+<% include partials/navbar %>
+<% include partials/sign-in-modal %>
+
+<!-- used same styling as date select because why not. At the time this page was made
+ I couldn't check the results -->
+<main id="booking-date-select">
+  <h2>Booking Confirmation </h2>
+  <p>
+    You want to book room <%= thisRoom.name %> at <%= thisHotel.name %> from
+    <%= date.from %> to <%= date.to %> ?
+  </p>
+  <p>
+    If this is your desired choice, then please click the confirmation button below.
+    <br />Otherwise, go back and re-select the options you want.
+  </p>
+  <a href="payment-details">
+    <button> Confirm Booking </button>
+  </a>
+</main>
+
+<% include partials/footer %>
