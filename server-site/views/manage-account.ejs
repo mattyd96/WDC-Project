@@ -13,12 +13,17 @@
                 <li>
                     <a href="#" class="manage-account-nav">Account Information</a>
                 </li>
+
+                <% if(!session.isHost) { %>
                 <li class="booking-toggle">
                     <a href="#" class="bookings-nav">Bookings</a>
                 </li>
+                <% } else { %>
                 <li class="listing-toggle">
                     <a href="#" class="listings-nav">Listings</a>
                 </li>
+                <% } %>
+
                 <li>
                     <a href="#" class="favorites-nav">Favorites</a>
                 </li>
@@ -26,7 +31,9 @@
 
         </aside>
         <section id="account-management-view">
-            <article id="account-information-host">
+
+            <% if(session.isHost) { %>
+            <article id="account-information">
                 <h2>Account Information</h2>
 
                 <label for="businessName-manage">Name</label>
@@ -43,7 +50,8 @@
                     <button type="submit" class="">Change</button>
                 </div>
             </article>
-            <article id="account-information-user">
+            <% } else { %>
+            <article id="account-information">
                 <h2>Account Information</h2>
 
                 <label for="firstName-manage lastName-manage">Name</label>
@@ -66,6 +74,7 @@
                 </div>
 
             </article>
+            <% } %>
 
             <article id="bookings">
                 <h2>Bookings</h2>

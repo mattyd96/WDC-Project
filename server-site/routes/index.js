@@ -1,9 +1,10 @@
 var express = require("express");
 var router = express();
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var bodyParser = require("body-parser");
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
+var user_data = require('./users').users;
 
 router.use(bodyParser.urlencoded({extended: true}));
 router.set("view engine", "ejs");
@@ -13,20 +14,35 @@ router.set("view engine", "ejs");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('landing', {hotels:hotels, recommended:recommended, popular:popular, highestRated: highestRated});
+  if(req.session.username) {
+    console.log("in session BOY");
+    res.render('landing', {hotels:hotels, recommended:recommended, popular:popular, highestRated: highestRated, session: req.session});
+  } else {
+    res.render('landing', {hotels:hotels, recommended:recommended, popular:popular, highestRated: highestRated, session: false});
+  } 
 });
 
 /* GET search page. */
 router.get('/search', function(req, res, next) {
-  res.render('search',{hotels:hotels});
+  if(req.session.username)
+  {
+    res.render('search',{hotels:hotels, session: req.session});
+  } else {
+    res.render('search',{hotels:hotels, session: false});
+  }
 });
 
 /* GET about page. */
 router.get('/about', function(req, res, next) {
-  res.render('about');
+  if(req.session.username)
+  {
+    res.render('about',{session: req.session});
+  } else {
+    res.render('about',{session: false});
+  }
 });
 
-/* GET account management page. */
+/* GET account management page. */ // probably wont use this get route - use the users/:id route
 router.get('/manage-account', function(req, res, next) {
   res.render('manage-account');
 });
@@ -42,8 +58,12 @@ router.get('/hotels/:id', function(req, res) {
     }
   }
 
-  res.render('hotel', {thisHotel: thisHotel});
-  
+  if(req.session.username)
+  {
+    res.render('hotel', {thisHotel: thisHotel, session: req.session});
+  } else {
+    res.render('hotel', {thisHotel: thisHotel, session: false});
+  }
 });
 
 /* Post Search Query for hotels */
@@ -72,12 +92,22 @@ router.post('/search', function(req, res, next) {
 
   //if the filterHotel has values, render search with that, else render the page with all hotels (later on we will want to produce an error that says we couldn't find any matches)
   if(filterHotel.length > 0) {
-    res.render('search', {hotels: filterHotel});
+
+    if(req.session.username) {
+      res.render('search', {hotels: filterHotel, session: req.session});
+    } else {
+      res.render('search', {hotels: filterHotel});
+    }
+    
   } else {
-    res.render('search', {hotels: hotels});
+
+    if(req.session.username) {
+      res.render('search', {hotels: hotels, session: req.session});
+    } else {
+      res.render('search', {hotels: hotels});
+    }
   }
   
-
 });
 
 
@@ -167,6 +197,7 @@ hotels.forEach(function(hotel){
 });
 
 console.log(hotels);
+console.log(user_data);
 
 
 //this list will be used for filtering serach results ... it is a copy of hotels

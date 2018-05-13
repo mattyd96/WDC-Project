@@ -57,7 +57,7 @@ nav .middle {
 }
 
 .loggedInWelcome {
-    display: none;
+    /*display: none;*/
     position: relative;
 }
 
@@ -342,7 +342,7 @@ nav .middle {
     width: 90%;
     max-width: 30em;
     height: 90vh;
-    max-height: 690px;
+    max-height: 720px;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
     animation-name:modalopen;
     animation-duration:0.2s;
@@ -641,6 +641,9 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     ACCOUNT MANAGEMENT ACCOUNT.HTML CSS   
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+#account-information, #bookings, #listings, #favorites {
+    display: none;
+}
 
 #account-management-content {
     display: grid;
@@ -688,7 +691,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     color: cyan;
 }
 
-#account-information-user {
+#account-information {
     display: grid;
     grid-template-rows: auto;
     grid-gap: .5em;
@@ -700,7 +703,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     font-size: 1.5em;
 }
 
-#account-information-user input {
+#account-information input {
     padding: 1em;
     color: white;
     background-color: rgba(160,160,160,0.5);
@@ -708,7 +711,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     border-radius: .5em;
 }
 
-#account-information-user button {
+#account-information button {
     padding: .9em;
     color: white;
     background-color: rgba(160,160,160,0.5);
@@ -717,7 +720,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     margin-left: 1em;
 }
 
-#account-information-user label {
+#account-information label {
     color: white;
     font-weight: bold;
     font-size: 1.2em;

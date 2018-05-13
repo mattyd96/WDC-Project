@@ -5,7 +5,6 @@
     /*Toggle Hamburger Menu style when clicked*/
     $(".bars").click(function createHamburger() {
         this.classList.toggle("change");
-        console.log("hamburger clicked");
     });
 
     //toggle Hamburger Menu
@@ -57,7 +56,6 @@
 
     // on create Account click show create account opening modal and hide others
     $(".createAccountClass").click(function () {
-        console.log("create button clicked");
         $(".modal").show();
         $(".signInForm").hide();
         $(".createAccount").hide();
@@ -83,34 +81,51 @@
         e.preventDefault();
     });
 
+    //----------------------------- google sign in functions ---------------------------------------//
+    function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/users');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+        console.log('Signed in as: ' + xhr.responseText);
+        };
+        xhr.send('idtoken=' + id_token);
+      };
 
     //----------------------------- nav functions ---------------------------------------//
 
 
     $(".manage-account-nav").click(function() {
-        $("#bookings, #favorites, #listings").hide();
-        if(currentUser.bookings) {
-            $("#account-information-user").show();
-            $("#bookings, #favorites, #listings, #account-information-host").hide();
-        } else {
-            $("#account-information-host").show();
-            $("#bookings, #favorites, #listings, #account-information-user").hide();
-        }
+            $("#account-information").show();
+            $("#bookings, #favorites, #listings").hide();
     });
 
     $(".bookings-nav").click(function() {
         $("#bookings").show();
-        $("#account-information-user, #account-information-host, #favorites, #listings").hide();
+        $("#account-information, #favorites, #listings").hide();
     });
 
     $(".favorites-nav").click(function() {
         $("#favorites").show();
-        $("#bookings, #account-information-user, #account-information-host, #listings").hide();
+        $("#bookings, #account-information, #listings").hide();
     });
 
     $(".listings-nav").click(function() {
         $("#listings").show();
-        $("#bookings, #account-information-user, #account-information-host, #favorites").hide();
+        $("#bookings, #account-information, #favorites").hide();
     });
 
     $(".sign-out").click(function() {
@@ -150,7 +165,6 @@
     
     var isButtonRed = false; //boolean for favorite button color
     $(".favThis").click(function() {
-
         //change favorite button color
         $(this).children(".fa-heart").css('color', isButtonRed ? 'grey' : 'tomato');
         isButtonRed = !isButtonRed;
@@ -269,252 +283,17 @@
             this.canEdit = true;
         }
 
-        //check existing usernames against submitted one to check uniqueness
-
-        function checkUserNames() {
-            
-            //users
-            for(var i = 0; i < users.length; i++) {
-                if($("#username").val() === users[i].userName || $("#username-host").val() === users[i].userName) {
-                    return false;
-                }
-            }
-
-            //hosts
-            for(var i = 0; i < hosts.length; i++) {
-                if($("#username").val() === hosts[i].userName || $("#username-host").val() === hosts[i].userName) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        //error message if username already exists
-        var $userNameErrorMsg =  $('<span id="error-msg-username"><i class="fas fa-exclamation"></i> Sorry! this username is already taken :(</span>');
-
-        //reset error message if username is valid
-        function resetUsernameError(){
-
-            var $errorCont = $("#error-msg-username");
-            if($errorCont.length > 0){
-                $errorCont.remove();
-            }  
-        }
-
-        //create new user object
-       /* $(".create-user-submit").click(function (e) {
-
-            if(checkUserNames()) {
-                //assign form values to user object properties
-                console.log("creating");
-                var $firstName = $("#firstName").val();
-                var $lastName = $("#lastName").val();
-                var $userName = $("#username").val();
-                var $password = $("#create-password").val();
-                var $email = $("#create-account-form input[type='email']").val();
-
-                //create user object
-                var user = new User($firstName, $lastName, $userName, $password, $email);
-                console.log(user.firstName);
-                console.log(user.userName);
-
-                //push to user array
-                users.push(user);
-
-                //reset form - required remove to resolve chrome browser issue
-                $('#create-account-form input').removeAttr('required');
-                $("#create-account-form")[0].reset();
-
-                //hide modal
-                $(".create-account-form").hide;
-                $(".modal").hide();
-
-                console.log(users);
-
-                resetUsernameError();
-                resetPasswordError();
-                //e.preventDefault();
-            } else {
-                $userNameErrorMsg.insertAfter($("#user-username-label"));
-            }
-
-            //prevent default form actions
-            //e.preventDefault();
-        });*/
-
-        //create host object 
-        $(".create-host-submit").click(function (e) {
-            console.log("doing something");
-            if(checkUserNames()) {
-                //assign form values to host object properties
-                console.log("creating host");
-                var $businessName = $("#businessName").val();
-                var $userName = $("#username-host").val();
-                var $password = $("#create-password-host").val();
-                var $email = $("#create-account-form-host input[type='email']").val();
-
-                //create user object
-                var host = new Host($businessName, $userName, $password, $email);
-                console.log(host.name);
-                console.log(host.userName);
-
-                //push to user array
-                hosts.push(host);
-
-                //reset form - - required remove to resolve chrome browser issue
-                $('#create-account-form-host input').removeAttr('required');
-                $("#create-account-form-host")[0].reset();
-
-                //hide modal
-                $(".create-account-form-host").hide;
-                $(".modal").hide();
-
-                console.log(hosts);
-
-                resetUsernameError();
-                resetPasswordError();
-                e.preventDefault();
-            } else {
-                $userNameErrorMsg.insertAfter($("#host-username-label"));
-            }
-
-            //prevent default form actions
-            e.preventDefault();
-        });
-
 
     //----------------------------- Sign In functions ---------------------------------------//
 
+        //these are here just to prevent some undefined errors in the meantime
         var currentUser ={};
         var loggedIn;
 
-        function signMeIn(e) {
-
-            var signInErrorMsg =  $('<span id="error-msg-sign-in"><i class="fas fa-exclamation"></i> Sorry! this username is not registered :(</span>');
-            var signInPasswordErrorMsg =  $('<span id="error-msg-sign-in"><i class="fas fa-exclamation"></i> Sorry! this passwrod is incorrect :(</span>');
-            
-            var signInUserName = $("#signInEmail").val();
-            var signInPassword = $("#password").val();
-
-            var foundUser = $.grep(users, function(v) {
-                return v.userName === signInUserName;
-            });
-
-            var foundHost = $.grep(hosts, function(v) {
-                return v.userName === signInUserName;
-            });
-
-            var foundUsername;
-
-            function returnUsername() {
-
-                if(foundUser.length > 0) {
-                    foundUsername = foundUser[0];
-
-                } else if(foundHost.length > 0) {
-                    foundUsername = foundHost[0];
-                } else {
-                    signInErrorMsg.insertAfter($("#username-sign-in-label"));
-                }
-
-            }
-
-            function checkUsernamePasswordMatch () {
-
-                var signInPassword = $("#password").val();
-
-                console.log(signInPassword);
-                console.log(foundUsername.password);
-                
-                if(foundUsername.password == signInPassword) {
-                    signIn(); //TODO make this function
-                } else {
-                    signInPasswordErrorMsg.insertAfter($("#password-label"));
-                }
-            }
-
-
-            function signIn () {
-
-                //put username in "welcome, ..." li element
-                var $userWelcomeName = $("#signInEmail").val();
-                $(".nav-welcome").html("Welcome, " + $userWelcomeName);
-
-                console.log("signed in");
-
-                $(".signInUp").css("display", "none");
-                $(".createAccount").css("display", "none");
-                $(".createAccountClass").css("display", "none");
-                
-                $(".signIn Form, .modal").hide();
-
-                loggedIn = true;
-                isLoggedIn();
-                e.preventDefault();
-            }
-
-            returnUsername();
-            checkUsernamePasswordMatch();
-
-            currentUser = foundUsername;
-            signIn();
-
-            $('#signInEmail, #password').removeAttr('required');
-            $(".signInForm")[0].reset();
-
-             //prevent default form actions
-             e.preventDefault();
-        }
-
-
-        //signing out
-
-        $(".sign-out").click(function(e) {
-
-            currentUser = {};
-
-            console.log("pressed log out");
-
-            $(".signInUp").css("display", "block");
-            $(".createAccount").css("display", "block");
-            $(".loggedInWelcome").css("display", "none");
-            $(".createAccountClass").css("display", "block");
-
-            loggedIn = false;
-            isLoggedIn();
-        });
-
-        //navbar display based on log in
-
-        function isLoggedIn() {
-            if(loggedIn) {
-                $(".loggedInWelcome").css("display", "flex");
-
-                //change menu based on host or user status
-                if(currentUser.bookings) {
-                    $(".bookings-nav, .booking-toggle").css("display", "block");
-                    $(".listings-nav, .listing-toggle").css("display", "none");
-                } else {
-                    $(".listings-nav, .listing-toggle").css("display", "block");
-                    $(".bookings-nav, .booking-toggle").css("display", "none");
-                }
-            } else {
-                $(".loggedInWelcome").css("display", "none");
-            }
-        }
-
-        $("#signBtn").click(function(e) {
-            signMeIn(e);
-            e.preventDefault();
-        });
-
-
-        //------------------------------------------ Account Management functions ------------------------------------->
+    //------------------------------------------ Account Management functions ------------------------------------->
         //loading user/host object to account management inputs
 
         $('.manage-account-nav').on('click', function () {
-            console.log(currentUser.firstName);
             //conditional to check if a user is currently signed in
             // if (currentUser.length > 0) {
 
@@ -565,16 +344,6 @@
                 console.log('email changed');
             // }
         });
-
-        /*$(".bookings-nav").click(function() {
-            //create html box for each booking
-            var newBooking;
-
-            for(var i = 0; i < currentUser.bookings.length; i ++) {
-                newBooking += "<div class='bookingThumbnail " + i + "'><h3>Hotel</h3><p class='bookingThumbHotel'></p><h3>Room</h3><p class='bookingThumbRoom'></p><h3>Date</h3><p>From <span class='bookingThumbFrom'></span> To <span class='bookingThumbTo'></span></p></div>";
-            }
-        });*/
-
 
         //------------------------------------------ Hotel and Booking Page functions ------------------------------------->
 
@@ -858,40 +627,6 @@
             findRoom(currentBtn);
 
          });
-
-
-         //displaying hotel page when clicking on thumbnail
-
-         /*$(".hotelRoomThumbnail").click(function() {
-            var currentThumb = $(this);
-            findHotel(currentThumb);
-            $("#search, #home, #account-management, .search, #about").hide();
-            $("#hotels").show();
-            $(".nav-and-search").removeClass("searchBG");
-            $(".nav-and-search").removeClass("searchBG2");
-         });*/
-
-
-         //-----------------Google Maps Functions --------------//
-
-         /*var map;
-
-
-            function initMap() {
-                var adelaide = { lat: -34.919159, lng: 138.60414 };
-                map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 20,
-                    center: adelaide
-                });
-                var marker = new google.maps.Marker({
-                    position: adelaide,
-                    map: map
-                });
-              
-            }*/
-
-
-
 
 //});// DOM Function
 
