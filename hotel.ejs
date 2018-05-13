@@ -48,9 +48,10 @@ have a look at how i did the search page and routes/index.html to get an idea of
             <button id="reviewBtn">Reviews</button>
         </div>
 
+        <!--changed up the code a bit but, i need you to mak room1 room2 etc dynamic in the loop-->
         <% thisHotel.rooms.forEach(function(room) { %>
-            <div class="roomGrid">
-            <div class="roomName">
+            <div class="roomGrid" id="room1">
+            <div class=roomName>
                 <!-- didnt add the [0] after room bcuz it gives an undefined error -->
                 <h3><%= room.name %></h3>
             </div>
@@ -63,47 +64,23 @@ have a look at how i did the search page and routes/index.html to get an idea of
                 </a>
             </div>
 
-              <div class="roomSize">
-                    <h3><%= room.people %></h3>
-              </div>
+            <div class="roomSize">
+                    <h3>Room Size</h3>
+                    <p><%= room.people %></p>
+                </div>
                 <!-- Same here. Didnt add [0] -->
                 <div class="roomDescription">
                     <p><%= room.description %></p>
                 </div>
                 <div class="bookCell">
+                    <a href="/hotels/<%= thisHotel.id %>/<%= room.name %>/booking">
                     <button class="bookBtn">Book</button>
+                    </a>
                 </div>
             </div>
         <% }); %>
 
-
-        <!-- <div class="roomGrid">
-
-            <div class=roomName>
-                <h3><%= room.name %></h3>
-            </div>
-
-            <div class="roomPictures">
-                <a href="/images/<%= room.images[0] %>" data-lightbox="Room2Pics">
-                    <img src="/images/<%= room.images[0] %>" alt="Room Picture 1" class="innerRPic1">
-                </a>
-                <a href="/images/<%= room.images[1] %>" data-lightbox="Room2Pics">
-                    <img src="/images/<%= room.images[1] %>" alt="Room Picture 2" class="innerRPic2">
-                </a>
-            </div>
-
-            <div class="roomSize">
-                <h3>Room Size</h3>
-            </div>
-
-            <div class="roomDescription">
-                <p><%= room.description %></p>
-            </div>
-            <div class="bookCell">
-                <button class="bookBtn">Book</button>
-            </div>
-        </div>
-         -->
+        </div>-->
         <!-- The Reviews Section -->
         <section id="Reviews">
             <div class="username">Username</div>
