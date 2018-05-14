@@ -260,3 +260,4 @@ hotels.forEach(function(hotel){
 
 
 module.exports = router;
+module.exports.hotels = hotels;
