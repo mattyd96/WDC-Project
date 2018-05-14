@@ -8,6 +8,8 @@ var passportSetup = require('../models/passport-setup');
 const {OAuth2Client} = require('google-auth-library');
 const client = new OAuth2Client('515705211844-17nbhti5hk7njhelk62kaeup52fggent.apps.googleusercontent.com');
 
+var hotels = require('../models/User').hotels;
+
 //mongoose.connect("mongodb://localhost/27017");
 
 router.use(bodyParser.urlencoded({extended: true}));
@@ -225,10 +227,7 @@ router.post('/', function (req, res, next) {
 
       console.log(userid);
       console.log(useremail);
-    }
-    verify().catch(console.error);
-    verify().then(function() {
-      
+
       //check through the users array
       users.forEach(function(user) {
         console.log("going through users array");
@@ -238,7 +237,8 @@ router.post('/', function (req, res, next) {
           req.session.password = user.password;
           req.session.isHost   = false;
 
-          res.redirect('../');
+          //res.redirect('../');
+          res.send("localhost:3000");
 
         } else if(useremail == user.email) {
           //log this person in and...
@@ -249,7 +249,8 @@ router.post('/', function (req, res, next) {
           //assign google id to account
           user.google = userid;
 
-          res.redirect('../');
+          //res.redirect('../');
+          res.send("localhost:3000");
         } 
       });
 
@@ -271,7 +272,8 @@ router.post('/', function (req, res, next) {
           //assign google id to account
           user.google = userid;
 
-          res.redirect('../');
+          //res.redirect('../');
+          res.send("localhost:3000");
         } 
       });
 
@@ -285,10 +287,12 @@ router.post('/', function (req, res, next) {
         last_name: userlast,
         email: useremail,
       }
-      res.render('google-account-creation', {newUser: newUser});
+      //res.render('google-account-creation', {newUser: newUser});
       console.log("went through entire 'then'");
       console.log(newUser);
-    });
+    }
+    verify().catch(console.error);
+    
 
   } else {
     console.log("nothing happened");
@@ -326,6 +330,8 @@ function User1(firstName, lastName, userName, password, email) {
 }
 
 var testUser1 = new User1("Toru", "Sasaki", "toru991", "password", "mdcodejam@gmail.com");
+testUser1.bookings = [1,2,3];
+testUser1.favorites = hotels;
 var testUser2 = new User1("Toru2", "Sasaki", "toru992", "password", "example@gmail.com");
 var testUser3 = new User1("Toru3", "Sasaki", "toru993", "password", "example@gmail.com");
 var testUser4 = new User1("Toru4", "Sasaki", "toru994", "password", "example@gmail.com");
