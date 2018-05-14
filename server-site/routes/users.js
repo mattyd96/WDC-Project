@@ -1,6 +1,5 @@
 var express = require("express");
 var router = express();
-//var mongoose = require('mongoose');
 var bodyParser = require("body-parser");
 var session = require('express-session');
 const passport  = require('passport');
@@ -9,8 +8,6 @@ const {OAuth2Client} = require('google-auth-library');
 const client = new OAuth2Client('515705211844-17nbhti5hk7njhelk62kaeup52fggent.apps.googleusercontent.com');
 
 var hotels = require('../models/User').hotels;
-
-//mongoose.connect("mongodb://localhost/27017");
 
 router.use(bodyParser.urlencoded({extended: true}));
 router.set("view engine", "ejs");

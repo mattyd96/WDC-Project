@@ -1,6 +1,5 @@
 var express = require("express");
 var router = express();
-//var mongoose = require('mongoose');
 var bodyParser = require("body-parser");
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
