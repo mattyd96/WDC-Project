@@ -21,14 +21,47 @@ router.get('/', function(req, res, next) {
   } 
 });
 
+router.get('/getPhoneLines', function(req, res){
+	req.pool.getConnection(function(err, connection){
+		if(err) throw err;
+		var sql = "SELECT hotel_name, hotel_id FROM hotels";
+		connection.query(sql, function(err, results){
+			connection.release();
+			console.log(results);
+			res.send(results);
+		});
+	});
+});
+
 /* GET search page. */
 router.get('/search', function(req, res, next) {
-  if(req.session.username)
-  {
-    res.render('search',{hotels:hotels, session: req.session});
-  } else {
-    res.render('search',{hotels:hotels, session: false});
-  }
+
+  var hotels2 = [];
+
+  req.pool.getConnection(function(err, connection){
+		if(err) throw err;
+		var sql = "SELECT * FROM hotels";
+		connection.query(sql, function(err, results){
+			connection.release();
+      console.log(results);
+      hotels2 = results;
+      console.log(hotels2);
+
+      if(req.session.username)
+      {
+        res.render('search',{hotels:hotels2, session: req.session});
+      } else {
+        res.render('search',{hotels:hotels2, session: false});
+      }
+		});
+  });
+  
+  //if(req.session.username)
+  //{
+  //  res.render('search',{hotels:hotels2, session: req.session});
+  //} else {
+  //  res.render('search',{hotels:hotels2, session: false});
+  //}
 });
 
 /* GET about page. */

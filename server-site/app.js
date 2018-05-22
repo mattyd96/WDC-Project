@@ -6,10 +6,16 @@ var logger = require('morgan');
 var session = require('express-session');
 const passport = require('passport');
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+//mysql setup 
+var mysql = require('mysql');
+var dbConnectionPool = mysql.createPool({ host: 'localhost', user: 'root', password: 'YOUR_PASSWORD',database: 'wdc_hotel_website_data'});
+app.use(function(req, res, next) { req.pool = dbConnectionPool; next(); }); 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

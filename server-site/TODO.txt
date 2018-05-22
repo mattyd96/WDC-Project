@@ -1,3 +1,15 @@
 ok some things to do
 
-fix the header include so that the nav will ghange for the about page and whatnot
+//alright because the way things work with mysql you might get an error when you first try to 
+//connect to the server, so follow these steps
+
+1. make sure you put your password for the database connection in the app.js page on this line
+var dbConnectionPool = mysql.createPool({ host: 'localhost', user: 'root', password: 'YOUR_PASSWORD_HERE',database: 'wdc_hotel_website_data'});
+
+2.if you get an error "...does not support this auth protocol" use this line in your database
+  I'm not sure if you need to but you may need to go into the mysql database => USE mysql
+
+  ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
+
+
+//you should be able to connect after that, for now ive stuck in some placeholder values for users etc

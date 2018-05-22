@@ -23,6 +23,22 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+//this is an example route -- do not use in final!
+router.get('/getPhoneLines', function(req, res){
+	req.pool.getConnection(function(err, connection){
+		if(err) throw err;
+		var sql = "SELECT * FROM hotels";
+		connection.query(sql, function(err, results){
+			connection.release();
+      console.log(results);
+      results.forEach(function(hotel) {
+        hotels.push(hotel);
+      });
+			res.send(results);
+		});
+	});
+});
+
 /* GET logout */
 router.get('/logout', function (req, res, next) {
 
