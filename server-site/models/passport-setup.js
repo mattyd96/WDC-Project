@@ -15,55 +15,47 @@ passport.use(
 
         console.log('passport callback function fired');
         console.log(profile);
-        console.log(users);
+        console.log(profile.displayName);
+        console.log(profile.emails[0].value);
 
         var userid    = profile.id;
-        var useremail = profile.email;
+        var useremail = profile.emails[0].value;
         var userfirst = profile.name.givenName;
         var userlast  = profile.name.familyName;
+        var username  = useremail.substring(0, useremail.indexOf("@"));
 
-        
-        //check through the users array
-      users.forEach(function(user) {
-        console.log("going through users array");
-        if(userid == user.google) {
-          //log this user in
-          req.session.username = user.username;
-          req.session.password = user.password;
-          req.session.isHost   = false;
+        req.pool.getConnection(function(err, connection){
+          if(err) throw err;
+          var sql = "SELECT username, email, google_id, password, ishost FROM users UNION ALL SELECT username, email, google_id, password, ishost FROM hosts";
+          connection.query(sql, function(err, results){
 
-        } else if(useremail == user.email) {
-          //log this person in and...
-          req.session.username = user.username;
-          req.session.password = user.password;
-          req.session.isHost   = false;
+            connection.release();
+            var allUsers = results;
+            console.log(allUsers);
 
-          //assign google id to account
-          user.google = userid;
-          
-        } 
-      });
+            //check through the users array
+            allUsers.forEach(function(user) {
+              console.log("going through users array");
+              if(userid == user.google_id) {
+                //log this user in
+                
+              } else if(useremail == user.email) {
+                //log this person in and...
 
-      //check through the hosts array
-      hosts.forEach(function(user) {
-        if(userid == user.google) {
-          //log this user in
-          req.session.username = user.username;
-          req.session.password = user.password;
-          req.session.isHost   = true;
+                //assign google id to account
+                user.google_id = userid;
+                
+              } 
+            });
 
-          res.redirect('../');
-        } else if(useremail == user.email) {
-          //log this person in and...
-          req.session.username = user.username;
-          req.session.password = user.password;
-          req.session.isHost   = true;
 
-          //assign google id to account
-          user.google = userid;
 
-        } 
-      });
+          });//connection query
+        });//get connection pool
+
+
+
+      
 
       //if there is no user redirect to a special page with just the user account creation modal
       //fill that modal with what google does give you
