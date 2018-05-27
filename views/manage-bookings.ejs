@@ -1,0 +1,36 @@
+<% include partials/header %>
+<% include partials/navbar %>
+<% include partials/sign-in-modal %>
+
+
+<main>
+  <h2>Your Booking (<%= bookings.booking_id %>)</h2>
+  <table id=booking-table>
+  <tr>
+    <th>Hotel Name</th>
+    <th>Room Name</th>
+    <th>From Date</th>
+    <th>To Date</th>
+  </tr>
+  <tr>
+    <td><%= bookings.hotel_name %></td>
+    <td><%= bookings.room_name %></td>
+    <td><%= bookings.date_start %></td>
+    <td><%= bookings.date_end %></td>
+  </tr>
+</table>
+<br /><br />
+<h5>If you want to book another hotel or not book at all, then delete this booking
+  by pressing the button below:</h5><br /><br />
+  <button>Delete Booking</button>
+
+  <h5>If you want to modify the dates of your booking then display the enter the new
+  dates in the form below and submit</h5><br />
+  <form action="" method="POST">
+
+  </form>
+</main>
+
+
+
+<% include partials/footer %>

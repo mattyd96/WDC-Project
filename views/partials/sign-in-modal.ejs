@@ -1,0 +1,120 @@
+ <!--Modals for sign in and account creation-->
+
+ <aside class="modal">
+
+        <form action="/users" method="POST" class="modal-content signInForm">
+
+            <header>
+                <span class="closeBtn">
+                    <i class="fas fa-times"></i>
+                </span>
+                <h2>Sign in</h2>
+            </header>
+
+            <section>
+                <div id="loginPopup"></div>
+                <label for="signInEmail" id="username-sign-in-label">Username</label>
+                <input type="text"  name="logusername" id="signInEmail" required>
+
+                <label for="password" id="password-label">Password</label>
+                <input type="password" name="logpassword" id="password" required>
+
+                <a id="forgotPassword">Forgot Password?</a>
+
+                <button id="signBtn">Sign In</button>
+
+                <a href="/users/google" ><div id="signBtnGoogle"></div></a>
+
+                <p>Don't have an account? Sign up
+                    <a href="#" class="createAccountClass">here!</a>
+                </p>
+            </section>
+
+        </form>
+
+
+        <form action="#" class="modal-content createOrBecomeHost">
+            <header>
+                <span class="closeBtn">
+                    <i class="fas fa-times"></i>
+                </span>
+                <h2>Create Account</h2>
+            </header>
+            <section>
+                <button class="createBtn">Create Account</button>
+                <button class="hostBtn">Become a Host!</button>
+            </section>
+        </form>
+
+        <form action="/users" class="modal-content createAccount" id="create-account-form" method="POST">
+            <header>
+                <span class="closeBtn">
+                    <i class="fas fa-times"></i>
+                </span>
+                <h2>Create Account</h2>
+            </header>
+
+            <section>
+                <div id="error-dreate-user"></div>
+                
+                <label for="firstName lastName">Name</label>
+
+                <input type="text" name="firstName" class="formElement" id="firstName" placeholder="First search" required>
+                <input type="text" name="lastName" class="formElement" id="lastName" placeholder="Last" required>
+
+                <label for="username-search" id="user-username-label">username</label>
+                <input type="text" name="username" class="formElement" id="username" placeholder="ex. traveler2020" required>
+
+                <label for="createPassword">Password</label>
+                <input type="password" name="password" class="formElement" id="create-password" required>
+
+                <label for="confirm-password">Confirm Password</label>
+
+                <div class='password-confirm-div'>
+                    <input type="password" name="passwordConf" class="formElement" id="confirm-password" required>
+                </div>
+
+                <label for="email">Email (optional)</label>
+                <input type="email" class="formElement" name="email">
+
+                <input type="submit" value="Create Account" class="create-user-submit" id="create-user-button">
+
+                <a href="/users/google"><div id="signBtnGoogle"></div></a>
+            </section>
+        </form>
+
+        <form action="/users" method="POST" class="modal-content becomeHost" id="create-account-form-host">
+
+            <header>
+                <span class="closeBtn">
+                    <i class="fas fa-times"></i>
+                </span>
+                <h2>Create Host Account</h2>
+            </header>
+
+            <section>
+                <label for="businessName">Name</label>
+                <input type="text" id="businessName" name="businessName" placeholder="Your Business Name" required>
+
+                <label for="username" id="host-username-label">username</label>
+                <input type="text" id="username-host"  name="username_host" placeholder="ex. traveler2020" required>
+
+                <label for="create-password-host">Password</label>
+                <input type="password" id="create-password-host" name="password_host" required>
+
+                <label for="confirm-password-host">Confirm Password</label>
+
+                <div class='password-confirm-div'>
+                    <input type="password" id="confirm-password-host" name="passwordConf_host" required>
+                </div>
+
+                <label for="email">Email (optional)</label>
+                <input type="email">
+
+                <input type="submit" value="Create-Account" class="create-host-submit">
+                
+            </section>
+
+        </form>
+
+    </aside>
