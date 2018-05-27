@@ -104,11 +104,7 @@ passport.use(
 
           });//connection query
         });//get connection pool
-
-
-
-      
-
+        
       //if there is no user redirect to a special page with just the user account creation modal
       //fill that modal with what google does give you
       //prompt the user to fill out the rest - specifically a unique password and username
