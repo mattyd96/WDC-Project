@@ -59,12 +59,17 @@ router.get('/google', passport.authenticate('google', {
 }));
 
 /*GET an add username form after google sign in*/
-router.get('/google/addUsername', passport.authenticate('google'), (req,res,next) => {
-    if(!req.session) {
-      res.render('google-account-creation', {newUser: newUser});
-    } else {
-      res.redirect('../');
-    }
+router.get('/google/addUsername', passport.authenticate('google'), (req,res) => {
+
+      console.log("made it through auth");
+
+      if(req.user.password == null) {
+        res.render('google-account-creation', {newUser: req.user});
+      } else {
+        res.redirect('../');
+      }
+    
+  
 });
 
 /* GET user account page*/
@@ -159,76 +164,84 @@ router.post('/', function (req, res, next) {
       //if host creation form is filled out
       } else if(req.body.businessName && req.body.username_host && req.body.password_host && req.body.passwordConf_host) {
 
-          //check through users array
-          allUsers.forEach(function(user) {
-            if(req.body.username_host == user.username) {
-              var err = new Error("username taken");
-              err.status = 400;
-              res.send("this username is already taken");
-              return next(err);
-            } else if(req.body.email == user.email) {
-              var err = new Error("email taken");
-              err.status = 400;
-              res.send("an account under this email address has already been created");
-              return next(err);
-            } 
-          });
+        sanitizeBody('businessName').trim().escape();
+        sanitizeBody('username_host').trim().escape();
+        sanitizeBody('password_host').trim().escape();
+        sanitizeBody('email').trim().escape();
 
-          bcrypt.hash(req.body.password_host, 10, function(err, hash) {
-            // Store hash in database
-            req.pool.getConnection(function(err, connection){
-              if(err) throw err;
-              var sql = "INSERT INTO hosts (username, business_name, email, password) VALUES (?, ?, ?,?);";
-              connection.query(sql, [req.body.username_host, req.body.businessName, req.body.email, hash], function(err, results){
-                console.log(results);
-                connection.release();
-  
-                req.session.username = req.body.username_host;
-                req.session.password = req.body.password_host;
-                req.session.isHost   = true;
-  
-                console.log("created host");
-                console.log(req.session);
-                res.redirect('/');
-              });
-            })
-          });
+        //check through users array
+        allUsers.forEach(function(user) {
+          if(req.body.username_host == user.username) {
+            var err = new Error("username taken");
+            err.status = 400;
+            res.send("this username is already taken");
+            return next(err);
+          } else if(req.body.email == user.email) {
+            var err = new Error("email taken");
+            err.status = 400;
+            res.send("an account under this email address has already been created");
+            return next(err);
+          } 
+        });
+
+        bcrypt.hash(req.body.password_host, 10, function(err, hash) {
+          // Store hash in database
+          req.pool.getConnection(function(err, connection){
+            if(err) throw err;
+            var sql = "INSERT INTO hosts (username, business_name, email, password) VALUES (?, ?, ?,?);";
+            connection.query(sql, [req.body.username_host, req.body.businessName, req.body.email, hash], function(err, results){
+              console.log(results);
+              connection.release();
+
+              req.session.username = req.body.username_host;
+              req.session.password = req.body.password_host;
+              req.session.isHost   = true;
+
+              console.log("created host");
+              console.log(req.session);
+              res.redirect('/');
+            });
+          })
+        });
 
       } else if (req.body.logusername && req.body.logpassword) {
 
-        /*if(bcrypt.compareSync(req.body.logpassword, user.password)) {
-          // Passwords match
-         } else {
-          // Passwords don't match
-         }*/
+        sanitizeBody('logpassword').trim().escape();
+        sanitizeBody('logusername').trim().escape();
 
-        //search users array for a match
-        allUsers.forEach( function(user) {
+        var length = allUsers.length;
+
+        for(var i = 0; i < length; i++) {
+
+          var user = allUsers[i];
           console.log("user password: " + user.password);
           console.log("entered passord: " + req.body.logpassword);
-          if(req.body.logusername == user.username && bcrypt.compareSync(req.body.logpassword, user.password)) {
+
+          var passwordMatch = bcrypt.compareSync(req.body.logpassword, user.password);
+          if(req.body.logusername == user.username && passwordMatch) {
 
             if(user.ishost == 'false') {
               req.session.username = user.username;
               req.session.isHost   = false;
 
               console.log("foundUser");
+
             } else if(user.ishost == 'true') {
               req.session.username = user.username;
               req.session.isHost   = true;
 
               console.log("foundHost");
             }
-
             
             console.log(req.session);
             res.redirect('../');
+            break;
 
-          } else if(req.body.logusername == user.username && !bcrypt.compareSync(req.body.logpassword, user.password)) 
-          {
+          } else if(req.body.logusername == user.username && !passwordMatch) {
             res.send(JSON.stringify({error: "Password and Username do not match"}));
+            break;
           }
-        });   
+        }   
       }
 		}); //query end
   });//connection end

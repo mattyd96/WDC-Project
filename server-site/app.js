@@ -7,14 +7,15 @@ var session = require('express-session');
 const passport = require('passport');
 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter  = require('./routes/index');
+var usersRouter  = require('./routes/users');
+const passportSetup = require('./models/passport-setup');
 
 var app = express();
 
 //mysql setup 
 var mysql = require('mysql');
-var dbConnectionPool = mysql.createPool({ host: 'localhost', user: 'root', password: 'YOUR_PASSWORD',database: 'wdc_hotel_website_data'});
+var dbConnectionPool = mysql.createPool({ host: 'localhost', user: 'root', password: 'YOUR_PASSWORD_HERE',database: 'wdc_hotel_website_data'});
 app.use(function(req, res, next) { req.pool = dbConnectionPool; next(); }); 
 
 // view engine setup
@@ -31,18 +32,20 @@ app.use(session({
   resave: true,
   saveUninitialized: false
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-//use sessions for tracking logins
+/*use sessions for tracking logins
 app.use(session({
   secret: 'work hard',
   resave: true,
   saveUninitialized: false
 }));
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session());*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

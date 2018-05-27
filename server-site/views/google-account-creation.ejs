@@ -4,7 +4,7 @@
             <header>
                 <p>Google Does a lot But we need a little more information :)</p>
             </header>
-            <form action="/users" class="modal-content createAccount" id="create-account-form" method="POST">
+            <form action="/users" class="modal-content createAccount" id="create-account-form" method="POST" style = "display: block">
                 <header>
                     <span class="closeBtn">
                         <i class="fas fa-times"></i>
@@ -15,8 +15,8 @@
                 <section>
                     <label for="firstName lastName">Name</label>
     
-                    <input type="text" name="firstName" id="firstName" placeholder="First search" value="<%= newUser.first_name %>" required>
-                    <input type="text" name="lastName" id="lastName" placeholder="Last"  value="<%= newUser.last_name %>" required>
+                    <input type="text" name="firstName" id="firstName" placeholder="First search" value="<%= newUser.username %>" required>
+                    <input type="text" name="lastName" id="lastName" placeholder="Last"  value="<%= newUser.username %>" required>
     
                     <label for="username-search" id="user-username-label">username</label>
                     <input type="text" name="username" id="username" placeholder="ex. traveler2020" required>

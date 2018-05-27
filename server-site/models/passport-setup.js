@@ -1,9 +1,23 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 const keys = require('./keys');
+var mysql = require('mysql');
+var dbConnectionPool = mysql.createPool({ host: 'localhost', user: 'root', password: 'YOUR_PASSWORD_HERE',database: 'wdc_hotel_website_data'});
 
-var users = require('./User').users;
-var hosts = require('./User').hosts;
+passport.serializeUser((user, done) => {
+  done(null, user.username);
+});
+
+passport.deserializeUser((username, done)=> {
+  dbConnectionPool.getConnection(function(err, connection){
+    if(err) throw err;
+    var sql = "SELECT username, email, google_id, password, ishost FROM users WHERE username=?";
+    connection.query(sql, [username], function(err, results){
+      connection.release();
+      done(null, results);
+    });
+  });
+});
 
 
 passport.use(
@@ -24,13 +38,14 @@ passport.use(
         var userlast  = profile.name.familyName;
         var username  = useremail.substring(0, useremail.indexOf("@"));
 
-        req.pool.getConnection(function(err, connection){
+        dbConnectionPool.getConnection(function(err, connection){
           if(err) throw err;
           var sql = "SELECT username, email, google_id, password, ishost FROM users UNION ALL SELECT username, email, google_id, password, ishost FROM hosts";
           connection.query(sql, function(err, results){
 
             connection.release();
             var allUsers = results;
+            var foundUser = false;
             console.log(allUsers);
 
             //check through the users array
@@ -38,17 +53,55 @@ passport.use(
               console.log("going through users array");
               if(userid == user.google_id) {
                 //log this user in
+                console.log('user is: ', user);
+                foundUser = true;
+
+                done(null, user);
                 
               } else if(useremail == user.email) {
                 //log this person in and...
-
                 //assign google id to account
-                user.google_id = userid;
-                
+                console.log("made a match");
+                dbConnectionPool.getConnection(function(err, connection){
+                  if(err) throw err;
+                  var sql = "UPDATE users SET google_id=? WHERE email=?";
+                  connection.query(sql, [userid, useremail], function(err, results){
+                  connection.release();
+                  
+                  console.log('user is: ', results);
+                  done(null, results[0]);
+                  });
+              });
+
+                foundUser = true;
               } 
+
+              if(!foundUser) {
+                //create user
+                dbConnectionPool.getConnection(function(err, connection){
+                  if(err) throw err;
+                  var sql = "INSERT INTO users (username, first_name, last_name, email) VALUES (?, ?, ?, ?);";
+                  connection.query(sql, [username, userfirst, userlast, useremail], function(err, results){
+                    console.log(results);
+                    connection.release();
+  
+                    //make another request to grab that created user
+                    dbConnectionPool.getConnection(function(err, connection){
+                      if(err) throw err;
+                      var sql = "SELECT username, email, google_id, password, ishost FROM users WHERE username=?;";
+                      connection.query(sql, [username], function(err, results){
+                        console.log(results[0]);
+                        connection.release();
+                        
+                        console.log('user is: ', results[0]);
+                        done(null, results[0]);
+                        
+                      });
+                    });
+                  });
+                });
+              }
             });
-
-
 
           });//connection query
         });//get connection pool
@@ -61,16 +114,8 @@ passport.use(
       //fill that modal with what google does give you
       //prompt the user to fill out the rest - specifically a unique password and username
       //submit that form through the normal route
-
-      var newUser = {
-        first_name: userfirst,
-        last_name: userlast,
-        email: useremail,
-      }
-
       
       console.log("went through entire 'then'");
-      console.log(newUser);
         
     })
 );

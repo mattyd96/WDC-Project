@@ -55,13 +55,6 @@ router.get('/search', function(req, res, next) {
       }
 		});
   });
-  
-  //if(req.session.username)
-  //{
-  //  res.render('search',{hotels:hotels2, session: req.session});
-  //} else {
-  //  res.render('search',{hotels:hotels2, session: false});
-  //}
 });
 
 /* GET about page. */
@@ -83,19 +76,27 @@ router.get('/manage-account', function(req, res, next) {
 //later on the id will be provided by the database, but for now i just removed whitespace from the hotel name and used that
 router.get('/hotels/:id', function(req, res) {
   
-  var thisHotel;
-  for(var i = 0; i < hotels.length; i++) {
-    if(hotels[i].id == req.params.id) {
-      thisHotel = hotels[i];
-    }
-  }
+  req.pool.getConnection(function(err, connection){
+		if(err) throw err;
+		var sql = "SELECT * FROM hotels";
+		connection.query(sql, function(err, results){
+			connection.release();
+      var hotels = results;
+      var thisHotel;
+      for(var i = 0; i < hotels.length; i++) {
+        if(hotels[i].hotel_id == req.params.id) {
+          thisHotel = hotels[i];
+        }
+      }
 
-  if(req.session.username)
-  {
-    res.render('hotel', {thisHotel: thisHotel, session: req.session});
-  } else {
-    res.render('hotel', {thisHotel: thisHotel, session: false});
-  }
+      if(req.session.username) {
+        res.render('hotel', {thisHotel: thisHotel, session: req.session});
+      } else {
+        res.render('hotel', {thisHotel: thisHotel, session: false});
+      }
+      
+		});
+  });
 });
 
 /* Booking routes */
