@@ -26,14 +26,14 @@ have a look at how i did the search page and routes/index.html to get an idea of
             </div>
 
             <div class="hotelPictures">
-                <a href="/images/<%= thisHotel.images[0] %>" data-lightbox="HotelPics">
-                    <img src="/images/<%= thisHotel.images[0] %>" alt="Hotel Picture 1" class="innerPic1">
+                <a href="/images/<%= thisHotel.hotel_name + '1' %>" data-lightbox="HotelPics">
+                    <img src="/images/<%= thisHotel.hotel_name + '1' %>" alt="Hotel Picture 1" class="innerPic1">
                 </a>
-                <a href="/images/<%= thisHotel.images[1] %>" data-lightbox="HotelPics">
-                    <img src="/images/<%= thisHotel.images[1] %>" alt="Hotel Picture 2" class="innerPic2">
+                <a href="/images/<%= thisHotel.hotel_name + '2' %>" data-lightbox="HotelPics">
+                    <img src="/images/<%= thisHotel.hotel_name + '2' %>" alt="Hotel Picture 2" class="innerPic2">
                 </a>
-                <a href="/images/<%= thisHotel.images[2] %>" data-lightbox="HotelPics">
-                    <img src="/images/<%= thisHotel.images[2] %>" alt="Hotel Picture 3" class="innerPic3">
+                <a href="/images/<%= thisHotel.hotel_name + '3' %>" data-lightbox="HotelPics">
+                    <img src="/images/<%= thisHotel.hotel_name + '3' %>" alt="Hotel Picture 3" class="innerPic3">
                 </a>
             </div>
 
@@ -49,31 +49,31 @@ have a look at how i did the search page and routes/index.html to get an idea of
         </div>
 
         <!--changed up the code a bit but, i need you to mak room1 room2 etc dynamic in the loop-->
-        <% thisHotel.rooms.forEach(function(room) { %>
+        <% rooms.forEach(function(room) { %>
             <div class="roomGrid" id="room1">
             <div class=roomName>
                 <!-- didnt add the [0] after room bcuz it gives an undefined error -->
                 <h3><%= room.name %></h3>
             </div>
             <div class="roomPictures">
-                <a href="/images/<%= room.images[0] %>" data-lightbox="Room1Pics">
-                    <img src="/images/<%= room.images[0] %>" alt="Room Picture 1" class="innerRPic1">
+                <a href="/images/<%= room.room_name + '1' %>" data-lightbox="Room1Pics">
+                    <img src="/images/<%= room.room_name + '1' %>" alt="Room Picture 1" class="innerRPic1">
                 </a>
-                <a href="/images/<%= room.images[1] %>" data-lightbox="Room1Pics">
-                    <img src="/images/<%= room.images[1] %>" alt="Room Picture 2" class="innerRPic2">
+                <a href="/images/<%= room.room_name + '2' %>" data-lightbox="Room1Pics">
+                    <img src="/images/<%= room.room_name + '2' %>" alt="Room Picture 2" class="innerRPic2">
                 </a>
             </div>
 
             <div class="roomSize">
                     <h3>Room Size</h3>
-                    <p><%= room.people %></p>
+                    <p><%= room.num_people %></p>
                 </div>
                 <!-- Same here. Didnt add [0] -->
                 <div class="roomDescription">
-                    <p><%= room.description %></p>
+                    <p><%= room.room_desc %></p>
                 </div>
                 <div class="bookCell">
-                    <a href="/hotels/<%= thisHotel.id %>/<%= room.name %>/booking">
+                    <a href="/hotels/<%= thisHotel.hotel_id %>/<%= room.room_name %>/booking">
                     <button class="bookBtn">Book</button>
                     </a>
                 </div>

@@ -86,15 +86,27 @@ router.get('/hotels/:id', function(req, res) {
       for(var i = 0; i < hotels.length; i++) {
         if(hotels[i].hotel_id == req.params.id) {
           thisHotel = hotels[i];
+          break;
         }
       }
 
-      if(req.session.username) {
-        res.render('hotel', {thisHotel: thisHotel, session: req.session});
-      } else {
-        res.render('hotel', {thisHotel: thisHotel, session: false});
-      }
-      
+      req.pool.getConnection(function(err, connection){
+        if(err) throw err;
+        var sql = "SELECT * FROM rooms WHERE hotel_id=?";
+        connection.query(sql, [thisHotel.hotel_id],function(err, results){
+          connection.release();
+
+          var rooms = results;
+
+          if(req.session.username) {
+            res.render('hotel', {thisHotel: thisHotel, rooms: rooms, session: req.session});
+          } else {
+            res.render('hotel', {thisHotel: thisHotel, rooms: rooms, session: false});
+          }
+
+        });
+      });
+  
 		});
   });
 });
