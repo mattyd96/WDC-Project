@@ -1,0 +1,162 @@
+<% include partials/header %>
+<% include partials/navbar %>
+<% include partials/sign-in-modal %>
+
+
+<div id="account-management">
+    <main id="account-management-content">
+        <header>
+            <h1>Account Management</h1>
+        </header>
+        <aside id="account-management-menu-user">
+            <ul>
+                <li>
+                    <a href="#" class="manage-account-nav">Account Information</a>
+                </li>
+
+                <% if(!session.isHost) { %>
+                <li class="booking-toggle">
+                    <a href="#" class="bookings-nav">Bookings</a>
+                </li>
+                <% } else { %>
+                <li class="listing-toggle">
+                    <a href="#" class="listings-nav">Listings</a>
+                </li>
+                <% } %>
+
+                <li>
+                    <a href="#" class="favorites-nav">Favorites</a>
+                </li>
+            </ul>
+
+        </aside>
+        <section id="account-management-view">
+
+            <% if(session.isHost) { %>
+            <article id="account-information">
+                <h2>Account Information</h2>
+
+                <label for="businessName-manage">Name</label>
+
+                <div>
+                    <input type="text" name="businessName" id="businessName-manage">
+                    <button type="submit" class="">Change</button>
+                </div>
+
+                <label for="email-manage-host">Email (optional)</label>
+
+                <div>
+                    <input type="email" name="email" id="email-manage-host">
+                    <button type="submit" class="">Change</button>
+                </div>
+            </article>
+            <% } else { %>
+            <article id="account-information">
+                <h2>Account Information</h2>
+
+                <label for="firstName-manage lastName-manage">Name</label>
+
+                <div>
+                    <input type="text" name="firstName" id="firstName-manage">
+                    <button type="submit" class="firstNameChangeBtn">Change</button>
+                </div>
+
+                <div>
+                    <input type="text" name="lastName" id="lastName-manage">
+                    <button type="submit" class="lastNameChangeBtn">Change</button>
+                </div>
+
+                <label for="email-manage">Email (optional)</label>
+
+                <div>
+                    <input type="email" name="email" id="email-manage">
+                    <button type="submit" class="emailChangeBtn">Change</button>
+                </div>
+
+            </article>
+            <% } %>
+
+            <article id="bookings">
+                <h2>Bookings</h2>
+                <div>
+                    <% bookings.forEach(function(booking) { var hotelThumb = booking.hotel_name + ".png"; %>
+                        <div class="hotelRoomThumbnail">
+                            <a href="/hotels/<%= booking.hotel_id %>">
+                                    <div class="thumbImg" style="background: url('images/<%=hotelThumb%>'); background-size: cover">
+                                    </div>
+                            </a>
+                            <div class="thumb-flex room-name-thumb">
+                                <p><%= booking.hotel_name %></p>
+                                <span class="favThis">
+                                    <i class="fas fa-heart"></i>
+                                </span>
+                            </div>
+                            <div class="thumb-flex">
+                                <a href="#">
+                                    <i class="fas fa-building fa-lg"></i> <%= booking.room_name %></a>
+                                <a href="#" class="thumb-price">Booking Number: <%= booking.booking_id %></a>
+                            </div>
+                        </div>
+                        <br />
+                        <a href="manage-bookings">
+                          <button onclick="sendPost()" id="manageBooking">Manage Booking</button>
+                        </a>
+
+                    <% }); %>
+
+                </div>
+            </article>
+
+            <%if(session.isHost) { %>
+            <article id="listings">
+                <h2>Listings</h2>
+                <div>
+                    <!-- <% currUser.listings.forEach(function(listing) { %>
+                        <div>
+                            <h1>This is a booking <%= listing %></h1>
+                        </div>
+
+                    <% }); %> -->
+
+                </div>
+            </article>
+            <% } %>
+
+            <article id="favorites">
+                <h2>Favorites</h2>
+                <div class="homeResultGrid">
+
+                </div>
+            </article>
+
+        </section>
+    </main>
+</div>
+
+<script>
+
+function sendPost(){
+
+  // Create JSON data containing current user and bookings into
+  function createJSON(formElements){
+      dat = {}
+      console.log(currentUser, abookings)
+      dat[currUser] = currentUser;
+      date[bookings] = abookings;
+      return(dat)
+  }
+  var dat = createJSON(currUser, bookings);
+  console.log(dat);
+
+  // Create new AJAX request
+  var xhttp = new XMLHttpRequest();
+  // Initiate connection
+  xhttp.open("POST", "manage-bookings", true);
+  xhttp.setRequestHeader("Content-type","application/json");
+  // Send request
+  xhttp.send(JSON.stringify(dat));
+}
+
+</script>
+
+<% include partials/footer %>
