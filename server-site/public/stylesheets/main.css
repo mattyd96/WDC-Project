@@ -474,6 +474,18 @@ nav .middle {
 }
 
 /*#############################################################################################*/
+/*google sign-in button*/
+
+#signBtnGoogle {
+    width: 50%;
+    height: 2.7em;
+    background: url(../images/btn_google_signin2.png);
+    background-repeat: no-repeat;
+    border-radius: .2em;
+    padding: none;
+}
+
+/*#############################################################################################*/
 /*homepage contents*/
 
 .homeResults {

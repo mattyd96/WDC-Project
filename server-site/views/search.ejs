@@ -23,11 +23,11 @@
 
             <main class="homeResultGrid">
 
-                <% hotels.forEach(function(hotel) { %>
+                <% hotels.forEach(function(hotel) { var hotelThumb = hotel.hotel_name + ".png"; %>
                     
                     <div class="hotelRoomThumbnail">
                         <a href="/hotels/<%= hotel.hotel_id %>">
-                                <div class="thumbImg">
+                                <div class="thumbImg" style="background: url('images/<%=hotelThumb%>'); background-size: cover">
                                 </div> 
                         </a>
                         <div class="thumb-flex room-name-thumb">
@@ -66,9 +66,9 @@
     console.log(hoteru);
     function initMap() {
 
-        var latitude = hoteru[0].lat;
+        var latitude = hoteru[0].latitude;
         console.log(latitude); 
-        var longitude = hoteru[0].lng;
+        var longitude = hoteru[0].longitude;
         console.log(longitude);  
         var hotel = {lat: latitude, lng: longitude};
 
@@ -78,15 +78,15 @@
         });
 
         hoteru.forEach(function(hotel) {
-            var latitude = hotel.lat;
+            var latitude = hotel.latitude;
             console.log(latitude); 
-            var longitude = hotel.lng;
+            var longitude = hotel.longitude;
             var hotel = {lat: latitude, lng: longitude}; 
 
             var marker = new google.maps.Marker({
             position: hotel,
             map: map,
-            title: hotel.name,
+            title: hotel.hotel_name,
             animation: google.maps.Animation.DROP
         });
             

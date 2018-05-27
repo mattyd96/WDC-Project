@@ -130,7 +130,7 @@ router.post('/', function (req, res, next) {
   if (req.body.password !== req.body.passwordConf) {
     var err = new Error('Passwords do not match.');
     err.status = 400;
-    res.send("passwords dont match");
+    res.status(400).send(err.message);
     return next(err);
   }
 
@@ -156,12 +156,12 @@ router.post('/', function (req, res, next) {
           if(req.body.username == user.username) {
             var err = new Error("username taken");
             err.status = 400;
-            res.send("this username is already taken");
+            res.status(400).send(err.message);
             return next(err);
           } else if(req.body.email == user.email) {
-            var err = new Error("email taken");
+            var err = new Error("an account under this email address has already been created");
             err.status = 400;
-            res.send("an account under this email address has already been created");
+            res.status(400).send(err.message);
             return next(err);
           } 
         });
@@ -197,14 +197,14 @@ router.post('/', function (req, res, next) {
         //check through users array
         allUsers.forEach(function(user) {
           if(req.body.username_host == user.username) {
-            var err = new Error("username taken");
+            var err = new Error("this username is already taken");
             err.status = 400;
-            res.send("this username is already taken");
+            res.status(400).send(err.message);
             return next(err);
           } else if(req.body.email == user.email) {
-            var err = new Error("email taken");
+            var err = new Error("an account under this email address has already been created");
             err.status = 400;
-            res.send("an account under this email address has already been created");
+            res.status(400).send(err.message);
             return next(err);
           } 
         });
@@ -235,133 +235,54 @@ router.post('/', function (req, res, next) {
         sanitizeBody('logusername').trim().escape();
 
         var length = allUsers.length;
+        var userFound = false;
 
         for(var i = 0; i < length; i++) {
 
-          var user = allUsers[i];
-          console.log("user password: " + user.password);
-          console.log("entered passord: " + req.body.logpassword);
+          if(req.body.logusername == allUsers[i].username) {
 
-          var passwordMatch = bcrypt.compareSync(req.body.logpassword, user.password);
-          if(req.body.logusername == user.username && passwordMatch) {
+            var user = allUsers[i];
+            console.log("user password: " + user.password);
+            console.log("entered passord: " + req.body.logpassword);
 
-            if(user.ishost == 'false') {
-              req.session.username = user.username;
-              req.session.isHost   = false;
+            var passwordMatch = bcrypt.compareSync(req.body.logpassword, user.password);
+            if(passwordMatch) {
 
-              console.log("foundUser");
+              if(user.ishost == 'false') {
+                req.session.username = user.username;
+                req.session.isHost   = false;
 
-            } else if(user.ishost == 'true') {
-              req.session.username = user.username;
-              req.session.isHost   = true;
+                console.log("foundUser");
 
-              console.log("foundHost");
+              } else if(user.ishost == 'true') {
+                req.session.username = user.username;
+                req.session.isHost   = true;
+
+                console.log("foundHost");
+              }
+              
+              console.log(req.session);
+              userFound = true;
+              res.redirect('../');
+              break;
+
+            } else if(!passwordMatch) {
+              res.send(JSON.stringify({error: "Password and Username do not match"}));
+              userFound = true;
+              break;
             }
-            
-            console.log(req.session);
-            res.redirect('../');
-            break;
-
-          } else if(req.body.logusername == user.username && !passwordMatch) {
-            res.send(JSON.stringify({error: "Password and Username do not match"}));
-            break;
-          }
-        }   
+          } 
+        }
+        
+        if(!userFound) {
+          var err = new Error("This Username does not exist in our system :(");
+          err.status = 400;
+          res.status(400).send(err.message);
+          return next(err);
+        }
       }
 		}); //query end
   });//connection end
-  
-   /*if (req.body.idtoken) {
-    console.log("Google Token Recieved!");
-
-    var userid, useremail, userfirst, userlast;
-
-    async function verify() {
-      const ticket = await client.verifyIdToken({
-          idToken: req.body.idtoken,
-          audience: '515705211844-17nbhti5hk7njhelk62kaeup52fggent.apps.googleusercontent.com',  // Specify the CLIENT_ID of the app that accesses the backend
-      });
-      const payload = ticket.getPayload();
-      userid = payload['sub'];
-      useremail = payload['email'];
-      userfirst = payload['family_name'];
-      userlast = payload['given_name'];
-
-      console.log(userid);
-      console.log(useremail);
-
-      //check through the users array
-      users.forEach(function(user) {
-        console.log("going through users array");
-        if(userid == user.google) {
-          //log this user in
-          req.session.username = user.username;
-          req.session.password = user.password;
-          req.session.isHost   = false;
-
-          //res.redirect('../');
-          res.send("localhost:3000");
-
-        } else if(useremail == user.email) {
-          //log this person in and...
-          req.session.username = user.username;
-          req.session.password = user.password;
-          req.session.isHost   = false;
-
-          //assign google id to account
-          user.google = userid;
-
-          //res.redirect('../');
-          res.send("localhost:3000");
-        } 
-      });
-
-      //check through the hosts array
-      hosts.forEach(function(user) {
-        if(userid == user.google) {
-          //log this user in
-          req.session.username = user.username;
-          req.session.password = user.password;
-          req.session.isHost   = true;
-
-          res.redirect('../');
-        } else if(useremail == user.email) {
-          //log this person in and...
-          req.session.username = user.username;
-          req.session.password = user.password;
-          req.session.isHost   = true;
-
-          //assign google id to account
-          user.google = userid;
-
-          //res.redirect('../');
-          res.send("localhost:3000");
-        } 
-      });
-
-      //if there is no user redirect to a special page with just the user account creation modal
-      //fill that modal with what google does give you
-      //prompt the user to fill out the rest - specifically a unique password and username
-      //submit that form through the normal route
-
-      var newUser = {
-        first_name: userfirst,
-        last_name: userlast,
-        email: useremail,
-      }
-      //res.render('google-account-creation', {newUser: newUser});
-      console.log("went through entire 'then'");
-      console.log(newUser);
-    }
-    verify().catch(console.error);
-    
-
-  } else {
-    console.log("nothing happened");
-    var err = new Error('All fields required.');
-    err.status = 400;
-    return next(err);
-  }*/
 
   console.log('request finished');
 });

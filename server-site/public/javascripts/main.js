@@ -81,6 +81,44 @@
         e.preventDefault();
     });
 
+    //stop default form submission on sign in and implement an ajax call
+    /*$("#create-user-button").click(function (e) {
+        e.preventDefault();
+
+        function createJSON(formElements){
+            dat = {}
+            console.log(formElements)
+            for(i = 0; i <formElements.length; i++){   
+                dat[formElements[i].name] = formElements[i].value;
+            }
+            return(dat)
+        }
+
+        var form = document.getElementById('create-account-form');
+        var dat = createJSON(form.getElementsByClassName('formElement'));
+        console.log(dat);
+
+        var xhttp = new XMLHttpRequest();
+            
+        xhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                var response = JSON.parse(xhttp.responseText);
+                console.log(response);
+            } else {
+                var response = JSON.parse(xhttp.responseText);
+                $("#error-create-user").html(response);
+            }
+        }
+        // Initiate connection
+        xhttp.open("POST", "/users", true);
+        
+        xhttp.setRequestHeader("Content-type","application/json");
+        
+        // Send request
+        xhttp.send(JSON.stringify(dat));
+    });*/
+
+
     //----------------------------- google sign in functions ---------------------------------------//
     function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
