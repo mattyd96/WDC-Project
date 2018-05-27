@@ -1,0 +1,113 @@
+<nav>
+    <div class="left">
+        <ul>
+            <li>
+                <a href="/">LOGO</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="right">
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/search">Search</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+
+            <% if(!session) { %>
+            <li class="signInUp">
+                <a href="#">Sign In</a>
+            </li>
+            <li class="createAccountClass create-account-nav">
+                <a href="#">Create Account</a>
+            </li>
+            <% } %>
+
+            <% if(session) { %>
+            <li class="loggedInWelcome">
+                <a href="#" class="nav-welcome">Welcome, <%= session.username %></a>
+                <ul>
+                    <li>
+                        <a href="/users/<%= session.username %>" class="manage-account-nav">Manage Account</a>
+                    </li>
+                    <li>
+                        <a href="/users/<%= session.username %>" class="favorites-nav">Favorites</a>
+                    </li>
+                    <% if(!session.ishost) { %>
+                    <li class="booking-toggle">
+                        <a href="/users/<%= session.username %>" class="bookings-nav">Bookings</a>
+                    </li>
+                    <% } else {%>
+                    <li class="listing-toggle">
+                        <a href="/users/<%= session.username %>" class="listings-nav">Listings</a>
+                    </li>
+                    <% } %>
+                    <li>
+                        <a href="/users/logout" class="sign-out">Sign out</a>
+                    </li>
+                </ul>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+
+
+    <div class="hamburger">
+        <div class="bars">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+        <ul id="hamburgerMenu">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/search">Search</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+
+            <% if(!session) { %>
+            <li class="signInUp">
+                <a href="#">Sign In</a>
+            </li>
+            <li class="createAccountClass create-account-nav">
+                <a href="#">Create Account</a>
+            </li>
+            <% } %>
+
+            <% if(session) { %>
+            <li class="loggedInWelcome">
+                <a href="#" class="nav-welcome">Welcome, <%= session.username %></a>
+                <ul>
+                    <li>
+                        <a href="/users/<%= session.username %>" class="manage-account-nav">Manage Account</a>
+                    </li>
+                    <li>
+                        <a href="/users/<%= session.username %>" class="favorites-nav">Favorites</a>
+                    </li>
+                    <% if(!session.ishost) { %>
+                    <li class="booking-toggle">
+                        <a href="/users/<%= session.username %>" class="bookings-nav">Bookings</a>
+                    </li>
+                    <% } else {%>
+                    <li class="listing-toggle">
+                        <a href="/users/<%= session.username %>" class="listings-nav">Listings</a>
+                    </li>
+                    <% } %>
+                    <li>
+                        <a href="/users/logout" class="sign-out">Sign out</a>
+                    </li>
+                </ul>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</nav>

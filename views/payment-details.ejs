@@ -1,0 +1,28 @@
+<% include partials/header %>
+<% include partials/navbar %>
+<% include partials/sign-in-modal %>
+
+<main>
+  <h4>Fill out your payment details below</h4>
+  <form action="/" method="GET" id="payment-details">
+
+    <label for="payment-firstname">First Name:</label>
+    <input type="text" id="payment-firstname" />
+
+    <label for="payment-lastname">First Name:</label>
+    <input type="text" id="payment-lastname" />
+
+    <label type="text" for="cardNo">First Name:</label>
+    <input type="text" id="cardNo" />
+
+    <label type="text" for="phoneNo">First Name:</label>
+    <input type="text" id="phoneNo" />
+
+    <input type="submit" value="Submit"/>
+
+  </form>
+
+
+</main>
+
+<% include partials/footer %>

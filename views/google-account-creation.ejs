@@ -1,0 +1,36 @@
+<% include partials/header %>
+
+    <div>
+            <header>
+                <p>Google Does a lot But we need a little more information :)</p>
+            </header>
+            <form action="/users/google/addPassword" class="modal-content createAccount" id="create-account-form" method="POST" style = "display: block">
+                <header>
+                    <span class="closeBtn">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <h2>Add Password</h2>
+                </header>
+    
+                <section>
+                    <div style = "display: none">
+                        <label for="username-search" id="user-username-label">username</label>
+                        <input type="text" name="username" id="username" placeholder="ex. traveler2020" value="<%= newUser.username %>" required>
+                    </div>
+                    
+    
+                    <label for="createPassword">Password</label>
+                    <input type="password" name="password" id="create-password" required>
+    
+                    <label for="confirm-password">Confirm Password</label>
+    
+                    <div class='password-confirm-div'>
+                        <input type="password" name="passwordConf" id="confirm-password" required>
+                    </div>
+    
+                    <input type="submit" value="Complete Account" class="create-user-submit">
+                </section>
+            </form>
+    </div>
+    
+<% include partials/footer %>
