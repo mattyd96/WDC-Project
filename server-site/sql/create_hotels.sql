@@ -32,3 +32,10 @@ INSERT INTO users(username, first_name, last_name, email)
 VALUES ("toru991", "Toru", "Tsuki", "toru@gmail.com")
        ,("geralt96", "Geralt", "of Rivia", "morhenhires@gmail.com")
        ,("Kratos12", "Kratos", "the God of War", "kratos@gmail.com");
+
+
+INSERT INTO hotels(hotel_name, longitude, latitude, address1, address2, district, city, country, postcode, hotel_desc)
+VALUES ("Yorha Bunker", 135.5013,  34.6687, "1-chome-10", "Dontonbori","chuo-ku", "Osaka", "Japan", "542-0071",
+        "Humanities gone, but who cares! Hang out with your Android buddies! The Yorha Bunker can cater to all kinds with
+        robots welcome as well. Come get an arm repaired or your battle supplies restoked at the in house market. The end of the
+        world could never be better. Glory to mankind!");

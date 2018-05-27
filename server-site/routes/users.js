@@ -113,10 +113,20 @@ router.get('/:id', function(req, res, next) {
         for(var i = 0; i < length; i++) {
           if(req.session.username == allUsers[i].username) {
             currUser = allUsers[i];
-            res.render('manage-account', {currUser: currUser, session: req.session});
+
+            req.pool.getConnection(function(err, connection){
+              if(err) throw err;
+              var sql = "SELECT * FROM bookings WHERE username=?";
+              connection.query(sql, [currUser.username], function(err, results){
+                connection.release();
+                var bookings = results;
+                
+                res.render('manage-account', {currUser: currUser, bookings: bookings, session: req.session});
+
+              });
+            });
           }
         }
-
       });
     });
   }
@@ -158,7 +168,7 @@ router.post('/', function (req, res, next) {
             err.status = 400;
             res.status(400).send(err.message);
             return next(err);
-          } else if(req.body.email == user.email) {
+          } else if(req.body.email.length > 2 && req.body.email == user.email) {
             var err = new Error("an account under this email address has already been created");
             err.status = 400;
             res.status(400).send(err.message);
@@ -201,7 +211,7 @@ router.post('/', function (req, res, next) {
             err.status = 400;
             res.status(400).send(err.message);
             return next(err);
-          } else if(req.body.email == user.email) {
+          } else if(req.body.email.length > 2 && req.body.email == user.email) {
             var err = new Error("an account under this email address has already been created");
             err.status = 400;
             res.status(400).send(err.message);

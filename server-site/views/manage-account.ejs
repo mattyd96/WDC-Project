@@ -79,9 +79,23 @@
             <article id="bookings">
                 <h2>Bookings</h2>
                 <div>
-                    <% currUser.bookings.forEach(function(booking) { %>
-                        <div>
-                            <h1>This is a booking <%= booking %></h1>
+                    <% bookings.forEach(function(booking) { var hotelThumb = booking.hotel_name + ".png"; %>
+                        <div class="hotelRoomThumbnail">
+                            <a href="/hotels/<%= booking.hotel_id %>">
+                                    <div class="thumbImg" style="background: url('images/<%=hotelThumb%>'); background-size: cover">
+                                    </div> 
+                            </a>
+                            <div class="thumb-flex room-name-thumb">
+                                <p><%= booking.hotel_name %></p>
+                                <span class="favThis">
+                                    <i class="fas fa-heart"></i>
+                                </span>
+                            </div>
+                            <div class="thumb-flex">
+                                <a href="#">
+                                    <i class="fas fa-building fa-lg"></i> <%= booking.room_name %></a>
+                                <a href="#" class="thumb-price"><%= booking.date_start %></a>
+                            </div>
                         </div>
 
                     <% }); %>
@@ -93,12 +107,12 @@
             <article id="listings">
                 <h2>Listings</h2>
                 <div>
-                    <% currUser.listings.forEach(function(listing) { %>
+                    <!-- <% currUser.listings.forEach(function(listing) { %>
                         <div>
                             <h1>This is a booking <%= listing %></h1>
                         </div>
 
-                    <% }); %>
+                    <% }); %> -->
 
                 </div>
             </article>
@@ -107,26 +121,7 @@
             <article id="favorites">
                 <h2>Favorites</h2>
                 <div class="homeResultGrid">
-                    <% currUser.favorites.forEach(function(hotel) { %>
-                        <div class="hotelRoomThumbnail">
-                            <a href="/hotels/<%= hotel.id %>">
-                                    <div class="thumbImg">
-                                    </div> 
-                            </a>
-                            <div class="thumb-flex room-name-thumb">
-                                <p><%= hotel.name %></p>
-                                <span class="favThis">
-                                    <i class="fas fa-heart"></i>
-                                </span>
-                            </div>
-                            <div class="thumb-flex">
-                                <a href="#">
-                                    <i class="fas fa-compass fa-lg"></i> <%= hotel.location %></a>
-                                <a href="#" class="thumb-price"><%= hotel.price %></a>
-                            </div>
-                        </div>
-                    <% }); %>
-
+                   
                 </div>
             </article>
 
