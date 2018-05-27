@@ -4,22 +4,20 @@
             <header>
                 <p>Google Does a lot But we need a little more information :)</p>
             </header>
-            <form action="/users" class="modal-content createAccount" id="create-account-form" method="POST" style = "display: block">
+            <form action="/users/google/addPassword" class="modal-content createAccount" id="create-account-form" method="POST" style = "display: block">
                 <header>
                     <span class="closeBtn">
                         <i class="fas fa-times"></i>
                     </span>
-                    <h2>Create Account</h2>
+                    <h2>Add Password</h2>
                 </header>
     
                 <section>
-                    <label for="firstName lastName">Name</label>
-    
-                    <input type="text" name="firstName" id="firstName" placeholder="First search" value="<%= newUser.username %>" required>
-                    <input type="text" name="lastName" id="lastName" placeholder="Last"  value="<%= newUser.username %>" required>
-    
-                    <label for="username-search" id="user-username-label">username</label>
-                    <input type="text" name="username" id="username" placeholder="ex. traveler2020" required>
+                    <div style = "display: none">
+                        <label for="username-search" id="user-username-label">username</label>
+                        <input type="text" name="username" id="username" placeholder="ex. traveler2020" value="<%= newUser.username %>" required>
+                    </div>
+                    
     
                     <label for="createPassword">Password</label>
                     <input type="password" name="password" id="create-password" required>
@@ -30,10 +28,7 @@
                         <input type="password" name="passwordConf" id="confirm-password" required>
                     </div>
     
-                    <label for="email">Email (optional)</label>
-                    <input type="email" name="email" value="<%= newUser.email %>">
-    
-                    <input type="submit" value="Create Account" class="create-user-submit">
+                    <input type="submit" value="Complete Account" class="create-user-submit">
                 </section>
             </form>
     </div>

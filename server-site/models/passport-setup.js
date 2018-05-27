@@ -46,7 +46,6 @@ passport.use(
             connection.release();
             var allUsers = results;
             var foundUser = false;
-            console.log(allUsers);
 
             //check through the users array
             allUsers.forEach(function(user) {

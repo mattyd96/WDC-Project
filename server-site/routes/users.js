@@ -64,12 +64,34 @@ router.get('/google/addUsername', passport.authenticate('google'), (req,res) => 
       console.log("made it through auth");
 
       if(req.user.password == null) {
+        req.session.username = req.user.username;
+        req.session.isHost   = false;
+        console.log("session is: " + req.session.user.username);
         res.render('google-account-creation', {newUser: req.user});
       } else {
-        res.redirect('../');
+        req.session.username = req.user.username;
+        req.session.isHost   = false;
+        console.log("session is: " + req.session.username);
+        console.log("req.user is: " + req.user);
+        res.redirect('/');
       }
     
   
+});
+
+/*POST add password to google account for local login*/
+router.post('/google/addPassword', function (req,res, next) {
+
+  var hash = bcrypt.hashSync(req.body.password, 10);
+  req.pool.getConnection(function(err, connection){
+		if(err) throw err;
+		var sql = "UPDATE users SET password=? WHERE username=?";
+		connection.query(sql, [hash, req.body.username], function(err, results){
+			connection.release();
+      res.redirect('/');
+		});
+	});
+
 });
 
 /* GET user account page*/
@@ -78,22 +100,25 @@ router.get('/:id', function(req, res, next) {
   if(!req.session) {
       res.redirect("../");
   } else {
-    var currUser;
 
-    //check user array
-    for(var i =0; i < users.length; i ++) {
-      if(req.session.username == users[i].username) {
-        currUser = users[i];
-        res.render('manage-account', {currUser: currUser, session: req.session});
-      } 
-    }
-    //check hosts array
-    for(var i =0; i < hosts.length; i ++) {
-      if(req.session.username == hosts[i].username) {
-        currUser = hosts[i];
-        res.render('manage-account', {currUser: currUser, session: req.session});
-      }
-    }
+    req.pool.getConnection(function(err, connection){
+      if(err) throw err;
+      var sql = "SELECT username, email, google_id, password, ishost FROM users UNION ALL SELECT username, email, google_id, password, ishost FROM hosts";
+      connection.query(sql, function(err, results){
+        connection.release();
+        var allUsers = results;
+        var length = allUsers.length;
+        var currUser;
+
+        for(var i = 0; i < length; i++) {
+          if(req.session.username == allUsers[i].username) {
+            currUser = allUsers[i];
+            res.render('manage-account', {currUser: currUser, session: req.session});
+          }
+        }
+
+      });
+    });
   }
   
 });
