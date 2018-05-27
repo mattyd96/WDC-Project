@@ -39,3 +39,7 @@ VALUES ("Yorha Bunker", 135.5013,  34.6687, "1-chome-10", "Dontonbori","chuo-ku"
         "Humanities gone, but who cares! Hang out with your Android buddies! The Yorha Bunker can cater to all kinds with
         robots welcome as well. Come get an arm repaired or your battle supplies restoked at the in house market. The end of the
         world could never be better. Glory to mankind!");
+
+INSERT INTO rooms(hotel_id, room_name, price, currency, num_people, room_desc)
+VALUES (4, "2B", 30000, "USD", 2, "A room fit for a soldier! ... and those who like everything white")
+        ,(4, "9S", 20000, "USD", 1, "Another room fit for a soldier! Also white and also like the 2B room, this room has everything you need!");

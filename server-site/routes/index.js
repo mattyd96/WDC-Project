@@ -3,7 +3,6 @@ var router = express();
 var bodyParser = require("body-parser");
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
-var users = require('./users').users;
 
 router.use(bodyParser.urlencoded({extended: true}));
 router.set("view engine", "ejs");
