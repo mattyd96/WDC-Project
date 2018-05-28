@@ -15,7 +15,7 @@ var app = express();
 
 //mysql setup 
 var mysql = require('mysql');
-var dbConnectionPool = mysql.createPool({ host: 'localhost', user: 'root', password: 'YOUR_PASSWORD',database: 'wdc_hotel_website_data'});
+var dbConnectionPool = mysql.createPool({ host: 'localhost', user: 'root', password: 'Kratos96',database: 'wdc_hotel_website_data'});
 app.use(function(req, res, next) { req.pool = dbConnectionPool; next(); }); 
 
 // view engine setup

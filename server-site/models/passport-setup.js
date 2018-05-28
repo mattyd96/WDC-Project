@@ -2,7 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 const keys = require('./keys');
 var mysql = require('mysql');
-var dbConnectionPool = mysql.createPool({ host: 'localhost', user: 'root', password: 'YOUR_PASSWORD',database: 'wdc_hotel_website_data'});
+var dbConnectionPool = mysql.createPool({ host: 'localhost', user: 'root', password: 'Kratos96',database: 'wdc_hotel_website_data'});
 
 passport.serializeUser((user, done) => {
   done(null, user.username);

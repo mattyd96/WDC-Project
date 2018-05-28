@@ -233,28 +233,8 @@ router.post('/search', function(req, res, next) {
       
     });
   });
-
-
-  
-
-
-
-  //for each hotel in the hotels array  (all hotels)
-  hotels.forEach(function(hotel) {
-
-    //check if hotel is in the location searched, if it is add it to the filterHotel array
-    if((hotel.location.toLowerCase() == req.body.location.toLowerCase()) && (req.body.location != '')) {
-      filterHotel.push(hotel);
-    }
-
-  });
   
 });
-
-
-
-
-
 
 
 module.exports = router;

@@ -77,7 +77,18 @@
             center: hotel
         });
 
+        
+
+        
+
         hoteru.forEach(function(hotel) {
+
+            var contentString = "<div><h3>" + hotel.hotel_name + "</h3> <p>" + hotel.hotel_desc + "<p></div>";
+
+            var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
             var latitude = hotel.latitude;
             console.log(latitude); 
             var longitude = hotel.longitude;
@@ -89,6 +100,10 @@
             title: hotel.hotel_name,
             animation: google.maps.Animation.DROP
         });
+
+            marker.addListener('click', function() {
+            infowindow.open(map, marker);
+            });
             
         });    
       
